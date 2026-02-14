@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight, Dices } from 'lucide-react';
+import SCADViewer from './components/SCADViewer';
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
@@ -70,8 +71,6 @@ const generateSCAD = (
   useLogo,
   tagText,
   addTextTag,
-  tagTextSize,
-  tagThickness,
   tagTextSize,
   tagThickness,
   tagPadding,
@@ -1509,59 +1508,25 @@ export default function TactileGenerator() {
 
         {/* VIEW: LIVE PREVIEW */}
         {activeTab === 'preview' && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-4 gap-6 h-[700px]">
-              {/* Sidebar Controls */}
-              <div className="lg:col-span-1 space-y-4">
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                  <h3 className="font-bold text-black mb-2 flex items-center gap-2"><Eye className="text-purple-600" size={18} /> Viewer Controls</h3>
-                  <p className="text-sm text-gray-700 mb-4">Rendering complex models in the browser can be slow.</p>
-
-                  <div className="space-y-2">
-                    <button onClick={copyToClipboard} className="w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all">
-                      <Copy size={14} /> 1. Copy Code
-                    </button>
-                    <div className="text-sm text-gray-800 bg-gray-50 p-2 rounded border border-gray-200">
-                      <strong>Manual Load:</strong>
-                      <ol className="list-decimal list-inside mt-1 space-y-1">
-                        <li>Click "1. Copy Code" above.</li>
-                        <li>Click inside the editor on the right.</li>
-                        <li>Select All (Ctrl+A / Cmd+A).</li>
-                        <li>Paste (Ctrl+V / Cmd+V).</li>
-                      </ol>
-                    </div>
-
-                    <button onClick={refreshViewer} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
-                      <RefreshCw size={14} /> Force Reload
-                    </button>
-
-                    <a href={viewerUrl} target="_blank" rel="noreferrer" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
-                      <ExternalLink size={14} /> Open New Tab
-                    </a>
-                  </div>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-200px)] min-h-[600px] flex flex-col gap-4">
+            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-black flex items-center gap-2"><Eye className="text-purple-600" size={20} /> Live 3D Preview</h3>
+                <p className="text-gray-600 text-sm">Real-time local rendering via WebAssembly.</p>
+              </div>
+              <div className="flex gap-3">
+                <div className="bg-purple-50 px-4 py-2 rounded-lg border border-purple-100 flex flex-col items-end">
+                  <span className="text-xs text-purple-600 font-bold uppercase tracking-wider">Current Design</span>
+                  <span className="text-sm font-bold text-purple-900">{currentDesignInfo.name}</span>
                 </div>
-
-                <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                  <h4 className="font-bold text-purple-900 mb-1">Previewing:</h4>
-                  <p className="text-purple-900 font-medium">{currentDesignInfo.name}</p>
-                  <p className="text-sm text-purple-800 mt-2">Use Left-Click to Rotate, Right-Click to Pan.</p>
-                </div>
-
-                <button onClick={() => setActiveTab('export')} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                <button onClick={() => setActiveTab('export')} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all flex items-center gap-2">
                   Looks Good! Export <Check size={18} />
                 </button>
               </div>
+            </div>
 
-              {/* Iframe Container */}
-              <div className="lg:col-span-3 bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-gray-800 relative">
-                <iframe
-                  ref={iframeRef}
-                  src={viewerUrl}
-                  title="OpenSCAD Preview"
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                />
-              </div>
+            <div className="flex-grow rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50">
+              <SCADViewer code={generatedCode} />
             </div>
           </div>
         )}
