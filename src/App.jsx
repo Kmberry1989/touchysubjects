@@ -935,7 +935,7 @@ export default function TactileGenerator() {
   }, []);
 
   return (
-    <div className="min-h-screen relative text-gray-800 font-sans selection:bg-blue-100 overflow-hidden">
+    <div className="min-h-screen relative text-gray-900 text-lg font-sans selection:bg-blue-100 overflow-hidden">
       <style>{`
         .ui-surface {
           backdrop-filter: blur(10px);
@@ -959,17 +959,17 @@ export default function TactileGenerator() {
       <div className="bg-white/60 border-b border-white/50 sticky top-0 z-10 shadow-sm backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center gap-3 mb-4 md:mb-0">
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">K</div>
+            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-lg">K</div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 tracking-tight">Tactile Object Generator</h1>
-              <p className="text-xs text-gray-500">Kokomo Art Association • Toolset</p>
+              <h1 className="text-2xl font-bold text-black tracking-tight drop-shadow-sm">Tactile Object Generator</h1>
+              <p className="text-sm text-gray-700 font-medium">Kokomo Art Association • Toolset</p>
             </div>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setActiveTab('design')} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'design' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>1. Design</button>
-            <button onClick={() => setActiveTab('customize')} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'customize' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>2. Customize</button>
-            <button onClick={() => setActiveTab('preview')} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'preview' ? 'bg-purple-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>3. Live Preview</button>
-            <button onClick={() => setActiveTab('export')} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'export' ? 'bg-green-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>4. Export</button>
+            <button onClick={() => setActiveTab('design')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'design' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>1. Design</button>
+            <button onClick={() => setActiveTab('customize')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'customize' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>2. Customize</button>
+            <button onClick={() => setActiveTab('preview')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'preview' ? 'bg-purple-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>3. Live Preview</button>
+            <button onClick={() => setActiveTab('export')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'export' ? 'bg-green-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>4. Export</button>
           </div>
         </div>
       </div>
@@ -980,29 +980,29 @@ export default function TactileGenerator() {
         {activeTab === 'design' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Select a Concept</h2>
-              <p className="text-gray-600">Choose a functional tool or kinetic object.</p>
+              <h2 className="text-3xl font-bold text-black drop-shadow-sm mb-2">Select a Concept</h2>
+              <p className="text-gray-800 text-lg">Choose a functional tool or kinetic object.</p>
             </div>
             
             {/* Business Cards */}
             <div className="mb-10">
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                 <Layers className="text-blue-600" size={24} />
-                <h3 className="text-xl font-bold text-gray-800">Business Cards & Tools</h3>
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Business Cards & Tools</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {businessCards.map((design) => (
                   <button key={design.id} onClick={() => setSelectedDesign(design.id)} className={`relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-blue-600 bg-white ring-4 ring-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'}`}>
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
+                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
                         {design.category.includes("Tactile") && <Box size={24} />} {design.category.includes("Functional") && <Settings size={24} />}
                         {design.category.includes("Kinetic") && <RefreshCw size={24} />} {design.category.includes("Slider") && <Settings size={24} />}
                       </div>
                       {selectedDesign === design.id && <div className="absolute top-4 right-4 text-blue-600"><Check size={24} /></div>}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-xs px-2 py-1 bg-gray-100 rounded text-gray-600 font-medium">{design.category}</span><span className="text-xs px-2 py-1 bg-gray-100 rounded text-gray-600 font-medium">{design.complexity}</span></div>
-                    <p className="text-sm text-gray-500 leading-relaxed">{design.description}</p>
+                    <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
+                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
                   </button>
                 ))}
               </div>
@@ -1012,18 +1012,18 @@ export default function TactileGenerator() {
             <div>
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                 <Shapes className="text-purple-600" size={24} />
-                <h3 className="text-xl font-bold text-gray-800">Pocket Orbits & Fidgets</h3>
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Pocket Orbits & Fidgets</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pocketOrbits.map((design) => (
                   <button key={design.id} onClick={() => setSelectedDesign(design.id)} className={`relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-purple-600 bg-white ring-4 ring-purple-50' : 'border-gray-200 bg-white hover:border-purple-300'}`}>
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-purple-100 group-hover:text-purple-600'}`}><Shapes size={24} /></div>
+                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-purple-100 group-hover:text-purple-600'}`}><Shapes size={24} /></div>
                       {selectedDesign === design.id && <div className="absolute top-4 right-4 text-purple-600"><Check size={24} /></div>}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-xs px-2 py-1 bg-gray-100 rounded text-gray-600 font-medium">{design.category}</span><span className="text-xs px-2 py-1 bg-gray-100 rounded text-gray-600 font-medium">{design.complexity}</span></div>
-                    <p className="text-sm text-gray-500 leading-relaxed">{design.description}</p>
+                    <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
+                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
                   </button>
                 ))}
               </div>
@@ -1036,40 +1036,40 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="bg-gray-50 px-8 py-6 border-b border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2"><Type className="text-blue-600" /> Customize Text & Branding</h2>
+                <h2 className="text-2xl font-bold text-black flex items-center gap-2"><Type className="text-blue-600" /> Customize Text & Branding</h2>
               </div>
               <div className="p-8 space-y-8">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <div className="flex items-start gap-3">
                     <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
-                    <div className="text-sm text-blue-800">
+                    <div className="text-base text-blue-900">
                       <p className="font-bold mb-1">Text Controls Across All Objects</p>
                       <p>Top and bottom text apply directly on compatible models. The text tag add-on works with every design and prints as a separate piece in the same SCAD file.</p>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <label className="block"><span className="text-sm font-bold text-gray-700 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., KOKOMO ART ASSOCIATION" /></label>
-                  <label className="block"><span className="text-sm font-bold text-gray-700 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., kaaonline.org" /></label>
+                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., KOKOMO ART ASSOCIATION" /></label>
+                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., kaaonline.org" /></label>
                 </div>
                 <hr className="border-gray-100" />
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between"><span className="text-sm font-bold text-gray-700">Use SVG Logo?</span><button onClick={() => setUseLogo(!useLogo)} className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
+                  <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Use SVG Logo?</span><button onClick={() => setUseLogo(!useLogo)} className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
                   {useLogo && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-in fade-in slide-in-from-top-2">
-                      <div className="flex items-start gap-3"><Info className="text-blue-600 shrink-0 mt-0.5" size={18} /><div className="text-sm text-blue-800"><p className="font-bold mb-1">How Logo Import Works:</p><p className="mb-3">OpenSCAD cannot read images directly from the web. You must have the SVG file saved on your computer.</p><label className="block mb-2 font-bold text-blue-900">Enter your SVG Filename:</label><input type="text" value={logoFilename} onChange={(e) => setLogoFilename(e.target.value)} className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2" placeholder="logo.svg" /><p className="text-xs text-blue-600">Ensure this file is in the same folder as the downloaded .scad file.</p></div></div>
+                      <div className="flex items-start gap-3"><Info className="text-blue-600 shrink-0 mt-0.5" size={18} /><div className="text-base text-blue-900"><p className="font-bold mb-1">How Logo Import Works:</p><p className="mb-3">OpenSCAD cannot read images directly from the web. You must have the SVG file saved on your computer.</p><label className="block mb-2 font-bold text-blue-900">Enter your SVG Filename:</label><input type="text" value={logoFilename} onChange={(e) => setLogoFilename(e.target.value)} className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2" placeholder="logo.svg" /><p className="text-sm text-blue-800">Ensure this file is in the same folder as the downloaded .scad file.</p></div></div>
                     </div>
                   )}
                 </div>
                 <hr className="border-gray-100" />
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between"><span className="text-sm font-bold text-gray-700">Add Printable Text Tag</span><button onClick={() => setAddTextTag(!addTextTag)} className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
+                  <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Add Printable Text Tag</span><button onClick={() => setAddTextTag(!addTextTag)} className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
                   {addTextTag && (
                     <div className="grid grid-cols-1 gap-4 bg-green-50 border border-green-200 rounded-lg p-4">
-                      <label className="block"><span className="text-sm font-bold text-green-900 block mb-2">Tag Text</span><input type="text" value={tagText} onChange={(e) => setTagText(e.target.value.toUpperCase())} className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white" placeholder="PRINT READY" /></label>
-                      <label className="block"><span className="text-sm font-bold text-green-900 block mb-2">Text Size ({tagTextSize} mm)</span><input type="range" min="3" max="10" step="0.5" value={tagTextSize} onChange={(e) => setTagTextSize(Number(e.target.value))} className="w-full" /></label>
-                      <label className="block"><span className="text-sm font-bold text-green-900 block mb-2">Tag Thickness ({tagThickness} mm)</span><input type="range" min="1" max="3" step="0.2" value={tagThickness} onChange={(e) => setTagThickness(Number(e.target.value))} className="w-full" /></label>
-                      <label className="block"><span className="text-sm font-bold text-green-900 block mb-2">Tag Padding ({tagPadding} mm)</span><input type="range" min="2" max="8" step="1" value={tagPadding} onChange={(e) => setTagPadding(Number(e.target.value))} className="w-full" /></label>
+                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Text</span><input type="text" value={tagText} onChange={(e) => setTagText(e.target.value.toUpperCase())} className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white" placeholder="PRINT READY" /></label>
+                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Text Size ({tagTextSize} mm)</span><input type="range" min="3" max="10" step="0.5" value={tagTextSize} onChange={(e) => setTagTextSize(Number(e.target.value))} className="w-full" /></label>
+                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Thickness ({tagThickness} mm)</span><input type="range" min="1" max="3" step="0.2" value={tagThickness} onChange={(e) => setTagThickness(Number(e.target.value))} className="w-full" /></label>
+                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Padding ({tagPadding} mm)</span><input type="range" min="2" max="8" step="1" value={tagPadding} onChange={(e) => setTagPadding(Number(e.target.value))} className="w-full" /></label>
                     </div>
                   )}
                 </div>
@@ -1088,14 +1088,14 @@ export default function TactileGenerator() {
               {/* Sidebar Controls */}
               <div className="lg:col-span-1 space-y-4">
                  <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                   <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><Eye className="text-purple-600" size={18} /> Viewer Controls</h3>
-                   <p className="text-xs text-gray-500 mb-4">Rendering complex models in the browser can be slow.</p>
+                   <h3 className="font-bold text-black mb-2 flex items-center gap-2"><Eye className="text-purple-600" size={18} /> Viewer Controls</h3>
+                   <p className="text-sm text-gray-700 mb-4">Rendering complex models in the browser can be slow.</p>
                    
                    <div className="space-y-2">
-                     <button onClick={copyToClipboard} className="w-full bg-blue-100 hover:bg-blue-200 text-blue-800 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-sm transition-all">
+                     <button onClick={copyToClipboard} className="w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all">
                        <Copy size={14} /> 1. Copy Code
                      </button>
-                     <div className="text-xs text-gray-600 bg-gray-50 p-2 rounded border border-gray-200">
+                     <div className="text-sm text-gray-800 bg-gray-50 p-2 rounded border border-gray-200">
                         <strong>Manual Load:</strong>
                         <ol className="list-decimal list-inside mt-1 space-y-1">
                             <li>Click "1. Copy Code" above.</li>
@@ -1105,11 +1105,11 @@ export default function TactileGenerator() {
                         </ol>
                      </div>
                      
-                     <button onClick={refreshViewer} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-sm transition-all mt-2">
+                     <button onClick={refreshViewer} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
                        <RefreshCw size={14} /> Force Reload
                      </button>
 
-                     <a href={viewerUrl} target="_blank" rel="noreferrer" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-sm transition-all mt-2">
+                     <a href={viewerUrl} target="_blank" rel="noreferrer" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
                        <ExternalLink size={14} /> Open New Tab
                      </a>
                    </div>
@@ -1117,8 +1117,8 @@ export default function TactileGenerator() {
                  
                  <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                    <h4 className="font-bold text-purple-900 mb-1">Previewing:</h4>
-                   <p className="text-purple-800 font-medium">{currentDesignInfo.name}</p>
-                   <p className="text-xs text-purple-600 mt-2">Use Left-Click to Rotate, Right-Click to Pan.</p>
+                   <p className="text-purple-900 font-medium">{currentDesignInfo.name}</p>
+                   <p className="text-sm text-purple-800 mt-2">Use Left-Click to Rotate, Right-Click to Pan.</p>
                  </div>
                  
                  <button onClick={() => setActiveTab('export')} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
@@ -1145,8 +1145,8 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Printer className="text-green-600" size={20} /> Printing Instructions</h3>
-                <ol className="space-y-4 text-sm text-gray-600 list-decimal list-outside pl-4">
+                <h3 className="font-bold text-black mb-4 flex items-center gap-2"><Printer className="text-green-600" size={20} /> Printing Instructions</h3>
+                <ol className="space-y-4 text-base text-gray-800 list-decimal list-outside pl-4">
                   <li><strong>Download</strong> the .scad file using the button below.</li>
                   <li><strong>Download OpenSCAD</strong> (free) from openscad.org if you don't have it.</li>
                   <li><strong>Move</strong> your <code className="bg-gray-100 px-1 py-0.5 rounded text-red-500">{logoFilename}</code> into the same folder (if using a logo).</li>
@@ -1157,19 +1157,19 @@ export default function TactileGenerator() {
                 </ol>
               </div>
               <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                <h4 className="font-bold text-blue-900 mb-2">Selected Design</h4>
-                <p className="text-blue-800 text-lg font-bold mb-1">{currentDesignInfo.name}</p>
-                <p className="text-sm text-blue-600 mb-4">{currentDesignInfo.description}</p>
+                <h4 className="font-bold text-blue-950 mb-2">Selected Design</h4>
+                <p className="text-blue-900 text-xl font-bold mb-1">{currentDesignInfo.name}</p>
+                <p className="text-base text-blue-800 mb-4">{currentDesignInfo.description}</p>
                 <button onClick={downloadSCAD} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2"><Download size={18} /> Download .SCAD</button>
               </div>
             </div>
             <div className="lg:col-span-2">
               <div className="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col h-[600px]">
                 <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-gray-700">
-                  <span className="text-gray-400 text-xs font-mono flex items-center gap-2"><FileCode size={14} /> kaa_object.scad</span>
-                  <button onClick={copyToClipboard} className="text-gray-400 hover:text-white text-xs flex items-center gap-1 transition-colors"><Copy size={14} /> Copy Code</button>
+                  <span className="text-gray-400 text-sm font-mono flex items-center gap-2"><FileCode size={14} /> kaa_object.scad</span>
+                  <button onClick={copyToClipboard} className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition-colors"><Copy size={14} /> Copy Code</button>
                 </div>
-                <div className="p-4 overflow-auto flex-1"><pre className="font-mono text-xs text-green-400 leading-relaxed whitespace-pre-wrap">{generatedCode}</pre></div>
+                <div className="p-4 overflow-auto flex-1"><pre className="font-mono text-sm text-green-400 leading-relaxed whitespace-pre-wrap">{generatedCode}</pre></div>
               </div>
             </div>
           </div>
