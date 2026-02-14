@@ -408,20 +408,81 @@ DetentSlider();`; break;
     case 18: code += `
 module MazeCoin() {
     d = 40; th = 6;
-    module groove(st) {
-        if (st == 0) rotate_extrude() translate([d/2 - 8, 0, 0]) circle(r=2);
-        else if (st == 1) for(i=[0:90:360]) rotate([0,0,i]) { translate([10,0,0]) cube([15, 2, 2], center=true); translate([15,5,0]) rotate([0,0,90]) cube([10, 2, 2], center=true); }
-        else linear_extrude(height=2, twist=300, scale=0) translate([5,0,0]) circle(r=2);
+    
+    // Safety check: ensure maze patterns are explicitly circular or radial without 90-degree rotational symmetry resembling problematic symbols.
+    
+    module maze_pattern(st) {
+        if (st == 0) {
+            // Style 0: "River" - Simple Concentric Rings
+            // Clean, circular grooves unrelated to angular geometry.
+            for(r=[5:6:16]) {
+                rotate_extrude($fn=60) translate([r, 0, 0]) circle(r=1.5);
+            }
+            // Add a radial cut for interest
+            intersection() {
+                 rotate_extrude($fn=60) translate([12, 0, 0]) circle(r=6);
+                 translate([10,0,0]) cube([20, 2, 5], center=true);
+            }
+        } else if (st == 1) {
+            // Style 1: "Deco" - Radial Star/Sunburst
+            // Clearly distinct from previous grid-based logic. 
+            // Uses odd number of spokes (5) to avoid 4-way symmetry issues entirely.
+            for(i=[0:72:360]) rotate([0,0,i]) {
+                translate([8,0,0]) hull() {
+                    sphere(r=1.5);
+                    translate([8,0,0]) sphere(r=0.5);
+                }
+            }
+            // Center ring
+            rotate_extrude($fn=60) translate([5, 0, 0]) circle(r=1);
+        } else {
+            // Style 2: "Bloom" - Spiral/Organic
+            // Fibonacci-ish spiral dots
+            for(i=[0:20]) {
+                rotate([0,0, i * 137.5]) translate([2 + (i*0.8), 0, 0]) sphere(r=1.5);
+            }
+        }
     }
+
     module half(st, male) {
         difference() {
-            cylinder(r=d/2, h=th, center=true); translate([0,0,th/2]) groove(st);
-            if (!male) { cylinder(r=5, h=th+2, center=true); translate([0,0,-2]) cube([12, 4, 4], center=true); }
+            // Base Coin body
+            union() {
+                cylinder(r=d/2, h=th, center=true, $fn=80);
+                // Rim
+                difference() {
+                    cylinder(r=d/2, h=th+1, center=true, $fn=80);
+                    cylinder(r=d/2 - 1.5, h=th+2, center=true, $fn=80);
+                }
+            }
+            
+            // Subtract Pattern
+            translate([0,0,th/2]) maze_pattern(st);
+
+            // Connectors
+            if (!male) {
+                 cylinder(r=5.2, h=th+4, center=true); // hole for post
+                 // Keyway
+                 translate([0,0,-2]) cube([12.5, 4.5, 5], center=true); 
+            }
         }
-        if (male) translate([0,0,-th/2 - 1]) union() { cylinder(r=4.8, h=2, center=true); cube([11, 3.8, 2], center=true); }
+        
+        // Add Male connector post
+        if (male) {
+            translate([0,0,-th/2 - 1]) union() {
+                cylinder(r=4.8, h=2.5, center=true);
+                cube([11.5, 3.8, 2.5], center=true); 
+            }
+        }
     }
-    if (render_mode == "assembled") { translate([0,0,th/2]) half(design_style, true); translate([0,0,-th/2]) rotate([180,0,0]) half(design_style, false); } 
-    else { translate([-d/1.2, 0, 0]) half(design_style, true); translate([d/1.2, 0, 0]) rotate([180,0,0]) half(design_style, false); }
+
+    if (render_mode == "assembled") {
+        translate([0,0,th/2 + 0.5]) half(design_style, true); 
+        translate([0,0,-th/2 - 0.5]) rotate([180,0,0]) half(design_style, false);
+    } else {
+        translate([-d/1.3, 0, 0]) half(design_style, true); 
+        translate([d/1.3, 0, 0]) rotate([180,0,0]) half(design_style, false); 
+    }
 }
 MazeCoin();`; break;
 
