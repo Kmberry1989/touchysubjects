@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight } from 'lucide-react';
+import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight, Dices } from 'lucide-react';
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
@@ -46,7 +46,13 @@ const DESIGNS = [
   { id: 30, name: "Ring Size Ladder", category: "Pocket Orbit", description: "A set of rings from small to large for fit testing and play.", complexity: "Low" },
   { id: 31, name: "Comfort Ring Trio", category: "Pocket Orbit", description: "Three rounded-edge rings with different thickness profiles.", complexity: "Medium" },
   { id: 32, name: "Bead Sampler Strip", category: "Pocket Orbit", description: "Linked strip of varied bead shapes to test feel and finish.", complexity: "Low" },
+  { id: 32, name: "Bead Sampler Strip", category: "Pocket Orbit", description: "Linked strip of varied bead shapes to test feel and finish.", complexity: "Low" },
   { id: 33, name: "Loose Bead Set", category: "Pocket Orbit", description: "Independent beads in different diameters and textures.", complexity: "Low" },
+
+  // TABLETOP GAMING
+  { id: 40, name: "Polyhedral Die", category: "Tabletop Gaming", description: "Customizable D4, D6, D8, D10, D12, and D20 generator.", complexity: "High" },
+  { id: 41, name: "Dice Tube", category: "Tabletop Gaming", description: "Threaded cylindrical container for dice sets.", complexity: "Medium" },
+  { id: 42, name: "Hex Vault", category: "Tabletop Gaming", description: "Friction-fit hexagonal case with lid.", complexity: "Medium" },
 ];
 
 // --- SCAD TEMPLATE GENERATOR ---
@@ -60,7 +66,10 @@ const generateSCAD = (
   addTextTag,
   tagTextSize,
   tagThickness,
-  tagPadding
+  tagTextSize,
+  tagThickness,
+  tagPadding,
+  diceType
 ) => {
   const timestamp = new Date().toISOString().split('T')[0];
   const escapeSCAD = (value) => String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, ' ');
@@ -87,7 +96,9 @@ tag_text_size = ${tagTextSize};
 tag_thickness = ${tagThickness};
 tag_padding = ${tagPadding};
 design_style = 1; // 0=River, 1=Deco, 2=Bloom
-render_mode = "assembled"; 
+design_style = 1; // 0=River, 1=Deco, 2=Bloom
+render_mode = "assembled";
+dice_type = ${diceType}; // 4, 6, 8, 10, 12, 20
 
 // --- GLOBALS ---
 card_width = 85; card_length = 55; corner_radius = 3; tol = 0.4; $fn = 60;
@@ -647,6 +658,84 @@ module LooseBeadSet() {
     bead(68, 0, 18, 90);
 }
 LooseBeadSet();`; break;
+
+    case 40: code += `
+module PolyDie() {
+    s = 25; 
+    difference() {
+        if (dice_type == 4) {
+             intersection() {
+                sphere(r=s*0.8, $fn=4); 
+             }
+        } else if (dice_type == 6) {
+             cube([s, s, s], center=true);
+        } else if (dice_type == 8) {
+             polyhedron(
+               points=[ [s,0,0], [-s,0,0], [0,s,0], [0,-s,0], [0,0,s], [0,0,-s] ],
+               faces=[ [0,2,4], [0,4,3], [0,3,5], [0,5,2], [1,4,2], [1,3,4], [1,5,3], [1,2,5] ]
+             );
+        } else if (dice_type == 12) {
+             intersection() {
+                cube([s,s,s], center=true);
+                rotate([45, 45, 0]) cube([s,s,s], center=true); 
+                sphere(r=s/1.6, $fn=18); 
+             }
+        } else if (dice_type == 20) {
+             p = 1.618;
+             hull() {
+                cube([8, s*p, s], center=true);
+                rotate([90,90,0]) cube([8, s*p, s], center=true);
+                rotate([90,0,90]) cube([8, s*p, s], center=true);
+             }
+        }
+        if (top_text != "") translate([0, 0, s/2 - 0.5]) linear_extrude(1) text(top_text, size=s*0.15, halign="center", valign="center");
+    }
+}
+PolyDie();`; break;
+
+    case 41: code += `
+module DiceTube() {
+    h = 80; r = 20; wall = 3;
+    if (render_mode == "assembled") {
+        translate([0,0,0]) difference() {
+            cylinder(r=r, h=h, $fn=60);
+            translate([0,0,wall]) cylinder(r=r-wall, h=h, $fn=60);
+        }
+        translate([0,0,h+5]) difference() {
+            cylinder(r=r+wall, h=15, $fn=60);
+            translate([0,0,-1]) cylinder(r=r+0.2, h=17, $fn=60);
+        }
+    } else {
+        difference() {
+            cylinder(r=r, h=h, $fn=60);
+            translate([0,0,wall]) cylinder(r=r-wall, h=h, $fn=60);
+            translate([0,0,h-10]) difference() { cylinder(r=r+1, h=11); cylinder(r=r-wall, h=12); } 
+        }
+        translate([r*2.5, 0, 0]) difference() {
+            union() { cylinder(r=r, h=5); translate([0,0,5]) cylinder(r=r-wall/2, h=10); } 
+            translate([0,0,-1]) cylinder(r=r-wall-2, h=15);
+        }
+    }
+    branding_text(wall);
+}
+DiceTube();`; break;
+
+    case 42: code += `
+module HexVault() {
+    h = 35; r = 40;
+    module hex(rad, ht) { linear_extrude(ht) circle(r=rad, $fn=6); }
+    difference() {
+        hex(r, h);
+        translate([0,0,3]) hex(r-4, h+1);
+        translate([r-2, 0, h]) cube([10, 20, 10], center=true);
+        translate([-(r-2), 0, h]) cube([10, 20, 10], center=true);
+    }
+    translate([render_mode=="knolled"? r*2.5 : 0, 0, render_mode=="knolled"? 0 : h + 5]) difference() {
+        union() { hex(r, 6); translate([0,0,-4]) hex(r-4.4, 4); }
+        if (top_text != "") translate([0, 0, 5]) linear_extrude(1.2) text(top_text, size=5, halign="center", valign="center", font="Arial:style=Bold");
+    }
+}
+HexVault();`; break;
   }
   code += `
 text_tag();`;
@@ -665,6 +754,7 @@ export default function TactileGenerator() {
   const [tagTextSize, setTagTextSize] = useState(5);
   const [tagThickness, setTagThickness] = useState(1.4);
   const [tagPadding, setTagPadding] = useState(4);
+  const [diceType, setDiceType] = useState(6); // 6 Sided default
   const [generatedCode, setGeneratedCode] = useState("");
   const [activeTab, setActiveTab] = useState('design');
   const iframeRef = useRef(null);
@@ -674,8 +764,9 @@ export default function TactileGenerator() {
   const lastHoverToneRef = useRef(0);
 
   // Separate designs
-  const businessCards = DESIGNS.filter(d => d.category !== "Pocket Orbit");
+  const businessCards = DESIGNS.filter(d => d.category !== "Pocket Orbit" && d.category !== "Tabletop Gaming");
   const pocketOrbits = DESIGNS.filter(d => d.category === "Pocket Orbit");
+  const tabletopItems = DESIGNS.filter(d => d.category === "Tabletop Gaming");
 
   useEffect(() => {
     setGeneratedCode(
@@ -689,10 +780,11 @@ export default function TactileGenerator() {
         addTextTag,
         tagTextSize,
         tagThickness,
-        tagPadding
+        tagPadding,
+        diceType
       )
     );
-  }, [selectedDesign, topText, bottomText, logoFilename, useLogo, tagText, addTextTag, tagTextSize, tagThickness, tagPadding]);
+  }, [selectedDesign, topText, bottomText, logoFilename, useLogo, tagText, addTextTag, tagTextSize, tagThickness, tagPadding, diceType]);
 
   const downloadSCAD = () => {
     const element = document.createElement("a");
@@ -1050,6 +1142,38 @@ export default function TactileGenerator() {
                 ))}
               </div>
             </div>
+
+            {/* Tabletop Gaming */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <Dices className="text-red-600" size={24} />
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Tabletop Gaming</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {tabletopItems.map((design) => (
+                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-red-600 bg-white ring-4 ring-red-50' : 'border-gray-200 bg-white hover:border-red-300'}`}>
+                    <div className="flex justify-between items-start mb-4">
+                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-red-100 group-hover:text-red-600'}`}><Dices size={24} /></div>
+                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-red-600"><Check size={24} /></div>}
+                    </div>
+                    <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
+                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    {selectedDesign === design.id && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTab('customize');
+                        }}
+                        className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 animate-in fade-in zoom-in duration-300"
+                      >
+                        Next Step <ArrowRight size={18} />
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
@@ -1058,9 +1182,32 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="bg-gray-50 px-8 py-6 border-b border-gray-200">
-                <h2 className="text-2xl font-bold text-black flex items-center gap-2"><Type className="text-blue-600" /> Customize Text & Branding</h2>
+                <h2 className="text-2xl font-bold text-black flex items-center gap-2"><Type className="text-blue-600" /> Customize Your Item</h2>
               </div>
               <div className="p-8 space-y-8">
+                {/* Dice Specific Controls */}
+                {selectedDesign === 40 && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+                    <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2"><Dices size={20} /> Die Configuration</h3>
+                    <div className="space-y-4">
+                      <label className="block">
+                        <span className="text-base font-bold text-red-900 block mb-2">Die Type (D{diceType})</span>
+                        <div className="flex gap-2 flex-wrap">
+                          {[4, 6, 8, 10, 12, 20].map((val) => (
+                            <button
+                              key={val}
+                              onClick={() => setDiceType(val)}
+                              className={`px-4 py-2 rounded-lg font-bold border transition-colors ${diceType === val ? 'bg-red-600 text-white border-red-600' : 'bg-white text-gray-700 border-gray-300 hover:bg-red-50'}`}
+                            >
+                              D{val}
+                            </button>
+                          ))}
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                )}
+
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <div className="flex items-start gap-3">
                     <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
