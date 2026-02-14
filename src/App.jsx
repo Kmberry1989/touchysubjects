@@ -1006,7 +1006,7 @@ export default function TactileGenerator() {
       const now = performance.now();
       if (now - lastHoverToneRef.current < 70) return;
       lastHoverToneRef.current = now;
-      playTone(520, 0.04, 0.01, 'triangle');
+      playTone(320, 0.03, 0.005, 'sine');
     };
 
     const onClick = (event) => {
