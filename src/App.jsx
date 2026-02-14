@@ -9,17 +9,17 @@ const DESIGNS = [
   { id: 3, name: "Micro Labyrinth", category: "Tactile Card", description: "A finger-traceable maze with no dead ends. Pure motion.", complexity: "Medium" },
   { id: 4, name: "Stone Quiet Tile", category: "Tactile Card", description: "A removable worry-stone tile that snaps into the card.", complexity: "Medium" },
   { id: 5, name: "Orbit Slider", category: "Tactile Card", description: "A print-in-place planetary gear fidget spinner.", complexity: "High" },
-  
+
   // FUNCTIONAL TOOLS
   { id: 6, name: "Composition Viewfinder", category: "Functional Tool", description: "Golden-ratio window for framing shots and artwork.", complexity: "Low" },
   { id: 7, name: "Curator's Edge", category: "Functional Tool", description: "Canvas depth gauge and millimeter ruler.", complexity: "Medium" },
   { id: 8, name: "Pocket French Curve", category: "Functional Tool", description: "Drafting tool with stencil cutouts.", complexity: "Medium" },
-  
+
   // KINETIC CARDS
   { id: 9, name: "Portfolio Clip", category: "Kinetic Card", description: "Compliant mechanism paperclip for attaching to catalogs.", complexity: "Medium" },
   { id: 10, name: "Micro Easel", category: "Kinetic Card", description: "Folds out to become a miniature display stand.", complexity: "Medium" },
   { id: 11, name: "Captive Slider", category: "Kinetic Card", description: "Simple linear slider track.", complexity: "High" },
-  
+
   // ADVANCED SLIDERS
   { id: 12, name: "Aspect Cropper", category: "Advanced Slider", description: "Adjustable window to change aspect ratios.", complexity: "Very High" },
   { id: 13, name: "Curator's Selector", category: "Advanced Slider", description: "Sliding window that reveals different text options.", complexity: "Very High" },
@@ -68,7 +68,7 @@ const generateSCAD = (
   const safeBottomText = escapeSCAD(bottomText);
   const safeLogoFilename = escapeSCAD(logoFilename);
   const safeTagText = escapeSCAD(tagText);
-  
+
   // 1. HEADER & GLOBALS
   let code = `/* KOKOMO ART ASSOCIATION
    Generated: ${timestamp} | Design ID: ${designId}
@@ -656,8 +656,8 @@ text_tag();`;
 // --- MAIN COMPONENT ---
 export default function TactileGenerator() {
   const [selectedDesign, setSelectedDesign] = useState(15);
-  const [topText, setTopText] = useState("KOKOMO ART ASSOCIATION");
-  const [bottomText, setBottomText] = useState("kaaonline.org");
+  const [topText, setTopText] = useState("Rochelle Berry");
+  const [bottomText, setBottomText] = useState("rochelleberry731@gmail.com");
   const [useLogo, setUseLogo] = useState(false);
   const [logoFilename, setLogoFilename] = useState("logo.svg");
   const [tagText, setTagText] = useState("PRINT READY");
@@ -696,7 +696,7 @@ export default function TactileGenerator() {
 
   const downloadSCAD = () => {
     const element = document.createElement("a");
-    const file = new Blob([generatedCode], {type: 'text/plain'});
+    const file = new Blob([generatedCode], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
     element.download = "kokomo_tactile_object.scad";
     document.body.appendChild(element);
@@ -721,7 +721,7 @@ export default function TactileGenerator() {
 
   const refreshViewer = () => {
     if (iframeRef.current) {
-        iframeRef.current.src = iframeRef.current.src;
+      iframeRef.current.src = iframeRef.current.src;
     }
   };
 
@@ -954,7 +954,7 @@ export default function TactileGenerator() {
       `}</style>
       <canvas ref={shaderCanvasRef} className="fixed inset-0 w-full h-full -z-10 pointer-events-none" />
       <div className="fixed inset-0 -z-10 pointer-events-none bg-gradient-to-b from-white/15 via-transparent to-black/10" />
-      
+
       {/* Header */}
       <div className="bg-white/60 border-b border-white/50 sticky top-0 z-10 shadow-sm backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
@@ -975,7 +975,7 @@ export default function TactileGenerator() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        
+
         {/* VIEW: DESIGN SELECTION */}
         {activeTab === 'design' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -983,7 +983,7 @@ export default function TactileGenerator() {
               <h2 className="text-3xl font-bold text-black drop-shadow-sm mb-2">Select a Concept</h2>
               <p className="text-gray-800 text-lg">Choose a functional tool or kinetic object.</p>
             </div>
-            
+
             {/* Business Cards */}
             <div className="mb-10">
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
@@ -1049,8 +1049,8 @@ export default function TactileGenerator() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., KOKOMO ART ASSOCIATION" /></label>
-                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., kaaonline.org" /></label>
+                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., Rochelle Berry" /></label>
+                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., rochelleberry731@gmail.com" /></label>
                 </div>
                 <hr className="border-gray-100" />
                 <div className="space-y-4">
@@ -1087,51 +1087,51 @@ export default function TactileGenerator() {
             <div className="max-w-6xl mx-auto grid lg:grid-cols-4 gap-6 h-[700px]">
               {/* Sidebar Controls */}
               <div className="lg:col-span-1 space-y-4">
-                 <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-                   <h3 className="font-bold text-black mb-2 flex items-center gap-2"><Eye className="text-purple-600" size={18} /> Viewer Controls</h3>
-                   <p className="text-sm text-gray-700 mb-4">Rendering complex models in the browser can be slow.</p>
-                   
-                   <div className="space-y-2">
-                     <button onClick={copyToClipboard} className="w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all">
-                       <Copy size={14} /> 1. Copy Code
-                     </button>
-                     <div className="text-sm text-gray-800 bg-gray-50 p-2 rounded border border-gray-200">
-                        <strong>Manual Load:</strong>
-                        <ol className="list-decimal list-inside mt-1 space-y-1">
-                            <li>Click "1. Copy Code" above.</li>
-                            <li>Click inside the editor on the right.</li>
-                            <li>Select All (Ctrl+A / Cmd+A).</li>
-                            <li>Paste (Ctrl+V / Cmd+V).</li>
-                        </ol>
-                     </div>
-                     
-                     <button onClick={refreshViewer} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
-                       <RefreshCw size={14} /> Force Reload
-                     </button>
+                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <h3 className="font-bold text-black mb-2 flex items-center gap-2"><Eye className="text-purple-600" size={18} /> Viewer Controls</h3>
+                  <p className="text-sm text-gray-700 mb-4">Rendering complex models in the browser can be slow.</p>
 
-                     <a href={viewerUrl} target="_blank" rel="noreferrer" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
-                       <ExternalLink size={14} /> Open New Tab
-                     </a>
-                   </div>
-                 </div>
-                 
-                 <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                   <h4 className="font-bold text-purple-900 mb-1">Previewing:</h4>
-                   <p className="text-purple-900 font-medium">{currentDesignInfo.name}</p>
-                   <p className="text-sm text-purple-800 mt-2">Use Left-Click to Rotate, Right-Click to Pan.</p>
-                 </div>
-                 
-                 <button onClick={() => setActiveTab('export')} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
-                    Looks Good! Export <Check size={18} />
-                 </button>
+                  <div className="space-y-2">
+                    <button onClick={copyToClipboard} className="w-full bg-blue-100 hover:bg-blue-200 text-blue-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all">
+                      <Copy size={14} /> 1. Copy Code
+                    </button>
+                    <div className="text-sm text-gray-800 bg-gray-50 p-2 rounded border border-gray-200">
+                      <strong>Manual Load:</strong>
+                      <ol className="list-decimal list-inside mt-1 space-y-1">
+                        <li>Click "1. Copy Code" above.</li>
+                        <li>Click inside the editor on the right.</li>
+                        <li>Select All (Ctrl+A / Cmd+A).</li>
+                        <li>Paste (Ctrl+V / Cmd+V).</li>
+                      </ol>
+                    </div>
+
+                    <button onClick={refreshViewer} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
+                      <RefreshCw size={14} /> Force Reload
+                    </button>
+
+                    <a href={viewerUrl} target="_blank" rel="noreferrer" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 text-base transition-all mt-2">
+                      <ExternalLink size={14} /> Open New Tab
+                    </a>
+                  </div>
+                </div>
+
+                <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                  <h4 className="font-bold text-purple-900 mb-1">Previewing:</h4>
+                  <p className="text-purple-900 font-medium">{currentDesignInfo.name}</p>
+                  <p className="text-sm text-purple-800 mt-2">Use Left-Click to Rotate, Right-Click to Pan.</p>
+                </div>
+
+                <button onClick={() => setActiveTab('export')} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                  Looks Good! Export <Check size={18} />
+                </button>
               </div>
 
               {/* Iframe Container */}
               <div className="lg:col-span-3 bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-gray-800 relative">
-                <iframe 
+                <iframe
                   ref={iframeRef}
-                  src={viewerUrl} 
-                  title="OpenSCAD Preview" 
+                  src={viewerUrl}
+                  title="OpenSCAD Preview"
                   className="w-full h-full border-0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 />
