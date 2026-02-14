@@ -767,9 +767,9 @@ export default function TactileGenerator() {
         vec2 p = (uv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0);
         float wave = sin((p.x * 3.5) + t * 0.25) * 0.25 + cos((p.y * 4.2) - t * 0.2) * 0.2;
         float grain = fbm(p * 2.8 + t * 0.04);
-        vec3 c1 = vec3(0.07, 0.13, 0.24);
-        vec3 c2 = vec3(0.10, 0.34, 0.42);
-        vec3 c3 = vec3(0.62, 0.74, 0.52);
+        vec3 c1 = vec3(0.1, 0.4, 0.9);
+        vec3 c2 = vec3(0.9, 0.1, 0.4);
+        vec3 c3 = vec3(0.1, 0.9, 0.5);
         return mix(mix(c1, c2, smoothstep(-0.4, 0.5, wave + grain)), c3, smoothstep(0.55, 1.0, grain));
       }
 
@@ -779,9 +779,9 @@ export default function TactileGenerator() {
         float r = length(p);
         float ring = sin(r * 12.0 - t * 0.4 + sin(a * 4.0 + t * 0.2) * 1.5);
         float haze = fbm(p * 3.6 - t * 0.03);
-        vec3 c1 = vec3(0.14, 0.05, 0.12);
-        vec3 c2 = vec3(0.43, 0.19, 0.18);
-        vec3 c3 = vec3(0.82, 0.52, 0.28);
+        vec3 c1 = vec3(0.9, 0.2, 0.8);
+        vec3 c2 = vec3(0.2, 0.9, 0.9);
+        vec3 c3 = vec3(0.9, 0.8, 0.1);
         return mix(mix(c1, c2, smoothstep(-1.0, 0.8, ring)), c3, smoothstep(0.45, 1.0, haze));
       }
 
@@ -789,15 +789,15 @@ export default function TactileGenerator() {
         vec2 p = (uv - 0.5) * vec2(u_resolution.x / u_resolution.y, 1.0);
         float lines = sin((p.x + p.y) * 10.0 + t * 0.2) * 0.5 + 0.5;
         float cloud = fbm(p * 4.0 + vec2(0.0, t * 0.05));
-        vec3 c1 = vec3(0.05, 0.18, 0.17);
-        vec3 c2 = vec3(0.13, 0.40, 0.36);
-        vec3 c3 = vec3(0.77, 0.86, 0.60);
+        vec3 c1 = vec3(0.1, 0.8, 0.9);
+        vec3 c2 = vec3(0.5, 0.1, 0.9);
+        vec3 c3 = vec3(0.9, 0.5, 0.2);
         return mix(mix(c1, c2, lines), c3, smoothstep(0.6, 1.0, cloud));
       }
 
       void main() {
-        float t = u_time;
-        float cycle = mod(t / 24.0, 3.0);
+        float t = u_time * 1.5;
+        float cycle = mod(t / 12.0, 3.0);
         float k = smoothstep(0.15, 0.85, fract(cycle));
         vec3 cA = sceneA(v_uv, t);
         vec3 cB = sceneB(v_uv, t);
