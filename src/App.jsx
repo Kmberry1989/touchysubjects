@@ -53,6 +53,12 @@ const DESIGNS = [
   { id: 40, name: "Polyhedral Die", category: "Tabletop Gaming", description: "Customizable D4, D6, D8, D10, D12, and D20 generator.", complexity: "High" },
   { id: 41, name: "Dice Tube", category: "Tabletop Gaming", description: "Threaded cylindrical container for dice sets.", complexity: "Medium" },
   { id: 42, name: "Hex Vault", category: "Tabletop Gaming", description: "Friction-fit hexagonal case with lid.", complexity: "Medium" },
+
+  // IMPORTED CLASSICS
+  { id: 50, name: "Bobble Spring", category: "Imported Classics", description: "A print-in-place bouncy spring toy.", complexity: "High" },
+  { id: 51, name: "Gyro Fidget", category: "Imported Classics", description: "Concentric rings that spin freely.", complexity: "Medium" },
+  { id: 52, name: "Cable Holder", category: "Imported Classics", description: "Clip to keep cables on your desk.", complexity: "Low" },
+  { id: 53, name: "Stretchlet", category: "Imported Classics", description: "Stretchy bracelet printed flat.", complexity: "Medium" },
 ];
 
 // --- SCAD TEMPLATE GENERATOR ---
@@ -759,6 +765,124 @@ module LooseBeadSet() {
 }
 LooseBeadSet();`; break;
 
+    case 50: code += `
+module BobbleSpring() {
+    Coil_Count = 8; Weight = 0.8; Thickness = 5; Width = 13;
+    Top_Width = 1.6; Top_Height = 1.6; Bottom_Width = 0; Bottom_Height = 1.6;
+    Peg_Width = 5; Peg_Length = 4;
+    Inner_Width = Width - Weight * 3;
+    Coil_Runs = Coil_Count * 2 + 1;
+    Spring_Coil_Height = Coil_Runs * Weight * 2 + Weight;
+    
+    union() {
+        for (index = [0:Coil_Runs + 1]) {
+            translate([0, index * Weight * 2, 0]) {
+                if (index == 0) {
+                    cube([Width, Weight, Thickness], true);
+                    translate([Width/2 - Weight/2, Weight/2, 0]) cube([Weight, Weight, Thickness], true);
+                } else if(index == Coil_Runs + 1) {
+                    cube([Width, Weight, Thickness], true);
+                    translate([-Width/2 + Weight/2, -Weight/2, 0]) cube([Weight, Weight, Thickness], true);
+                } else {
+                    cube([Inner_Width, Weight, Thickness], true);
+                }
+            }
+        }
+        for (index = [0:Coil_Runs]) {
+            translate([0, index * Weight * 2, 0]) {
+                if (index % 2) {
+                    translate([-Inner_Width/2, Weight, 0]) difference() {
+                        cylinder(Thickness, Weight*3/2, Weight*3/2, true, $fn=30);
+                        cylinder(Thickness + 1, Weight/2, Weight/2, true, $fn=30);
+                        translate([Weight, 0, 0]) cube([Weight*2, Weight, Thickness + 1], true);
+                    }
+                } else {
+                    translate([Inner_Width/2, Weight, 0]) difference() {
+                        cylinder(Thickness, Weight * 3/2, Weight*3/2, true, $fn=30);
+                        cylinder(Thickness + 1, Weight/2, Weight/2, true, $fn=30);
+                        translate([-Weight, 0, 0]) cube([Weight * 2, Weight, Thickness + 1], true);
+                    }
+                }
+            }
+        }
+    }
+}
+BobbleSpring();`; break;
+
+    case 51: code += `
+module GyroFidget() {
+    Rings=5; RingWidth=2.4; MINRadius=10; Separation=0.8; Facets=60;
+    Height=(MINRadius*2)-RingWidth;
+    MaxRadius=MINRadius+(Rings*RingWidth)+(Rings*Separation);
+    
+    module Ring(Radius,Width) {
+        difference() {
+            sphere(r=Radius+Width,center=true,$fn=Facets);
+            sphere(r=Radius,center=true,$fn=Facets);
+        }
+    }
+    
+    intersection() {
+        union() {
+            for(i=[0:Rings-1]) {
+                Ring(MINRadius+(i*RingWidth)+(i*Separation),RingWidth);
+            }
+        }
+        cylinder(r=MaxRadius*2,h=Height,$fn=Facets,center=true);
+    }
+}
+GyroFidget();`; break;
+
+    case 52: code += `
+module CableHolder() {
+    TABLE_HEIGHT = 24.7; DEPTH = 30; CABLE = 6; CYLINDER_HEIGHT = 12; WALL = 3; 
+    CABLEWSPACE = CABLE+1.5;
+    ADDSPACE = 1.5; // Simplified
+    OUTER_RADIUS = CABLEWSPACE*1.8;
+    WIDTH = OUTER_RADIUS*2.3;
+
+    rotate([0,180,0]) difference() {
+        union() {
+            translate([TABLE_HEIGHT/2+2*WALL+CYLINDER_HEIGHT/2,0,DEPTH/2+WALL+ADDSPACE])
+            rotate([0,90,0]) cylinder(h=CYLINDER_HEIGHT, r=OUTER_RADIUS, center=true, $fn=60);
+
+            difference() {
+                translate([WALL,0,WALL+ADDSPACE/2]) cube([TABLE_HEIGHT+2*WALL, WIDTH, DEPTH+ADDSPACE ], center=true);
+                translate([WALL, WALL,0]) cube([TABLE_HEIGHT, WIDTH*2, DEPTH], center=true);
+            }
+        }
+        translate([0,0,DEPTH/2+WALL+OUTER_RADIUS+ADDSPACE]) cube([(TABLE_HEIGHT+2*WALL+CYLINDER_HEIGHT)*2, WIDTH, 2*OUTER_RADIUS], center=true);
+        translate([0,0,DEPTH/2+WALL+ADDSPACE]) cube([(TABLE_HEIGHT+2*WALL+CYLINDER_HEIGHT)*2, CABLEWSPACE, CABLEWSPACE*2], center=true);
+    }
+}
+CableHolder();`; break;
+
+    case 53: code += `
+module Stretchlet() {
+    r2=30; h=8; w=15; t=0.4; n=20; m=27;
+    pi=3.14159;
+    rr=pi*r2/n; r1=rr*1.5; ro=r2+(r1+rr)*0.5; ri=ro-h; a=pi*2*ri/m-t;
+    
+    module base(r1,w){
+        union(){    
+            cylinder(r=r2+rr*0.5,h=w, $fn=100);
+            for(i=[1:n]){
+                rotate([0,0,i*360/n])translate([0,-r2,0])
+                scale([1,0.5,1])linear_extrude(height=w,twist=180,slices=10)
+                translate([rr,0,0])circle(r=r1,$fn=20);
+            }
+        }
+    }
+    
+    difference(){
+        cylinder(r=ro,h=w,$fn=m);
+        for(i=[1:m])rotate([0,0,i*360/m])
+        translate([0,0,-0.03])linear_extrude(height=w+0.06)
+        polygon(points=[[ri+t,a/2-t],[ri+t,t-a/2],[ro+t*h/a,0]],paths=[[0,1,2]]);
+    }
+}
+Stretchlet();`; break;
+
     case 40: code += `
 module PolyDie() {
     s = 25; 
@@ -864,9 +988,10 @@ export default function TactileGenerator() {
   const lastHoverToneRef = useRef(0);
 
   // Separate designs
-  const businessCards = DESIGNS.filter(d => d.category !== "Pocket Orbit" && d.category !== "Tabletop Gaming");
+  const businessCards = DESIGNS.filter(d => d.category !== "Pocket Orbit" && d.category !== "Tabletop Gaming" && d.category !== "Imported Classics");
   const pocketOrbits = DESIGNS.filter(d => d.category === "Pocket Orbit");
   const tabletopItems = DESIGNS.filter(d => d.category === "Tabletop Gaming");
+  const importedClassics = DESIGNS.filter(d => d.category === "Imported Classics");
 
   useEffect(() => {
     setGeneratedCode(
@@ -1266,6 +1391,38 @@ export default function TactileGenerator() {
                           setActiveTab('customize');
                         }}
                         className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 animate-in fade-in zoom-in duration-300"
+                      >
+                        Next Step <ArrowRight size={18} />
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Imported Classics */}
+            <div className="mt-10 mb-20">
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                <ExternalLink className="text-orange-600" size={24} />
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Imported Classics</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {importedClassics.map((design) => (
+                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-orange-600 bg-white ring-4 ring-orange-50' : 'border-gray-200 bg-white hover:border-orange-300'}`}>
+                    <div className="flex justify-between items-start mb-4">
+                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-orange-100 group-hover:text-orange-600'}`}><ExternalLink size={24} /></div>
+                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-orange-600"><Check size={24} /></div>}
+                    </div>
+                    <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
+                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    {selectedDesign === design.id && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTab('customize');
+                        }}
+                        className="mt-4 w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 animate-in fade-in zoom-in duration-300"
                       >
                         Next Step <ArrowRight size={18} />
                       </button>
