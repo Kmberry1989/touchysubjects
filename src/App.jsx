@@ -749,7 +749,7 @@ export default function TactileGenerator() {
   const [bottomText, setBottomText] = useState("rochelleberry731@gmail.com");
   const [useLogo, setUseLogo] = useState(false);
   const [logoFilename, setLogoFilename] = useState("logo.svg");
-  const [tagText, setTagText] = useState("PRINT READY");
+  const [tagText, setTagText] = useState("574.601.5652");
   const [addTextTag, setAddTextTag] = useState(true);
   const [tagTextSize, setTagTextSize] = useState(5);
   const [tagThickness, setTagThickness] = useState(1.4);
@@ -1235,7 +1235,7 @@ export default function TactileGenerator() {
                   <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Add Printable Text Tag</span><button onClick={() => setAddTextTag(!addTextTag)} className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
                   {addTextTag && (
                     <div className="grid grid-cols-1 gap-4 bg-green-50 border border-green-200 rounded-lg p-4">
-                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Text</span><input type="text" value={tagText} onChange={(e) => setTagText(e.target.value.toUpperCase())} className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white" placeholder="PRINT READY" /></label>
+                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Text</span><input type="text" value={tagText} onChange={(e) => setTagText(e.target.value.toUpperCase())} className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white" placeholder="574.601.5652" /></label>
                       <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Text Size ({tagTextSize} mm)</span><input type="range" min="3" max="10" step="0.5" value={tagTextSize} onChange={(e) => setTagTextSize(Number(e.target.value))} className="w-full" /></label>
                       <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Thickness ({tagThickness} mm)</span><input type="range" min="1" max="3" step="0.2" value={tagThickness} onChange={(e) => setTagThickness(Number(e.target.value))} className="w-full" /></label>
                       <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Padding ({tagPadding} mm)</span><input type="range" min="2" max="8" step="1" value={tagPadding} onChange={(e) => setTagPadding(Number(e.target.value))} className="w-full" /></label>
