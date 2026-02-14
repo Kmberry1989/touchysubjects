@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink } from 'lucide-react';
+import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight } from 'lucide-react';
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
@@ -992,7 +992,7 @@ export default function TactileGenerator() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {businessCards.map((design) => (
-                  <button key={design.id} onClick={() => setSelectedDesign(design.id)} className={`relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-blue-600 bg-white ring-4 ring-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'}`}>
+                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-blue-600 bg-white ring-4 ring-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'}`}>
                     <div className="flex justify-between items-start mb-4">
                       <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
                         {design.category.includes("Tactile") && <Box size={24} />} {design.category.includes("Functional") && <Settings size={24} />}
@@ -1003,7 +1003,18 @@ export default function TactileGenerator() {
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
                     <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
                     <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
-                  </button>
+                    {selectedDesign === design.id && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTab('customize');
+                        }}
+                        className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 animate-in fade-in zoom-in duration-300"
+                      >
+                        Next Step <ArrowRight size={18} />
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
@@ -1016,7 +1027,7 @@ export default function TactileGenerator() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pocketOrbits.map((design) => (
-                  <button key={design.id} onClick={() => setSelectedDesign(design.id)} className={`relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-purple-600 bg-white ring-4 ring-purple-50' : 'border-gray-200 bg-white hover:border-purple-300'}`}>
+                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-purple-600 bg-white ring-4 ring-purple-50' : 'border-gray-200 bg-white hover:border-purple-300'}`}>
                     <div className="flex justify-between items-start mb-4">
                       <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-purple-100 group-hover:text-purple-600'}`}><Shapes size={24} /></div>
                       {selectedDesign === design.id && <div className="absolute top-4 right-4 text-purple-600"><Check size={24} /></div>}
@@ -1024,7 +1035,18 @@ export default function TactileGenerator() {
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
                     <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
                     <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
-                  </button>
+                    {selectedDesign === design.id && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveTab('customize');
+                        }}
+                        className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 animate-in fade-in zoom-in duration-300"
+                      >
+                        Next Step <ArrowRight size={18} />
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
