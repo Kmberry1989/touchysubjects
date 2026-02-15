@@ -2,8 +2,38 @@ import { createOpenSCAD } from 'openscad-wasm';
 
 let generator = null;
 
+function ensureDir(instance, filePath) {
+    const parts = filePath.split('/').filter(Boolean);
+    let current = '';
+
+    for (let i = 0; i < parts.length - 1; i += 1) {
+        current += `/${parts[i]}`;
+        try {
+            instance.FS.mkdir(current);
+        } catch {
+            // directory already exists
+        }
+    }
+}
+
+function compileEntry(instance, entryPath) {
+    try {
+        instance.callMain([entryPath, '-o', 'output.stl']);
+    } catch (e) {
+        if (e.message !== 'unwind' && !String(e.message || '').includes('exit')) {
+            throw e;
+        }
+    }
+
+    try {
+        return instance.FS.readFile('/output.stl');
+    } catch {
+        throw new Error('Compilation failed: Output file not created. Check SCAD syntax errors in console.');
+    }
+}
+
 self.onmessage = async (e) => {
-    const { type, code } = e.data;
+    const { type, code, entryFile, sourceFiles } = e.data;
 
     if (type === 'init') {
         try {
@@ -18,50 +48,52 @@ self.onmessage = async (e) => {
             console.error('OpenSCAD init error:', err);
             self.postMessage({ type: 'error', error: err.message || 'Initialization failed' });
         }
-    } else if (type === 'compile') {
-        if (!generator) {
-            self.postMessage({ type: 'error', error: 'OpenSCAD not initialized' });
-            return;
-        }
+        return;
+    }
 
+    if (!generator) {
+        self.postMessage({ type: type === 'compile-v2' ? 'error-v2' : 'error', error: 'OpenSCAD not initialized' });
+        return;
+    }
+
+    if (type === 'compile') {
         try {
             const instance = generator.getInstance();
-
-            // Write input file
             instance.FS.writeFile('/input.scad', code);
-
-            // Execute OpenSCAD
-            // -o output.stl means export to STL
-            // --export-format stl is implicit with .stl extension
+            const stlData = compileEntry(instance, '/input.scad');
             try {
-                instance.callMain(['/input.scad', '-o', 'output.stl']);
-            } catch (e) {
-                // catch exit exceptions if any, though openscad-wasm usually catches them
-                if (e.message !== 'unwind' && !e.message.includes('exit')) {
-                    throw e;
-                }
+                instance.FS.unlink('/input.scad');
+                instance.FS.unlink('/output.stl');
+            } catch {
+                // ignore cleanup failures
             }
-
-            // Check if output file exists
-            // Emscripten FS usually throws if file doesn't exist
-            let stlData;
-            try {
-                stlData = instance.FS.readFile('/output.stl');
-            } catch (fsErr) {
-                throw new Error('Compilation failed: Output file not created. Check SCAD syntax errors in console.');
-            }
-
-            // Cleanup
-            try { instance.FS.unlink('/input.scad'); } catch (e) { }
-            try { instance.FS.unlink('/output.stl'); } catch (e) { }
-
-            // Send back buffer
-            // stlData is a Uint8Array. We transfer its buffer for performance.
             self.postMessage({ type: 'success', stlData }, [stlData.buffer]);
-
         } catch (err) {
             console.error('OpenSCAD compile error:', err);
             self.postMessage({ type: 'error', error: err.message || 'Unknown compilation error' });
+        }
+        return;
+    }
+
+    if (type === 'compile-v2') {
+        try {
+            const instance = generator.getInstance();
+            for (const file of sourceFiles || []) {
+                ensureDir(instance, file.path);
+                instance.FS.writeFile(file.path, file.content);
+            }
+
+            const stlData = compileEntry(instance, entryFile);
+            try {
+                instance.FS.unlink('/output.stl');
+            } catch {
+                // ignore cleanup failures
+            }
+
+            self.postMessage({ type: 'success-v2', stlData }, [stlData.buffer]);
+        } catch (err) {
+            console.error('OpenSCAD compile-v2 error:', err);
+            self.postMessage({ type: 'error-v2', error: err.message || 'Unknown compilation error', diagnostics: [] });
         }
     }
 };

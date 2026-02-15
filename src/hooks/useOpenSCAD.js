@@ -8,7 +8,6 @@ export function useOpenSCAD() {
     const isInitialized = useRef(false);
 
     useEffect(() => {
-        // Initialize worker
         workerRef.current = new Worker(new URL('../workers/openscad.worker.js', import.meta.url), {
             type: 'module',
         });
@@ -19,18 +18,17 @@ export function useOpenSCAD() {
             if (type === 'init-success') {
                 isInitialized.current = true;
                 console.log('OpenSCAD Worker initialized');
-            } else if (type === 'success') {
+            } else if (type === 'success' || type === 'success-v2') {
                 setStlData(resultData);
                 setCompiling(false);
                 setError(null);
-            } else if (type === 'error') {
+            } else if (type === 'error' || type === 'error-v2') {
                 setError(errorMsg);
                 setCompiling(false);
                 console.error('OpenSCAD Worker Error:', errorMsg);
             }
         };
 
-        // Send init command
         workerRef.current.postMessage({ type: 'init' });
 
         return () => {
@@ -40,16 +38,26 @@ export function useOpenSCAD() {
         };
     }, []);
 
-    const compile = useCallback((code) => {
+    const compile = useCallback((payload) => {
         if (!workerRef.current) return;
 
         setCompiling(true);
         setStlData(null);
         setError(null);
 
-        // Tiny delay to allow UI to update to "compiling" state before sending message
         setTimeout(() => {
-            workerRef.current.postMessage({ type: 'compile', code });
+            if (typeof payload === 'string') {
+                workerRef.current.postMessage({ type: 'compile', code: payload });
+                return;
+            }
+
+            if (payload && payload.type === 'compile-v2') {
+                workerRef.current.postMessage(payload);
+                return;
+            }
+
+            setError('Invalid compile payload');
+            setCompiling(false);
         }, 10);
     }, []);
 

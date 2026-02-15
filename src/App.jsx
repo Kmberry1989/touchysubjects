@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight, Dices } from 'lucide-react';
 import SCADViewer from './components/SCADViewer';
+import ScadLibraryMode from './scad/ScadLibraryMode';
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
@@ -979,8 +980,10 @@ export default function TactileGenerator() {
   const [tagPadding, setTagPadding] = useState(4);
   const [diceType, setDiceType] = useState(6); // 6 Sided default
   const [generatedCode, setGeneratedCode] = useState("");
-  const [activeTab, setActiveTab] = useState('design');
-  const iframeRef = useRef(null);
+  const [activeTab, setActiveTab] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('mode') === 'library' ? 'library' : 'design';
+  });
   const shaderCanvasRef = useRef(null);
   const audioCtxRef = useRef(null);
   const audioUnlockedRef = useRef(false);
@@ -1026,20 +1029,6 @@ export default function TactileGenerator() {
   };
 
   const currentDesignInfo = DESIGNS.find(d => d.id === selectedDesign);
-  // MINIFICATION FOR URL
-  // Remove comments and whitespace to keep URL short
-  const minifiedCode = generatedCode
-    .replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1') // Remove block and single line comments
-    .replace(/\s+/g, ' ') // Collapse whitespace
-    .trim();
-
-  const viewerUrl = `https://ochafik.com/openscad2/#?code=${encodeURIComponent(minifiedCode)}`;
-
-  const refreshViewer = () => {
-    if (iframeRef.current) {
-      iframeRef.current.src = iframeRef.current.src;
-    }
-  };
 
   useEffect(() => {
     const canvas = shaderCanvasRef.current;
@@ -1282,6 +1271,7 @@ export default function TactileGenerator() {
             </div>
           </div>
           <div className="flex gap-2">
+            <button onClick={() => setActiveTab('library')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'library' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>SCAD Library</button>
             <button onClick={() => setActiveTab('design')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'design' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>1. Design</button>
             <button onClick={() => setActiveTab('customize')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'customize' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>2. Customize</button>
             <button onClick={() => setActiveTab('preview')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'preview' ? 'bg-purple-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>3. Live Preview</button>
@@ -1291,6 +1281,7 @@ export default function TactileGenerator() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
+        {activeTab === 'library' && <ScadLibraryMode />}
 
         {/* VIEW: DESIGN SELECTION */}
         {activeTab === 'design' && (
@@ -1539,7 +1530,7 @@ export default function TactileGenerator() {
                 <h3 className="font-bold text-black mb-4 flex items-center gap-2"><Printer className="text-green-600" size={20} /> Printing Instructions</h3>
                 <ol className="space-y-4 text-base text-gray-800 list-decimal list-outside pl-4">
                   <li><strong>Download</strong> the .scad file using the button below.</li>
-                  <li><strong>Download OpenSCAD</strong> (free) from openscad.org if you don't have it.</li>
+                  <li><strong>Download OpenSCAD</strong> (free) from openscad.org if you do not have it.</li>
                   <li><strong>Move</strong> your <code className="bg-gray-100 px-1 py-0.5 rounded text-red-500">{logoFilename}</code> into the same folder (if using a logo).</li>
                   <li><strong>Open</strong> the .scad file.</li>
                   <li>Press <strong>F6</strong> to Render.</li>

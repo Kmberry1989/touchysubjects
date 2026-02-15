@@ -14,3 +14,10 @@ test('app loads and generates SCAD output', async ({ page }) => {
   expect(text.length).toBeGreaterThan(200);
   expect(text).toContain('Generated:');
 });
+
+test('scad library mode renders catalog and duplicate badges', async ({ page }) => {
+  await page.goto('/?mode=library');
+
+  await expect(page.getByText('SCAD Library (56)')).toBeVisible();
+  await expect(page.getByText(/Exact duplicate of/i).first()).toBeVisible();
+});
