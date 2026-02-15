@@ -17,43 +17,55 @@ function resolveModelDependency(includePath) {
   return catalogByFileName.get(base);
 }
 
+function collectModelDependencies(entry) {
+  const seen = new Set();
+  const queue = [entry];
+  const out = [];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (!current || seen.has(current.fileName)) continue;
+    seen.add(current.fileName);
+    out.push(current);
+
+    for (const dep of current.includeDeps ?? []) {
+      const depModel = resolveModelDependency(dep);
+      if (depModel && !seen.has(depModel.fileName)) {
+        queue.push(depModel);
+      }
+    }
+  }
+
+  return out;
+}
+
 export function getCompileBundleForModel(modelId, overriddenSource) {
   const entry = catalogById.get(modelId);
   if (!entry) throw new Error(`Unknown model: ${modelId}`);
 
-  const sourceFiles = [];
-  const added = new Set();
+  const sourceFilesByPath = new Map();
 
-  const addFile = (path, content) => {
-    if (!content || added.has(path)) return;
-    added.add(path);
-    sourceFiles.push({ path, content });
+  const upsertFile = (path, content) => {
+    if (!content) return;
+    sourceFilesByPath.set(path, content);
   };
 
   for (const [rel, source] of vendorSourceByRelPath.entries()) {
-    addFile(`/lib/${rel}`, source);
+    upsertFile(`/lib/${rel}`, source);
   }
 
-  for (const model of catalog.entries) {
+  for (const model of collectModelDependencies(entry)) {
     const source = modelSourceByFileName.get(model.fileName);
-    if (source) addFile(`/lib/${model.fileName}`, source);
+    if (source) upsertFile(`/lib/${model.fileName}`, source);
   }
 
-  addFile(`/lib/${entry.fileName}`, overriddenSource);
-
-  for (const dep of entry.includeDeps) {
-    const depNormalized = normalizeIncludePath(dep);
-    const depModel = resolveModelDependency(depNormalized);
-    if (depModel) {
-      const depSource = modelSourceByFileName.get(depModel.fileName);
-      addFile(`/lib/${depModel.fileName}`, depSource);
-    }
-  }
+  // Ensure edited source always overrides the baseline model source.
+  upsertFile(`/lib/${entry.fileName}`, overriddenSource);
 
   return {
     entryFile: `/lib/${entry.fileName}`,
     cleanupRoot: '/lib',
-    sourceFiles,
+    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({ path, content })),
   };
 }
 

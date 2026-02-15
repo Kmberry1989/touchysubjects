@@ -26,14 +26,24 @@ function compileEntry(instance, entryPath) {
     }
 
     try {
-        return instance.FS.readFile('/output.stl');
+        // Copy out of Emscripten FS buffer before postMessage transfer.
+        // Transferring the original underlying buffer can detach WASM memory.
+        const raw = instance.FS.readFile('/output.stl');
+        return new Uint8Array(raw);
     } catch {
         throw new Error('Compilation failed: Output file not created. Check SCAD syntax errors in console.');
     }
 }
 
+function normalizeError(err) {
+    if (err instanceof Error && err.message) return err.message;
+    if (typeof err === 'number') return `OpenSCAD runtime error code: ${err}`;
+    if (typeof err === 'string') return err;
+    return 'Unknown compilation error';
+}
+
 self.onmessage = async (e) => {
-    const { type, code, entryFile, sourceFiles } = e.data;
+    const { type, code, entryFile, sourceFiles, requestId } = e.data;
 
     if (type === 'init') {
         try {
@@ -52,7 +62,7 @@ self.onmessage = async (e) => {
     }
 
     if (!generator) {
-        self.postMessage({ type: type === 'compile-v2' ? 'error-v2' : 'error', error: 'OpenSCAD not initialized' });
+        self.postMessage({ type: type === 'compile-v2' ? 'error-v2' : 'error', error: 'OpenSCAD not initialized', requestId });
         return;
     }
 
@@ -67,10 +77,10 @@ self.onmessage = async (e) => {
             } catch {
                 // ignore cleanup failures
             }
-            self.postMessage({ type: 'success', stlData }, [stlData.buffer]);
+            self.postMessage({ type: 'success', stlData, requestId }, [stlData.buffer]);
         } catch (err) {
             console.error('OpenSCAD compile error:', err);
-            self.postMessage({ type: 'error', error: err.message || 'Unknown compilation error' });
+            self.postMessage({ type: 'error', error: normalizeError(err), requestId });
         }
         return;
     }
@@ -90,10 +100,10 @@ self.onmessage = async (e) => {
                 // ignore cleanup failures
             }
 
-            self.postMessage({ type: 'success-v2', stlData }, [stlData.buffer]);
+            self.postMessage({ type: 'success-v2', stlData, requestId }, [stlData.buffer]);
         } catch (err) {
             console.error('OpenSCAD compile-v2 error:', err);
-            self.postMessage({ type: 'error-v2', error: err.message || 'Unknown compilation error', diagnostics: [] });
+            self.postMessage({ type: 'error-v2', error: normalizeError(err), diagnostics: [], requestId });
         }
     }
 };

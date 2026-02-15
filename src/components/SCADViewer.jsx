@@ -19,6 +19,12 @@ function Model({ stlData }) {
         }
     }, [stlData]);
 
+    useEffect(() => {
+        return () => {
+            geometry?.dispose();
+        };
+    }, [geometry]);
+
     if (!geometry) return null;
 
     return (

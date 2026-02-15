@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight, Dices } from 'lucide-react';
 import SCADViewer from './components/SCADViewer';
-import ScadLibraryMode from './scad/ScadLibraryMode';
+const ScadLibraryMode = React.lazy(() => import('./scad/ScadLibraryMode'));
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
@@ -48,7 +48,6 @@ const DESIGNS = [
   { id: 30, name: "Ring Size Ladder", category: "Pocket Orbit", description: "A set of rings from small to large for fit testing and play.", complexity: "Low" },
   { id: 31, name: "Comfort Ring Trio", category: "Pocket Orbit", description: "Three rounded-edge rings with different thickness profiles.", complexity: "Medium" },
   { id: 32, name: "Bead Sampler Strip", category: "Pocket Orbit", description: "Linked strip of varied bead shapes to test feel and finish.", complexity: "Low" },
-  { id: 32, name: "Bead Sampler Strip", category: "Pocket Orbit", description: "Linked strip of varied bead shapes to test feel and finish.", complexity: "Low" },
   { id: 33, name: "Loose Bead Set", category: "Pocket Orbit", description: "Independent beads in different diameters and textures.", complexity: "Low" },
 
   // TABLETOP GAMING
@@ -62,6 +61,11 @@ const DESIGNS = [
   { id: 52, name: "Cable Holder", category: "Imported Classics", description: "Clip to keep cables on your desk.", complexity: "Low" },
   { id: 53, name: "Stretchlet", category: "Imported Classics", description: "Stretchy bracelet printed flat.", complexity: "Medium" },
 ];
+
+const TOP_TEXT_DESIGNS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 25, 27, 28, 29, 40, 41, 42]);
+const BOTTOM_TEXT_DESIGNS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 26, 27, 28, 29, 41]);
+const LOGO_DESIGNS = new Set([1, 14]);
+const DICE_TYPE_DESIGNS = new Set([40]);
 
 // --- SCAD TEMPLATE GENERATOR ---
 const generateSCAD = (
@@ -101,7 +105,6 @@ tag_text = "${safeTagText}";
 tag_text_size = ${tagTextSize};
 tag_thickness = ${tagThickness};
 tag_padding = ${tagPadding};
-design_style = 1; // 0=River, 1=Deco, 2=Bloom
 design_style = 1; // 0=River, 1=Deco, 2=Bloom
 render_mode = "assembled";
 dice_type = ${diceType}; // 4, 6, 8, 10, 12, 20
@@ -898,6 +901,24 @@ module PolyDie() {
                points=[ [s,0,0], [-s,0,0], [0,s,0], [0,-s,0], [0,0,s], [0,0,-s] ],
                faces=[ [0,2,4], [0,4,3], [0,3,5], [0,5,2], [1,4,2], [1,3,4], [1,5,3], [1,2,5] ]
              );
+        } else if (dice_type == 10) {
+             bp = s * 0.95;
+             br = s * 0.7;
+             polyhedron(
+               points=[
+                 [0, 0, bp],
+                 [0, 0, -bp],
+                 [br*cos(0), br*sin(0), 0],
+                 [br*cos(72), br*sin(72), 0],
+                 [br*cos(144), br*sin(144), 0],
+                 [br*cos(216), br*sin(216), 0],
+                 [br*cos(288), br*sin(288), 0]
+               ],
+               faces=[
+                 [0,2,3], [0,3,4], [0,4,5], [0,5,6], [0,6,2],
+                 [1,3,2], [1,4,3], [1,5,4], [1,6,5], [1,2,6]
+               ]
+             );
         } else if (dice_type == 12) {
              intersection() {
                 cube([s,s,s], center=true);
@@ -1029,6 +1050,17 @@ export default function TactileGenerator() {
   };
 
   const currentDesignInfo = DESIGNS.find(d => d.id === selectedDesign);
+  const supportsTopText = TOP_TEXT_DESIGNS.has(selectedDesign);
+  const supportsBottomText = BOTTOM_TEXT_DESIGNS.has(selectedDesign);
+  const supportsLogo = LOGO_DESIGNS.has(selectedDesign);
+  const supportsDiceType = DICE_TYPE_DESIGNS.has(selectedDesign);
+  const supportsAnyObjectText = supportsTopText || supportsBottomText;
+
+  useEffect(() => {
+    if (!supportsLogo && useLogo) {
+      setUseLogo(false);
+    }
+  }, [supportsLogo, useLogo]);
 
   useEffect(() => {
     const canvas = shaderCanvasRef.current;
@@ -1281,7 +1313,11 @@ export default function TactileGenerator() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        {activeTab === 'library' && <ScadLibraryMode />}
+        {activeTab === 'library' && (
+          <React.Suspense fallback={<div className="text-gray-700 bg-white border border-gray-200 rounded-xl p-6">Loading SCAD library...</div>}>
+            <ScadLibraryMode />
+          </React.Suspense>
+        )}
 
         {/* VIEW: DESIGN SELECTION */}
         {activeTab === 'design' && (
@@ -1433,7 +1469,7 @@ export default function TactileGenerator() {
               </div>
               <div className="p-8 space-y-8">
                 {/* Dice Specific Controls */}
-                {selectedDesign === 40 && (
+                {supportsDiceType && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
                     <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2"><Dices size={20} /> Die Configuration</h3>
                     <div className="space-y-4">
@@ -1455,29 +1491,55 @@ export default function TactileGenerator() {
                   </div>
                 )}
 
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
-                    <div className="text-base text-blue-900">
-                      <p className="font-bold mb-1">Text Controls Across All Objects</p>
-                      <p>Top and bottom text apply directly on compatible models. The text tag add-on works with every design and prints as a separate piece in the same SCAD file.</p>
+                {!supportsDiceType && !supportsAnyObjectText && !supportsLogo && (
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-start gap-3">
+                      <Info className="text-gray-600 shrink-0 mt-0.5" size={18} />
+                      <div className="text-base text-gray-800">
+                        <p className="font-bold mb-1">No direct engraving controls for this object</p>
+                        <p>This design does not support built-in top/bottom text or SVG logos. You can still add a printable text tag below.</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="space-y-4">
-                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., Rochelle Berry" /></label>
-                  <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., rochelleberry731@gmail.com" /></label>
-                </div>
-                <hr className="border-gray-100" />
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Use SVG Logo?</span><button onClick={() => setUseLogo(!useLogo)} className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
-                  {useLogo && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-in fade-in slide-in-from-top-2">
-                      <div className="flex items-start gap-3"><Info className="text-blue-600 shrink-0 mt-0.5" size={18} /><div className="text-base text-blue-900"><p className="font-bold mb-1">How Logo Import Works:</p><p className="mb-3">OpenSCAD cannot read images directly from the web. You must have the SVG file saved on your computer.</p><label className="block mb-2 font-bold text-blue-900">Enter your SVG Filename:</label><input type="text" value={logoFilename} onChange={(e) => setLogoFilename(e.target.value)} className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2" placeholder="logo.svg" /><p className="text-sm text-blue-800">Ensure this file is in the same folder as the downloaded .scad file.</p></div></div>
+                )}
+
+                {supportsAnyObjectText && (
+                  <>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <div className="flex items-start gap-3">
+                        <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
+                        <div className="text-base text-blue-900">
+                          <p className="font-bold mb-1">Text Controls for This Object</p>
+                          <p>Only text inputs used by this specific design are shown. The text tag add-on works with every design and prints as a separate piece in the same SCAD file.</p>
+                        </div>
+                      </div>
                     </div>
-                  )}
-                </div>
-                <hr className="border-gray-100" />
+                    <div className="space-y-4">
+                      {supportsTopText && (
+                        <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., Rochelle Berry" /></label>
+                      )}
+                      {supportsBottomText && (
+                        <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., rochelleberry731@gmail.com" /></label>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {supportsLogo && (
+                  <>
+                    {supportsAnyObjectText && <hr className="border-gray-100" />}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Use SVG Logo?</span><button onClick={() => setUseLogo(!useLogo)} className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
+                      {useLogo && (
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-in fade-in slide-in-from-top-2">
+                          <div className="flex items-start gap-3"><Info className="text-blue-600 shrink-0 mt-0.5" size={18} /><div className="text-base text-blue-900"><p className="font-bold mb-1">How Logo Import Works:</p><p className="mb-3">OpenSCAD cannot read images directly from the web. You must have the SVG file saved on your computer.</p><label className="block mb-2 font-bold text-blue-900">Enter your SVG Filename:</label><input type="text" value={logoFilename} onChange={(e) => setLogoFilename(e.target.value)} className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2" placeholder="logo.svg" /><p className="text-sm text-blue-800">Ensure this file is in the same folder as the downloaded .scad file.</p></div></div>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {(supportsDiceType || supportsAnyObjectText || supportsLogo) && <hr className="border-gray-100" />}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Add Printable Text Tag</span><button onClick={() => setAddTextTag(!addTextTag)} className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
                   {addTextTag && (
