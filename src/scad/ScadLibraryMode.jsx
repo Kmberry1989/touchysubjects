@@ -61,6 +61,10 @@ function displayNameFromFileName(fileName) {
     .trim();
 }
 
+function hasExternalAssetImports(source) {
+  return /\bimport\s*\(/.test(String(source || ''));
+}
+
 function createCustomEntry(fileName, source) {
   const parsed = parseScadSource(source);
   return {
@@ -72,6 +76,7 @@ function createCustomEntry(fileName, source) {
     subcategory: 'Uploads',
     duplicateOf: null,
     includeDeps: parseIncludeDependencies(source),
+    needsExternalAsset: hasExternalAssetImports(source),
     sections: parsed.sections,
     params: parsed.params,
     sourceType: 'custom',
@@ -108,6 +113,7 @@ function statusForModel(entry, availableFileNames) {
   });
 
   const imageParam = (entry.params ?? []).some((p) => p.type === 'image_surface' || p.type === 'image_array');
+  if (entry.needsExternalAsset) return 'Needs file input';
   if (hasMissingDeps) return 'Missing lib';
   if (imageParam) return 'Needs image input';
   return 'Ready';

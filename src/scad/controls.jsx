@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { coerceNumberChange, resolveNumberValue } from './numberInput';
 
 function SearchableSelect({ value, options, onChange }) {
   const [query, setQuery] = React.useState('');
@@ -86,6 +87,7 @@ function ParamControl({ param, value, onChange }) {
   }
 
   if (param.type === 'number') {
+    const safeNumber = resolveNumberValue(value, param.defaultValue);
     const hasRange = Number.isFinite(param.min) && Number.isFinite(param.max);
     if (hasRange) {
       return (
@@ -95,17 +97,17 @@ function ParamControl({ param, value, onChange }) {
             min={param.min}
             max={param.max}
             step={param.step ?? 1}
-            value={Number(value)}
-            onChange={(e) => onChange(Number(e.target.value))}
+            value={safeNumber}
+            onChange={(e) => onChange(coerceNumberChange(e.target.value, safeNumber))}
             className="w-full"
           />
           <input
             type="number"
-            value={Number(value)}
+            value={safeNumber}
             min={param.min}
             max={param.max}
             step={param.step ?? 1}
-            onChange={(e) => onChange(Number(e.target.value))}
+            onChange={(e) => onChange(coerceNumberChange(e.target.value, safeNumber))}
             className="w-full px-3 py-2 rounded border border-gray-300 text-sm"
           />
         </div>
@@ -115,8 +117,8 @@ function ParamControl({ param, value, onChange }) {
     return (
       <input
         type="number"
-        value={Number(value)}
-        onChange={(e) => onChange(Number(e.target.value))}
+        value={safeNumber}
+        onChange={(e) => onChange(coerceNumberChange(e.target.value, safeNumber))}
         className="w-full px-3 py-2 rounded border border-gray-300 text-sm"
       />
     );

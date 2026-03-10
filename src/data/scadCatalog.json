@@ -1,7 +1,801 @@
 {
-  "generatedAt": "2026-02-14T23:42:06.749Z",
-  "count": 56,
+  "generatedAt": "2026-03-10T13:10:21.118Z",
+  "count": 60,
   "entries": [
+    {
+      "id": "award_factory_scad_bundle/award_factory_pro.scad",
+      "fileName": "award_factory_pro.scad",
+      "filePath": "assets/SCAD files/award_factory_scad_bundle/award_factory_pro.scad",
+      "displayName": "award factory pro",
+      "category": "Awards & Recognition",
+      "subcategory": "Award Factory",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": true,
+      "sections": [],
+      "params": [
+        {
+          "key": "mode",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "coin",
+          "rawValue": "\"coin\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        },
+        {
+          "key": "svg_file",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "design.svg",
+          "rawValue": "\"design.svg\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 3,
+            "lineEnd": 3
+          }
+        },
+        {
+          "key": "award_type",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "first",
+          "rawValue": "\"first\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 4,
+            "lineEnd": 4
+          }
+        },
+        {
+          "key": "coin_diameter",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 6,
+            "lineEnd": 6
+          }
+        },
+        {
+          "key": "coin_thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "rim_width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3,
+          "rawValue": "3",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "rim_height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.2,
+          "rawValue": "1.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "svg_height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.5,
+          "rawValue": "1.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "svg_mode",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "emboss",
+          "rawValue": "\"emboss\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "svg_target_size",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "coin_diameter*0.55",
+          "rawValue": "coin_diameter*0.55",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "enable_top_text",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "enable_bottom_text",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "top_text",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "FIRST PLACE",
+          "rawValue": "\"FIRST PLACE\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        },
+        {
+          "key": "bottom_text",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "2026",
+          "rawValue": "\"2026\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 19,
+            "lineEnd": 19
+          }
+        },
+        {
+          "key": "text_size",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 21,
+            "lineEnd": 21
+          }
+        },
+        {
+          "key": "text_depth",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1,
+          "rawValue": "1",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 22,
+            "lineEnd": 22
+          }
+        },
+        {
+          "key": "text_radius",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "coin_diameter/2-6",
+          "rawValue": "coin_diameter/2-6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 23,
+            "lineEnd": 23
+          }
+        },
+        {
+          "key": "enable_wreath",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 25,
+            "lineEnd": 25
+          }
+        },
+        {
+          "key": "enable_stars",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 26,
+            "lineEnd": 26
+          }
+        },
+        {
+          "key": "star_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 28,
+            "lineEnd": 28
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 120,
+          "rawValue": "120",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 30,
+            "lineEnd": 30
+          }
+        }
+      ]
+    },
+    {
+      "id": "award_factory_scad_bundle/coin_edge_text_generator.scad",
+      "fileName": "coin_edge_text_generator.scad",
+      "filePath": "assets/SCAD files/award_factory_scad_bundle/coin_edge_text_generator.scad",
+      "displayName": "coin edge text generator",
+      "category": "Awards & Recognition",
+      "subcategory": "Award Factory",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "text_string",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "KOKOMO ART ASSOCIATION",
+          "rawValue": "\"KOKOMO ART ASSOCIATION\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        },
+        {
+          "key": "coin_radius",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 30,
+          "rawValue": "30",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 3,
+            "lineEnd": 3
+          }
+        },
+        {
+          "key": "text_size",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3,
+          "rawValue": "3",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 4,
+            "lineEnd": 4
+          }
+        },
+        {
+          "key": "text_depth",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1,
+          "rawValue": "1",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 5,
+            "lineEnd": 5
+          }
+        },
+        {
+          "key": "text_arc",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 180,
+          "rawValue": "180",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 6,
+            "lineEnd": 6
+          }
+        },
+        {
+          "key": "flip_text",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        }
+      ]
+    },
+    {
+      "id": "award_factory_scad_bundle/medal_ribbon_generator.scad",
+      "fileName": "medal_ribbon_generator.scad",
+      "filePath": "assets/SCAD files/award_factory_scad_bundle/medal_ribbon_generator.scad",
+      "displayName": "medal ribbon generator",
+      "category": "Awards & Recognition",
+      "subcategory": "Award Factory",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "ribbon_width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 25,
+          "rawValue": "25",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        },
+        {
+          "key": "ribbon_thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 3,
+            "lineEnd": 3
+          }
+        },
+        {
+          "key": "ribbon_length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 4,
+            "lineEnd": 4
+          }
+        },
+        {
+          "key": "loop_diameter",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 14,
+          "rawValue": "14",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 5,
+            "lineEnd": 5
+          }
+        },
+        {
+          "key": "fold_depth",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 6,
+            "lineEnd": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "award_factory_scad_bundle/svg_to_coin_layout.scad",
+      "fileName": "svg_to_coin_layout.scad",
+      "filePath": "assets/SCAD files/award_factory_scad_bundle/svg_to_coin_layout.scad",
+      "displayName": "svg to coin layout",
+      "category": "Awards & Recognition",
+      "subcategory": "Award Factory",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": true,
+      "sections": [],
+      "params": [
+        {
+          "key": "svg_file",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "design.svg",
+          "rawValue": "\"design.svg\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        },
+        {
+          "key": "coin_diameter",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 3,
+            "lineEnd": 3
+          }
+        },
+        {
+          "key": "coin_thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 4,
+            "lineEnd": 4
+          }
+        },
+        {
+          "key": "svg_height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.5,
+          "rawValue": "1.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 5,
+            "lineEnd": 5
+          }
+        },
+        {
+          "key": "enable_border",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "enable_wreath",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "enable_stars",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "star_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 16,
+          "rawValue": "16",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 120,
+          "rawValue": "120",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        }
+      ]
+    },
     {
       "id": "Bobble_Spring.scad",
       "fileName": "Bobble_Spring.scad",
@@ -11,6 +805,7 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -243,6 +1038,24 @@
           }
         },
         {
+          "key": "$fn",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "30 + 0",
+          "rawValue": "30 + 0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 21,
+            "lineEnd": 21
+          }
+        },
+        {
           "key": "Assembly_Tool_Clearance",
           "type": "text",
           "section": "General",
@@ -415,6 +1228,7 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -487,6 +1301,24 @@
           "sourceSpan": {
             "lineStart": 5,
             "lineEnd": 5
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 150,
+          "rawValue": "150",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 6,
+            "lineEnd": 6
           }
         },
         {
@@ -626,6 +1458,7 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Hidden"
       ],
@@ -1399,6 +2232,7 @@
       "includeDeps": [
         "ContourHandshake_28878.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -1466,6 +2300,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -1610,6 +2445,24 @@
           "sourceSpan": {
             "lineStart": 8,
             "lineEnd": 8
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 50,
+          "rawValue": "50",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
           }
         },
         {
@@ -1821,6 +2674,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": "bus_card_holder copy.scad",
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -1965,6 +2819,24 @@
           "sourceSpan": {
             "lineStart": 8,
             "lineEnd": 8
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 50,
+          "rawValue": "50",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
           }
         },
         {
@@ -2178,6 +3050,7 @@
       "includeDeps": [
         "utils/build_plate.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -2406,6 +3279,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Parameters",
         "Hidden"
@@ -2538,6 +3412,24 @@
           }
         },
         {
+          "key": "$fs",
+          "type": "number",
+          "section": "Hidden",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 0.01,
+          "rawValue": "0.01",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 31,
+            "lineEnd": 31
+          }
+        },
+        {
           "key": "ADDSPACE",
           "type": "text",
           "section": "Hidden",
@@ -2606,6 +3498,7 @@
         "MCAD/triangles.scad",
         "utils/build_plate.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "The Basics",
         "Add Image",
@@ -3307,6 +4200,7 @@
       "subcategory": "Mazes & Boards",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -3400,6 +4294,24 @@
           }
         },
         {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
           "key": "render",
           "type": "enum",
           "section": "General",
@@ -3457,6 +4369,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -3578,6 +4491,7 @@
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -3775,6 +4689,7 @@
         "write/Write.scad",
         "utils/build_plate.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -4184,6 +5099,24 @@
           }
         },
         {
+          "key": "$fs",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "0.5*1",
+          "rawValue": "0.5*1",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 45,
+            "lineEnd": 45
+          }
+        },
+        {
           "key": "Nr",
           "type": "text",
           "section": "General",
@@ -4392,6 +5325,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -5027,8 +5961,27 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
+        {
+          "key": "$fn",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "100*1",
+          "rawValue": "100*1",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 6,
+            "lineEnd": 6
+          }
+        },
         {
           "key": "Diameter",
           "type": "enum",
@@ -5380,6 +6333,7 @@
         "write/Write.scad",
         "utils/build_plate.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Prebuilt",
         "Custom",
@@ -6049,6 +7003,7 @@
         "utils/build_plate.scad",
         "write/Write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Shape",
         "Settings",
@@ -6374,6 +7329,7 @@
         "write/Write.scad",
         "utils/hsvtorgb.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Tree",
         "Branches",
@@ -7214,6 +8170,7 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -7553,6 +8510,7 @@
       "includeDeps": [
         "write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Global",
         "Basic",
@@ -7907,6 +8865,24 @@
           }
         },
         {
+          "key": "$fn",
+          "type": "number",
+          "section": "Hidden",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 32,
+          "rawValue": "32",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 78,
+            "lineEnd": 78
+          }
+        },
+        {
           "key": "NOFILLETS",
           "type": "text",
           "section": "Hidden",
@@ -8097,6 +9073,7 @@
       "subcategory": "Stamps & Stencils",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Global",
         "Hidden"
@@ -8171,6 +9148,42 @@
           "sourceSpan": {
             "lineStart": 12,
             "lineEnd": 12
+          }
+        },
+        {
+          "key": "$fa",
+          "type": "number",
+          "section": "Hidden",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "$fs",
+          "type": "number",
+          "section": "Hidden",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 1.5,
+          "rawValue": "1.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
           }
         },
         {
@@ -8328,6 +9341,7 @@
       "subcategory": "Pouring & Writing Tools",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Size and shape",
         "Optional features"
@@ -8677,6 +9691,7 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Hidden"
       ],
@@ -8872,6 +9887,7 @@
       "subcategory": "Hardware & Fasteners",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -8939,8 +9955,27 @@
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 100,
+          "rawValue": "100",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 1,
+            "lineEnd": 1
+          }
+        },
         {
           "key": "width",
           "type": "number",
@@ -9204,6 +10239,7 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": true,
       "sections": [
         "POCKET ORBIT CONFIG"
       ],
@@ -9405,6 +10441,24 @@
             "lineStart": 27,
             "lineEnd": 27
           }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "POCKET ORBIT CONFIG",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 28,
+            "lineEnd": 28
+          }
         }
       ]
     },
@@ -9417,6 +10471,7 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": true,
       "sections": [
         "POCKET ORBIT CONFIG"
       ],
@@ -9618,6 +10673,24 @@
             "lineStart": 27,
             "lineEnd": 27
           }
+        },
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "POCKET ORBIT CONFIG",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 60,
+          "rawValue": "60",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 28,
+            "lineEnd": 28
+          }
         }
       ]
     },
@@ -9633,6 +10706,7 @@
         "utils/build_plate.scad",
         "write/Write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Image",
         "Adjustments",
@@ -10133,6 +11207,7 @@
       "includeDeps": [
         "write/Write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "Text",
         "Text options",
@@ -10756,6 +11831,7 @@
       "subcategory": "Nameplates & Codes",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Text",
         "Dimensions",
@@ -11180,6 +12256,7 @@
       "subcategory": "Nameplates & Codes",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -11393,6 +12470,7 @@
       "includeDeps": [
         "utils/build_plate.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [
         "All",
         "Phone",
@@ -12067,6 +13145,7 @@
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -12166,6 +13245,24 @@
           "sourceSpan": {
             "lineStart": 19,
             "lineEnd": 19
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "24*1",
+          "rawValue": "24*1",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 22,
+            "lineEnd": 22
           }
         },
         {
@@ -12269,6 +13366,7 @@
       "subcategory": "General",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Units and Scaling",
         "Furniture Type",
@@ -12326,6 +13424,24 @@
           "sourceSpan": {
             "lineStart": 12,
             "lineEnd": 12
+          }
+        },
+        {
+          "key": "$fn",
+          "type": "text",
+          "section": "Units and Scaling",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "1*12",
+          "rawValue": "1*12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
           }
         },
         {
@@ -12838,6 +13954,7 @@
       "subcategory": "Hardware & Fasteners",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Component Type",
         "Bolt and Rod Options",
@@ -13498,8 +14615,27 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 96,
+          "rawValue": "96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
         {
           "key": "glasses_width",
           "type": "number",
@@ -13691,8 +14827,27 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": "parametric_glasses_collectible (1).scad",
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 96,
+          "rawValue": "96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
         {
           "key": "glasses_width",
           "type": "number",
@@ -13884,6 +15039,7 @@
       "subcategory": "Nameplates & Codes",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -14431,6 +15587,7 @@
       "subcategory": "Mazes & Boards",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -14572,6 +15729,7 @@
       "includeDeps": [
         "MCAD/fonts.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -14714,6 +15872,7 @@
         "utils/build_plate.scad",
         "write/Write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -15030,6 +16189,42 @@
           }
         },
         {
+          "key": "$fa",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "12/quality",
+          "rawValue": "12/quality",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 42,
+            "lineEnd": 42
+          }
+        },
+        {
+          "key": "$fs",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "2/quality",
+          "rawValue": "2/quality",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 43,
+            "lineEnd": 43
+          }
+        },
+        {
           "key": "phi",
           "type": "text",
           "section": "General",
@@ -15114,6 +16309,7 @@
       "includeDeps": [
         "write/Write.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -15382,6 +16578,42 @@
           }
         },
         {
+          "key": "$fa",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "12/quality",
+          "rawValue": "12/quality",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 37,
+            "lineEnd": 37
+          }
+        },
+        {
+          "key": "$fs",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "2/quality",
+          "rawValue": "2/quality",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 38,
+            "lineEnd": 38
+          }
+        },
+        {
           "key": "phi",
           "type": "text",
           "section": "General",
@@ -15464,6 +16696,7 @@
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Hidden"
       ],
@@ -16545,6 +17778,7 @@
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Make A Flake!",
         "Set Snowflake Style",
@@ -17275,6 +18509,7 @@
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Global",
         "Hidden"
@@ -17425,6 +18660,7 @@
       "subcategory": "Stamps & Stencils",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -17528,6 +18764,7 @@
       "subcategory": "Stamps & Stencils",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -17631,6 +18868,7 @@
       "subcategory": "Stamps & Stencils",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -17887,6 +19125,7 @@
       "subcategory": "Bracelets & Accessories",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -18116,6 +19355,7 @@
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Global Settings",
         "Case Dimensions",
@@ -18558,6 +19798,7 @@
       "subcategory": "Nameplates & Codes",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "AdditionalSettings",
         "Hidden"
@@ -31462,6 +32703,7 @@
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "CLIP",
         "TEXT",
@@ -31776,6 +33018,24 @@
           }
         },
         {
+          "key": "$fn",
+          "type": "number",
+          "section": "HIDDEN",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 30,
+          "rawValue": "30",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 48,
+            "lineEnd": 48
+          }
+        },
+        {
           "key": "BASE_LENGTH",
           "type": "text",
           "section": "HIDDEN",
@@ -31879,6 +33139,7 @@
         "text_on.scad",
         "threads.scad"
       ],
+      "needsExternalAsset": false,
       "sections": [],
       "params": [
         {
@@ -32095,6 +33356,7 @@
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Box dimensions",
         "Box options",
@@ -32735,6 +33997,7 @@
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Box dimensions",
         "Box options",
@@ -33258,6 +34521,7 @@
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
       "includeDeps": [],
+      "needsExternalAsset": false,
       "sections": [
         "Wall",
         "Mortar",

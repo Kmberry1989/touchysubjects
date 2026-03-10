@@ -82,6 +82,11 @@ const categoryMap = new Map([
   ['lithopane_new.scad', ['Imaging', 'Lithophanes']],
 
   ['BuildPlate_Array_28878.scad', ['Utilities', 'Build Plate Composition']],
+
+  ['award_factory_pro.scad', ['Awards & Recognition', 'Award Factory']],
+  ['coin_edge_text_generator.scad', ['Awards & Recognition', 'Award Factory']],
+  ['medal_ribbon_generator.scad', ['Awards & Recognition', 'Award Factory']],
+  ['svg_to_coin_layout.scad', ['Awards & Recognition', 'Award Factory']],
 ]);
 
 function displayNameFromFile(fileName) {
@@ -92,16 +97,56 @@ function displayNameFromFile(fileName) {
     .trim();
 }
 
-const fileNames = fs
-  .readdirSync(scadDir)
-  .filter((name) => name.toLowerCase().endsWith('.scad'))
-  .sort((a, b) => a.localeCompare(b));
+function hasExternalAssetImports(source) {
+  return /\bimport\s*\(/.test(source);
+}
+
+function listScadFilesRecursive(rootDir) {
+  const out = [];
+  const stack = [''];
+
+  while (stack.length > 0) {
+    const relDir = stack.pop();
+    const absDir = path.join(rootDir, relDir);
+    for (const name of fs.readdirSync(absDir)) {
+      const relPath = relDir ? path.posix.join(relDir, name) : name;
+      const absPath = path.join(rootDir, relPath);
+      const stat = fs.statSync(absPath);
+      if (stat.isDirectory()) {
+        stack.push(relPath);
+      } else if (name.toLowerCase().endsWith('.scad')) {
+        out.push(relPath);
+      }
+    }
+  }
+
+  return out.sort((a, b) => a.localeCompare(b));
+}
+
+const relativePaths = listScadFilesRecursive(scadDir);
+const fileNames = relativePaths.map((relPath) => path.posix.basename(relPath));
+
+const duplicateBasenames = new Map();
+for (let i = 0; i < relativePaths.length; i += 1) {
+  const fileName = fileNames[i];
+  const relPath = relativePaths[i];
+  if (!duplicateBasenames.has(fileName)) duplicateBasenames.set(fileName, []);
+  duplicateBasenames.get(fileName).push(relPath);
+}
+
+const collisions = Array.from(duplicateBasenames.entries()).filter(([, paths]) => paths.length > 1);
+if (collisions.length > 0) {
+  const lines = collisions.map(([name, paths]) => `- ${name}: ${paths.join(', ')}`).join('\n');
+  throw new Error(`Duplicate SCAD basenames found; cannot build catalog safely.\n${lines}`);
+}
 
 const entries = [];
 const hashToPrimary = new Map();
 
-for (const fileName of fileNames) {
-  const absPath = path.join(scadDir, fileName);
+for (let i = 0; i < relativePaths.length; i += 1) {
+  const relPath = relativePaths[i];
+  const fileName = fileNames[i];
+  const absPath = path.join(scadDir, relPath);
   const source = fs.readFileSync(absPath, 'utf8');
   const hash = crypto.createHash('sha1').update(source).digest('hex');
 
@@ -113,14 +158,15 @@ for (const fileName of fileNames) {
   if (!duplicateOf) hashToPrimary.set(hash, fileName);
 
   entries.push({
-    id: fileName,
+    id: relPath,
     fileName,
-    filePath: `assets/SCAD files/${fileName}`,
+    filePath: `assets/SCAD files/${relPath}`,
     displayName: displayNameFromFile(fileName),
     category,
     subcategory,
     duplicateOf,
     includeDeps,
+    needsExternalAsset: hasExternalAssetImports(source),
     sections: parsed.sections,
     params: parsed.params,
   });
@@ -135,8 +181,10 @@ const payload = {
 fs.writeFileSync(outFile, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 
 const modelSources = {};
-for (const fileName of fileNames) {
-  modelSources[fileName] = fs.readFileSync(path.join(scadDir, fileName), 'utf8');
+for (let i = 0; i < relativePaths.length; i += 1) {
+  const relPath = relativePaths[i];
+  const fileName = fileNames[i];
+  modelSources[fileName] = fs.readFileSync(path.join(scadDir, relPath), 'utf8');
 }
 
 const vendorSources = {};
