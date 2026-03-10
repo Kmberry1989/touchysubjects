@@ -34,7 +34,7 @@ function Model({ stlData }) {
     );
 }
 
-export default function SCADViewer({ code, compileRequest, className = '' }) {
+export default function SCADViewer({ code, compileRequest, blockedReason = null, className = '' }) {
     const { compile, compiling, error, stlData } = useOpenSCAD();
     const supportsWebGL = useMemo(() => {
         try {
@@ -46,6 +46,7 @@ export default function SCADViewer({ code, compileRequest, className = '' }) {
     }, []);
 
     useEffect(() => {
+        if (blockedReason) return;
         const payload = compileRequest ?? code;
         if (!payload) return;
 
@@ -54,7 +55,7 @@ export default function SCADViewer({ code, compileRequest, className = '' }) {
         }, 800);
 
         return () => clearTimeout(timer);
-    }, [code, compileRequest, compile]);
+    }, [blockedReason, code, compileRequest, compile]);
 
     return (
         <div className={`relative w-full h-full min-h-[300px] bg-slate-50 border border-gray-200 rounded-xl overflow-hidden ${className}`}>
@@ -79,6 +80,18 @@ export default function SCADViewer({ code, compileRequest, className = '' }) {
                 </div>
             )}
 
+            {blockedReason && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center p-8 bg-white/90 backdrop-blur-sm">
+                    <div className="max-w-md w-full bg-amber-50 border border-amber-200 p-4 rounded-xl shadow-sm">
+                        <div className="flex items-center gap-2 text-amber-800 font-bold mb-2">
+                            <AlertCircle size={20} />
+                            <span>Render Blocked</span>
+                        </div>
+                        <p className="text-xs text-amber-900 whitespace-pre-wrap">{blockedReason}</p>
+                    </div>
+                </div>
+            )}
+
             {supportsWebGL ? (
                 <Canvas shadows camera={{ position: [50, 50, 50], fov: 45 }} dpr={[1, 2]}>
                     <color attach="background" args={['#f8fafc']} />
@@ -93,7 +106,7 @@ export default function SCADViewer({ code, compileRequest, className = '' }) {
                 </div>
             )}
 
-            {!stlData && !compiling && !error && (
+            {!stlData && !compiling && !error && !blockedReason && (
                 <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">
                     Waiting for code...
                 </div>

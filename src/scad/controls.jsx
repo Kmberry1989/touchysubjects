@@ -2,6 +2,26 @@
 import React from 'react';
 import { coerceNumberChange, resolveNumberValue } from './numberInput';
 
+function EnumOptionsList({ options }) {
+  if (!Array.isArray(options) || options.length === 0) return null;
+
+  return (
+    <details open className="rounded border border-gray-200 bg-gray-50 px-2 py-1.5">
+      <summary className="cursor-pointer text-[11px] font-semibold text-gray-600">Options ({options.length})</summary>
+      <div className="mt-1 flex flex-wrap gap-1">
+        {options.map((opt) => (
+          <span
+            key={`enum-opt-${String(opt.value)}-${String(opt.label)}`}
+            className="inline-flex items-center rounded bg-white border border-gray-200 px-1.5 py-0.5 text-[11px] text-gray-700"
+          >
+            {String(opt.label)}
+          </span>
+        ))}
+      </div>
+    </details>
+  );
+}
+
 function SearchableSelect({ value, options, onChange }) {
   const [query, setQuery] = React.useState('');
   const filtered = React.useMemo(() => {
@@ -50,26 +70,32 @@ function ParamControl({ param, value, onChange }) {
     const huge = param.options.length > 25;
     if (huge) {
       return (
-        <SearchableSelect
-          value={value}
-          options={param.options}
-          onChange={(next) => onChange(coerceEnumValue(next, param.defaultValue))}
-        />
+        <div className="space-y-2">
+          <SearchableSelect
+            value={value}
+            options={param.options}
+            onChange={(next) => onChange(coerceEnumValue(next, param.defaultValue))}
+          />
+          <EnumOptionsList options={param.options} />
+        </div>
       );
     }
 
     return (
-      <select
-        value={String(value)}
-        onChange={(e) => onChange(coerceEnumValue(e.target.value, param.defaultValue))}
-        className="w-full px-3 py-2 rounded border border-gray-300 text-sm bg-white"
-      >
-        {param.options.map((opt) => (
-          <option key={`${opt.value}-${opt.label}`} value={String(opt.value)}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+      <div className="space-y-2">
+        <select
+          value={String(value)}
+          onChange={(e) => onChange(coerceEnumValue(e.target.value, param.defaultValue))}
+          className="w-full px-3 py-2 rounded border border-gray-300 text-sm bg-white"
+        >
+          {param.options.map((opt) => (
+            <option key={`${opt.value}-${opt.label}`} value={String(opt.value)}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <EnumOptionsList options={param.options} />
+      </div>
     );
   }
 

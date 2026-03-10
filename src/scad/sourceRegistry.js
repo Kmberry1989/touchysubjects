@@ -43,7 +43,7 @@ function collectModelDependencies(entry) {
   return out;
 }
 
-export function getCompileBundleForModel(modelId, overriddenSource) {
+export function getCompileBundleForModel(modelId, overriddenSource, externalAssetFiles = []) {
   const entry = catalogById.get(modelId);
   if (!entry) throw new Error(`Unknown model: ${modelId}`);
 
@@ -65,6 +65,12 @@ export function getCompileBundleForModel(modelId, overriddenSource) {
 
   // Ensure edited source always overrides the baseline model source.
   upsertFile(`/lib/${entry.fileName}`, overriddenSource);
+  for (const file of externalAssetFiles) {
+    if (!file || typeof file.path !== 'string') continue;
+    const normalized = normalizeIncludePath(file.path);
+    if (!normalized) continue;
+    upsertFile(`/lib/${normalized}`, file.content);
+  }
 
   return {
     entryFile: `/lib/${entry.fileName}`,
@@ -137,7 +143,7 @@ function collectRecursiveDeps(entrySource, additionalLookup) {
   return deps;
 }
 
-export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additionalFiles = []) {
+export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additionalFiles = [], externalAssetFiles = []) {
   if (typeof entryFileName !== 'string' || !entryFileName.trim()) {
     throw new Error('entryFileName is required for ad-hoc compile bundles');
   }
@@ -167,6 +173,12 @@ export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additi
 
   const entryPath = normalizeIncludePath(entryFileName);
   upsertFile(`/lib/${entryPath}`, overriddenSource);
+  for (const file of externalAssetFiles) {
+    if (!file || typeof file.path !== 'string') continue;
+    const normalized = normalizeIncludePath(file.path);
+    if (!normalized) continue;
+    upsertFile(`/lib/${normalized}`, file.content);
+  }
 
   return {
     entryFile: `/lib/${entryPath}`,

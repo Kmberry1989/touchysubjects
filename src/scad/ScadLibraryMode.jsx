@@ -4,6 +4,7 @@ import SCADViewer from '../components/SCADViewer';
 import ScadControls from './controls';
 import { parseIncludeDependencies, parseScadSource } from './parser';
 import { applyParamOverrides } from './override';
+import { normalizeExternalAssetPath, resolveExternalAssetPaths } from './externalAssets';
 import { getCatalog, getCompileBundleForAdHoc, getCompileBundleForModel, getModelSource } from './sourceRegistry';
 
 const PRESET_KEY = 'scad-library-presets-v1';
@@ -128,6 +129,7 @@ export default function ScadLibraryMode() {
   const [presets, setPresets] = React.useState(() => safeJsonParse(localStorage.getItem(PRESET_KEY), {}));
   const [customEntries, setCustomEntries] = React.useState([]);
   const [customSources, setCustomSources] = React.useState({});
+  const [externalAssets, setExternalAssets] = React.useState({});
   const [values, setValues] = React.useState({});
 
   const allEntries = React.useMemo(() => [...customEntries, ...catalog.entries], [catalog.entries, customEntries]);
@@ -173,8 +175,57 @@ export default function ScadLibraryMode() {
     return applyParamOverrides(selectedSource, selectedEntry.params, values);
   }, [selectedEntry, selectedSource, values]);
 
+  const requiredExternalAssetPaths = React.useMemo(() => {
+    if (!selectedEntry?.needsExternalAsset) return [];
+    return resolveExternalAssetPaths(overriddenSource, values);
+  }, [overriddenSource, selectedEntry, values]);
+
+  const externalAssetResolution = React.useMemo(() => {
+    return requiredExternalAssetPaths.map((assetPath) => {
+      const exact = externalAssets[assetPath];
+      const base = assetPath.split('/').pop();
+      const baseMatch = !exact && base ? externalAssets[base] : null;
+      const content = exact ?? baseMatch ?? null;
+      const providedBy = exact ? assetPath : baseMatch ? base : null;
+      return {
+        assetPath,
+        content,
+        provided: Boolean(content),
+        providedBy,
+      };
+    });
+  }, [externalAssets, requiredExternalAssetPaths]);
+
+  const missingExternalAssetPaths = React.useMemo(
+    () => externalAssetResolution.filter((item) => !item.provided).map((item) => item.assetPath),
+    [externalAssetResolution]
+  );
+
+  const mountedExternalAssetFiles = React.useMemo(
+    () =>
+      externalAssetResolution
+        .filter((item) => item.provided)
+        .map((item) => ({ path: item.assetPath, content: item.content })),
+    [externalAssetResolution]
+  );
+
+  const compileBlockReason = React.useMemo(() => {
+    if (!selectedEntry?.needsExternalAsset) return null;
+
+    if (requiredExternalAssetPaths.length === 0) {
+      return 'This model calls import() but no concrete import filename was resolved. Set the filename parameter and upload a matching asset file.';
+    }
+
+    if (missingExternalAssetPaths.length > 0) {
+      return `Missing external asset file(s): ${missingExternalAssetPaths.join(', ')}. Upload matching file(s) to render this model.`;
+    }
+
+    return null;
+  }, [missingExternalAssetPaths, requiredExternalAssetPaths, selectedEntry]);
+
   const compileRequest = React.useMemo(() => {
     if (!selectedEntry) return null;
+    if (compileBlockReason) return null;
 
     if (selectedEntry.sourceType === 'custom') {
       const additionalFiles = customEntries
@@ -183,18 +234,48 @@ export default function ScadLibraryMode() {
 
       return {
         type: 'compile-v2',
-        ...getCompileBundleForAdHoc(selectedEntry.fileName, overriddenSource, additionalFiles),
+        ...getCompileBundleForAdHoc(selectedEntry.fileName, overriddenSource, additionalFiles, mountedExternalAssetFiles),
       };
     }
 
     return {
       type: 'compile-v2',
-      ...getCompileBundleForModel(selectedEntry.id, overriddenSource),
+      ...getCompileBundleForModel(selectedEntry.id, overriddenSource, mountedExternalAssetFiles),
     };
-  }, [customEntries, customSources, overriddenSource, selectedEntry]);
+  }, [compileBlockReason, customEntries, customSources, mountedExternalAssetFiles, overriddenSource, selectedEntry]);
 
   const onChangeParam = React.useCallback((key, value) => {
     setValues((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  const importExternalAssets = React.useCallback(async (event) => {
+    const input = event.target;
+    const files = Array.from(input.files ?? []);
+    if (files.length === 0) {
+      input.value = '';
+      return;
+    }
+
+    try {
+      const loaded = await Promise.all(
+        files.map(async (file) => ({
+          fileName: file.name,
+          content: new Uint8Array(await file.arrayBuffer()),
+        }))
+      );
+
+      setExternalAssets((prev) => {
+        const next = { ...prev };
+        for (const file of loaded) {
+          const normalized = normalizeExternalAssetPath(file.fileName);
+          if (!normalized) continue;
+          next[normalized] = file.content;
+        }
+        return next;
+      });
+    } finally {
+      input.value = '';
+    }
   }, []);
 
   const addCustomSources = React.useCallback((loadedFiles) => {
@@ -393,6 +474,40 @@ export default function ScadLibraryMode() {
             <p className="text-sm text-orange-700">Exact duplicate of `{selectedEntry.duplicateOf}`.</p>
           )}
           <div className="text-xs text-gray-600">Dependency status: {statusForModel(selectedEntry, availableFileNames)}</div>
+          {selectedEntry.needsExternalAsset && (
+            <div data-testid="external-asset-panel" className="space-y-2 rounded border border-amber-200 bg-amber-50 px-2 py-2">
+              <div className="flex items-center justify-between gap-2 flex-wrap">
+                <p className="text-xs font-semibold text-amber-900">External Asset Files</p>
+                <label className="px-2 py-1 rounded bg-amber-200 text-amber-900 text-xs font-semibold cursor-pointer">
+                  Upload asset file(s)
+                  <input
+                    data-testid="external-asset-input"
+                    type="file"
+                    multiple
+                    accept=".svg,.dxf,.stl,.off,.amf,.3mf,.png,.jpg,.jpeg,.bmp,.gif"
+                    className="hidden"
+                    onChange={importExternalAssets}
+                  />
+                </label>
+              </div>
+
+              {requiredExternalAssetPaths.length > 0 ? (
+                <div className="space-y-1">
+                  {externalAssetResolution.map((item) => (
+                    <div key={item.assetPath} className="flex items-center justify-between gap-2 text-[11px]">
+                      <span className="font-mono text-amber-900">{item.assetPath}</span>
+                      <span className={item.provided ? 'text-green-700 font-semibold' : 'text-red-700 font-semibold'}>
+                        {item.provided ? `Provided${item.providedBy && item.providedBy !== item.assetPath ? ` (${item.providedBy})` : ''}` : 'Missing'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-[11px] text-amber-900">No concrete import filename detected yet. Set the filename parameter to a literal file path.</p>
+              )}
+            </div>
+          )}
+          {compileBlockReason && <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded px-2 py-1">{compileBlockReason}</p>}
           <div className="flex items-center gap-2 flex-wrap pt-2">
             <button
               onClick={savePreset}
@@ -450,7 +565,7 @@ export default function ScadLibraryMode() {
 
       <section className="col-span-5 space-y-3">
         <div className="bg-white border border-gray-200 rounded-xl p-3 h-[500px]">
-          <SCADViewer compileRequest={compileRequest} />
+          <SCADViewer compileRequest={compileRequest} blockedReason={compileBlockReason} />
         </div>
         <div className="bg-gray-900 rounded-xl p-3 h-[260px] overflow-auto">
           <pre className="text-green-300 text-xs whitespace-pre-wrap">{overriddenSource}</pre>
