@@ -50,3 +50,16 @@ img = "foo"; // [image_surface:100x100]
   assert.equal(arr.type, 'image_array');
   assert.equal(img.type, 'image_surface');
 });
+
+test('parser includes special $ variables as advanced params', () => {
+  const src = `
+/* [General] */
+$fn = 64;
+size = 10;
+`;
+  const parsed = parseScadSource(src);
+  const special = parsed.params.find((p) => p.key === '$fn');
+  assert.ok(special);
+  assert.equal(special.visibility, 'advanced');
+  assert.equal(special.editable, true);
+});

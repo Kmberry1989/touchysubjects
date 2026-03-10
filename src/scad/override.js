@@ -23,7 +23,7 @@ export function applyParamOverrides(source, params, values) {
 
     const replacement = toScadLiteral(value, def.rawValue);
     lines[lineIndex] = original.replace(
-      /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+?);/,
+      /^\s*(\$?[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+?);/,
       (full, lhs) => `${lhs} = ${replacement};`
     );
   });

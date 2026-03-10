@@ -1,6 +1,6 @@
 const SECTION_BLOCK_RE = /^\s*\/\*\s*\[([^\]]+)\]\s*\*\//;
 const SECTION_LINE_RE = /^\s*\/\/\s*\[([^\]]+)\]\s*$/;
-const ASSIGN_RE = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+?);\s*(?:\/\/\s*(.*))?$/;
+const ASSIGN_RE = /^\s*(\$?[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+?);\s*(?:\/\/\s*(.*))?$/;
 
 export function parseScadSource(source) {
   const lines = source.split(/\r?\n/);
