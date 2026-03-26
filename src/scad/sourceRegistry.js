@@ -80,6 +80,28 @@ function collectModelDependencies(entry) {
   return out;
 }
 
+function optimizeSourceForPreview(source) {
+  if (typeof source !== 'string' || source.length === 0) return source;
+
+  return source
+    .replace(/\$preview\b/g, 'true')
+    .replace(/^(\s*\$fn\s*=\s*)(\d+(?:\.\d+)?)(\s*;.*)$/gm, (full, prefix, rawValue, suffix) => {
+      const value = Number(rawValue);
+      if (!Number.isFinite(value) || value <= 48) return full;
+      return `${prefix}48${suffix}`;
+    })
+    .replace(/^(\s*\$fa\s*=\s*)(\d+(?:\.\d+)?)(\s*;.*)$/gm, (full, prefix, rawValue, suffix) => {
+      const value = Number(rawValue);
+      if (!Number.isFinite(value) || value >= 12) return full;
+      return `${prefix}12${suffix}`;
+    })
+    .replace(/^(\s*\$fs\s*=\s*)(\d+(?:\.\d+)?)(\s*;.*)$/gm, (full, prefix, rawValue, suffix) => {
+      const value = Number(rawValue);
+      if (!Number.isFinite(value) || value >= 2) return full;
+      return `${prefix}2${suffix}`;
+    });
+}
+
 export function getCompileBundleForModel(modelId, overriddenSource, externalAssetFiles = []) {
   const entry = catalogById.get(modelId);
   if (!entry) throw new Error(`Unknown model: ${modelId}`);
@@ -88,7 +110,7 @@ export function getCompileBundleForModel(modelId, overriddenSource, externalAsse
 
   const upsertFile = (path, content) => {
     if (!content) return;
-    sourceFilesByPath.set(path, content);
+    sourceFilesByPath.set(path, optimizeSourceForPreview(content));
   };
 
   for (const [rel, source] of vendorSourceByRelPath.entries()) {
@@ -212,7 +234,7 @@ export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additi
   const sourceFilesByPath = new Map();
   const upsertFile = (path, content) => {
     if (!content) return;
-    sourceFilesByPath.set(path, content);
+    sourceFilesByPath.set(path, optimizeSourceForPreview(content));
   };
 
   for (const [rel, source] of vendorSourceByRelPath.entries()) {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-const COMPILE_TIMEOUT_MS = 25000;
+const COMPILE_TIMEOUT_MS = 45000;
 
 export function useOpenSCAD() {
     const [compiling, setCompiling] = useState(false);
