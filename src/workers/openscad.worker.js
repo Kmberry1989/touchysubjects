@@ -52,7 +52,7 @@ self.onmessage = async (e) => {
             } catch {
                 // ignore cleanup failures
             }
-            self.postMessage({ type: 'success', stlData, requestId }, [stlData.buffer]);
+            self.postMessage({ type: 'success', stlData, requestId });
         } catch (err) {
             console.error('OpenSCAD compile error:', err);
             self.postMessage({ type: 'error', error: normalizeError(err), requestId });
@@ -75,7 +75,7 @@ self.onmessage = async (e) => {
                 // ignore cleanup failures
             }
 
-            self.postMessage({ type: 'success-v2', stlData, requestId }, [stlData.buffer]);
+            self.postMessage({ type: 'success-v2', stlData, requestId });
         } catch (err) {
             console.error('OpenSCAD compile-v2 error:', err);
             self.postMessage({ type: 'error-v2', error: normalizeError(err), diagnostics: [], requestId });

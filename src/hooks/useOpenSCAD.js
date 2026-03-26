@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
+const COMPILE_TIMEOUT_MS = 25000;
+
 export function useOpenSCAD() {
     const [compiling, setCompiling] = useState(false);
     const [error, setError] = useState(null);
@@ -9,8 +11,21 @@ export function useOpenSCAD() {
     const pendingCompileRef = useRef(null);
     const requestIdRef = useRef(0);
     const latestRequestRef = useRef(0);
+    const compileTimeoutRef = useRef(null);
 
-    useEffect(() => {
+    const clearCompileTimeout = useCallback(() => {
+        if (compileTimeoutRef.current) {
+            clearTimeout(compileTimeoutRef.current);
+            compileTimeoutRef.current = null;
+        }
+    }, []);
+
+    const resetWorker = useCallback(() => {
+        if (workerRef.current) {
+            workerRef.current.terminate();
+        }
+
+        isInitialized.current = false;
         workerRef.current = new Worker(new URL('../workers/openscad.worker.js', import.meta.url), {
             type: 'module',
         });
@@ -29,6 +44,7 @@ export function useOpenSCAD() {
                 if (requestId !== undefined && requestId !== latestRequestRef.current) {
                     return;
                 }
+                clearCompileTimeout();
                 setStlData(resultData);
                 setCompiling(false);
                 setError(null);
@@ -36,6 +52,7 @@ export function useOpenSCAD() {
                 if (requestId !== undefined && requestId !== latestRequestRef.current) {
                     return;
                 }
+                clearCompileTimeout();
                 setError(errorMsg);
                 setCompiling(false);
                 console.error('OpenSCAD Worker Error:', errorMsg);
@@ -43,13 +60,18 @@ export function useOpenSCAD() {
         };
 
         workerRef.current.postMessage({ type: 'init' });
+    }, [clearCompileTimeout]);
+
+    useEffect(() => {
+        resetWorker();
 
         return () => {
+            clearCompileTimeout();
             if (workerRef.current) {
                 workerRef.current.terminate();
             }
         };
-    }, []);
+    }, [clearCompileTimeout, resetWorker]);
 
     const compile = useCallback((payload) => {
         if (!workerRef.current) return;
@@ -60,6 +82,7 @@ export function useOpenSCAD() {
         setCompiling(true);
         setStlData(null);
         setError(null);
+        clearCompileTimeout();
 
         setTimeout(() => {
             const postOrQueue = (message) => {
@@ -69,6 +92,17 @@ export function useOpenSCAD() {
                 }
                 workerRef.current.postMessage(message);
             };
+
+            compileTimeoutRef.current = setTimeout(() => {
+                if (latestRequestRef.current !== requestId) {
+                    return;
+                }
+
+                pendingCompileRef.current = null;
+                setCompiling(false);
+                setError(`Compilation timed out after ${Math.round(COMPILE_TIMEOUT_MS / 1000)} seconds. Try a simpler model or smaller parameter values.`);
+                resetWorker();
+            }, COMPILE_TIMEOUT_MS);
 
             if (typeof payload === 'string') {
                 postOrQueue({ type: 'compile', code: payload, requestId });
@@ -82,8 +116,9 @@ export function useOpenSCAD() {
 
             setError('Invalid compile payload');
             setCompiling(false);
+            clearCompileTimeout();
         }, 10);
-    }, []);
+    }, [clearCompileTimeout, resetWorker]);
 
     return {
         compile,
