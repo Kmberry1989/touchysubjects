@@ -89,6 +89,13 @@ const categoryMap = new Map([
   ['svg_to_coin_layout.scad', ['Awards & Recognition', 'Award Factory']],
 ]);
 
+const folderCategoryMap = new Map([
+  ['Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)', ['Touchy Subjects', 'Full Concept Pack']],
+  ['Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack', ['Touchy Subjects', 'Product Line Pack']],
+  ['Touchy_Subjects_Refined_OpenSCAD_Pack', ['Touchy Subjects', 'Refined Pack']],
+  ['Touchy_Subjects_Next_Products_Pack', ['Touchy Subjects', 'Next Products']],
+]);
+
 function displayNameFromFile(fileName) {
   return fileName
     .replace(/\.scad$/i, '')
@@ -99,6 +106,21 @@ function displayNameFromFile(fileName) {
 
 function hasExternalAssetImports(source) {
   return /\bimport\s*\(/.test(source);
+}
+
+function resolveCategory(relPath, fileName) {
+  const mapped = categoryMap.get(fileName);
+  if (mapped) return mapped;
+
+  const dirName = path.posix.dirname(relPath);
+  if (dirName && dirName !== '.') {
+    const folderMatch = [...folderCategoryMap.entries()]
+      .sort((a, b) => b[0].length - a[0].length)
+      .find(([folder]) => dirName === folder || dirName.startsWith(`${folder}/`));
+    if (folderMatch) return folderMatch[1];
+  }
+
+  return ['Uncategorized', 'General'];
 }
 
 function listScadFilesRecursive(rootDir) {
@@ -126,20 +148,6 @@ function listScadFilesRecursive(rootDir) {
 const relativePaths = listScadFilesRecursive(scadDir);
 const fileNames = relativePaths.map((relPath) => path.posix.basename(relPath));
 
-const duplicateBasenames = new Map();
-for (let i = 0; i < relativePaths.length; i += 1) {
-  const fileName = fileNames[i];
-  const relPath = relativePaths[i];
-  if (!duplicateBasenames.has(fileName)) duplicateBasenames.set(fileName, []);
-  duplicateBasenames.get(fileName).push(relPath);
-}
-
-const collisions = Array.from(duplicateBasenames.entries()).filter(([, paths]) => paths.length > 1);
-if (collisions.length > 0) {
-  const lines = collisions.map(([name, paths]) => `- ${name}: ${paths.join(', ')}`).join('\n');
-  throw new Error(`Duplicate SCAD basenames found; cannot build catalog safely.\n${lines}`);
-}
-
 const entries = [];
 const hashToPrimary = new Map();
 
@@ -152,10 +160,10 @@ for (let i = 0; i < relativePaths.length; i += 1) {
 
   const parsed = parseScadSource(source);
   const includeDeps = parseIncludeDependencies(source);
-  const [category, subcategory] = categoryMap.get(fileName) ?? ['Uncategorized', 'General'];
+  const [category, subcategory] = resolveCategory(relPath, fileName);
 
   const duplicateOf = hashToPrimary.get(hash) ?? null;
-  if (!duplicateOf) hashToPrimary.set(hash, fileName);
+  if (!duplicateOf) hashToPrimary.set(hash, relPath);
 
   entries.push({
     id: relPath,
@@ -183,8 +191,7 @@ fs.writeFileSync(outFile, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 const modelSources = {};
 for (let i = 0; i < relativePaths.length; i += 1) {
   const relPath = relativePaths[i];
-  const fileName = fileNames[i];
-  modelSources[fileName] = fs.readFileSync(path.join(scadDir, relPath), 'utf8');
+  modelSources[relPath] = fs.readFileSync(path.join(scadDir, relPath), 'utf8');
 }
 
 const vendorSources = {};

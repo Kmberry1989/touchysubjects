@@ -22,7 +22,7 @@ function fileList() {
       const abs = path.join(scadDir, rel);
       const stat = fs.statSync(abs);
       if (stat.isDirectory()) stack.push(rel);
-      else if (name.toLowerCase().endsWith('.scad')) out.push(path.basename(rel));
+      else if (name.toLowerCase().endsWith('.scad')) out.push(rel);
     }
   }
 
@@ -37,11 +37,11 @@ test('catalog count matches filesystem scad count', () => {
 
 test('catalog includes all files exactly once', () => {
   const fsSet = new Set(fileList());
-  const catalogSet = new Set(catalog.entries.map((e) => e.fileName));
+  const catalogSet = new Set(catalog.entries.map((e) => e.id));
   assert.equal(catalogSet.size, fsSet.size);
 
-  for (const fileName of fsSet) {
-    assert.ok(catalogSet.has(fileName), `Missing ${fileName}`);
+  for (const relPath of fsSet) {
+    assert.ok(catalogSet.has(relPath), `Missing ${relPath}`);
   }
 });
 

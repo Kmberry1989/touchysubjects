@@ -2,23 +2,60 @@ import catalog from '../data/scadCatalog.json';
 import sources from '../data/scadSources.json';
 import { parseIncludeDependencies } from './parser.js';
 
-const modelSourceByFileName = new Map(Object.entries(sources.modelSources));
+const modelSourceById = new Map(Object.entries(sources.modelSources));
 const vendorSourceByRelPath = new Map(Object.entries(sources.vendorSources));
 
 const catalogById = new Map(catalog.entries.map((e) => [e.id, e]));
-const catalogByFileName = new Map(catalog.entries.map((e) => [e.fileName, e]));
+const catalogByFileName = new Map();
+
+for (const entry of catalog.entries) {
+  const existing = catalogByFileName.get(entry.fileName) ?? [];
+  existing.push(entry);
+  catalogByFileName.set(entry.fileName, existing);
+}
 
 function normalizeIncludePath(includePath) {
-  return String(includePath || '')
+  const normalized = String(includePath || '')
     .replace(/\\/g, '/')
     .replace(/^\.\//, '')
     .replace(/^\/+/, '');
+
+  const parts = [];
+  for (const part of normalized.split('/')) {
+    if (!part || part === '.') continue;
+    if (part === '..') {
+      parts.pop();
+      continue;
+    }
+    parts.push(part);
+  }
+
+  return parts.join('/');
 }
 
-function resolveModelDependency(includePath) {
+function getDirName(filePath) {
+  const normalized = normalizeIncludePath(filePath);
+  const idx = normalized.lastIndexOf('/');
+  return idx >= 0 ? normalized.slice(0, idx) : '';
+}
+
+function joinRelativePath(baseDir, includePath) {
+  return normalizeIncludePath(baseDir ? `${baseDir}/${includePath}` : includePath);
+}
+
+function resolveModelDependency(entry, includePath) {
   const normalized = normalizeIncludePath(includePath);
+  if (!normalized) return null;
+
+  const localPath = joinRelativePath(getDirName(entry.id), normalized);
+  if (catalogById.has(localPath)) return catalogById.get(localPath);
+  if (catalogById.has(normalized)) return catalogById.get(normalized);
+
   const base = normalized.split('/').pop();
-  return catalogByFileName.get(base);
+  const matches = catalogByFileName.get(base) ?? [];
+  if (matches.length === 1) return matches[0];
+
+  return null;
 }
 
 function collectModelDependencies(entry) {
@@ -28,13 +65,13 @@ function collectModelDependencies(entry) {
 
   while (queue.length > 0) {
     const current = queue.shift();
-    if (!current || seen.has(current.fileName)) continue;
-    seen.add(current.fileName);
+    if (!current || seen.has(current.id)) continue;
+    seen.add(current.id);
     out.push(current);
 
     for (const dep of current.includeDeps ?? []) {
-      const depModel = resolveModelDependency(dep);
-      if (depModel && !seen.has(depModel.fileName)) {
+      const depModel = resolveModelDependency(current, dep);
+      if (depModel && !seen.has(depModel.id)) {
         queue.push(depModel);
       }
     }
@@ -59,12 +96,12 @@ export function getCompileBundleForModel(modelId, overriddenSource, externalAsse
   }
 
   for (const model of collectModelDependencies(entry)) {
-    const source = modelSourceByFileName.get(model.fileName);
-    if (source) upsertFile(`/lib/${model.fileName}`, source);
+    const source = modelSourceById.get(model.id);
+    if (source) upsertFile(`/lib/${model.id}`, source);
   }
 
   // Ensure edited source always overrides the baseline model source.
-  upsertFile(`/lib/${entry.fileName}`, overriddenSource);
+  upsertFile(`/lib/${entry.id}`, overriddenSource);
   for (const file of externalAssetFiles) {
     if (!file || typeof file.path !== 'string') continue;
     const normalized = normalizeIncludePath(file.path);
@@ -73,7 +110,7 @@ export function getCompileBundleForModel(modelId, overriddenSource, externalAsse
   }
 
   return {
-    entryFile: `/lib/${entry.fileName}`,
+    entryFile: `/lib/${entry.id}`,
     cleanupRoot: '/lib',
     sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({ path, content })),
   };
@@ -96,47 +133,67 @@ function createAdditionalSourceLookup(additionalFiles) {
   return { byPath, byBase };
 }
 
-function resolveAdHocDependency(dep, additionalLookup) {
+function resolveAdHocDependency(dep, additionalLookup, fromDir = '') {
   const normalized = normalizeIncludePath(dep);
   if (!normalized) return null;
 
-  if (vendorSourceByRelPath.has(normalized)) {
-    return { source: vendorSourceByRelPath.get(normalized), virtualPath: normalized };
-  }
+  const candidates = [joinRelativePath(fromDir, normalized), normalized].filter(Boolean);
 
-  const extraByPath = additionalLookup.byPath.get(normalized);
-  if (extraByPath) return extraByPath;
+  for (const candidate of candidates) {
+    if (vendorSourceByRelPath.has(candidate)) {
+      return { source: vendorSourceByRelPath.get(candidate), virtualPath: candidate };
+    }
+
+    const extraByPath = additionalLookup.byPath.get(candidate);
+    if (extraByPath) return extraByPath;
+
+    if (modelSourceById.has(candidate)) {
+      return { source: modelSourceById.get(candidate), virtualPath: candidate };
+    }
+  }
 
   const base = normalized.split('/').pop();
   const extraByBase = additionalLookup.byBase.get(base);
   if (extraByBase) return extraByBase;
 
-  if (modelSourceByFileName.has(base)) {
-    return { source: modelSourceByFileName.get(base), virtualPath: base };
+  const matches = catalogByFileName.get(base) ?? [];
+  if (matches.length === 1 && modelSourceById.has(matches[0].id)) {
+    return { source: modelSourceById.get(matches[0].id), virtualPath: matches[0].id };
   }
 
   return null;
 }
 
-function collectRecursiveDeps(entrySource, additionalLookup) {
+function collectRecursiveDeps(entryFileName, entrySource, additionalLookup) {
   const deps = [];
   const seen = new Set();
-  const queue = [...parseIncludeDependencies(entrySource)];
+  const queue = parseIncludeDependencies(entrySource).map((dep) => ({
+    dep,
+    fromDir: getDirName(entryFileName),
+  }));
 
   while (queue.length > 0) {
-    const dep = queue.shift();
+    const { dep, fromDir } = queue.shift();
     const normalized = normalizeIncludePath(dep);
-    if (!normalized || seen.has(normalized)) continue;
-    seen.add(normalized);
+    const attemptKey = joinRelativePath(fromDir, normalized) || normalized;
+    if (!normalized || seen.has(attemptKey)) continue;
 
-    const resolved = resolveAdHocDependency(normalized, additionalLookup);
-    if (!resolved) continue;
+    const resolved = resolveAdHocDependency(normalized, additionalLookup, fromDir);
+    if (!resolved) {
+      seen.add(attemptKey);
+      continue;
+    }
 
+    seen.add(resolved.virtualPath);
     deps.push(resolved);
     const childDeps = parseIncludeDependencies(resolved.source);
+    const childDir = getDirName(resolved.virtualPath);
     for (const child of childDeps) {
       const childNormalized = normalizeIncludePath(child);
-      if (!seen.has(childNormalized)) queue.push(childNormalized);
+      const childAttemptKey = joinRelativePath(childDir, childNormalized) || childNormalized;
+      if (!seen.has(childAttemptKey)) {
+        queue.push({ dep: childNormalized, fromDir: childDir });
+      }
     }
   }
 
@@ -167,7 +224,7 @@ export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additi
     upsertFile(`/lib/${descriptor.virtualPath}`, descriptor.source);
   }
 
-  for (const depFile of collectRecursiveDeps(overriddenSource, additionalLookup)) {
+  for (const depFile of collectRecursiveDeps(entryFileName, overriddenSource, additionalLookup)) {
     upsertFile(`/lib/${depFile.virtualPath}`, depFile.source);
   }
 
@@ -190,7 +247,7 @@ export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additi
 export function getModelSource(modelId) {
   const entry = catalogById.get(modelId);
   if (!entry) return null;
-  return modelSourceByFileName.get(entry.fileName) ?? null;
+  return modelSourceById.get(entry.id) ?? null;
 }
 
 export function getCatalog() {

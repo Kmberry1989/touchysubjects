@@ -13,7 +13,7 @@ const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
 
 const vendorFiles = new Set();
 const modelFiles = new Set();
-const modelBasenames = new Set();
+const modelBasenames = new Map();
 
 (function collectModel(dir, prefix = '') {
   for (const name of fs.readdirSync(dir)) {
@@ -23,7 +23,10 @@ const modelBasenames = new Set();
     if (stat.isDirectory()) collectModel(abs, rel);
     else if (name.endsWith('.scad')) {
       modelFiles.add(rel);
-      modelBasenames.add(path.basename(rel));
+      const base = path.basename(rel);
+      const existing = modelBasenames.get(base) ?? [];
+      existing.push(rel);
+      modelBasenames.set(base, existing);
     }
   }
 })(modelRoot);
@@ -38,12 +41,47 @@ const modelBasenames = new Set();
   }
 })(vendorRoot);
 
+function normalizeIncludePath(includePath) {
+  const normalized = String(includePath || '')
+    .replace(/\\/g, '/')
+    .replace(/^\.\//, '')
+    .replace(/^\/+/, '');
+
+  const parts = [];
+  for (const part of normalized.split('/')) {
+    if (!part || part === '.') continue;
+    if (part === '..') {
+      parts.pop();
+      continue;
+    }
+    parts.push(part);
+  }
+
+  return parts.join('/');
+}
+
+function dirName(relPath) {
+  const idx = relPath.lastIndexOf('/');
+  return idx >= 0 ? relPath.slice(0, idx) : '';
+}
+
+function joinRelativePath(baseDir, includePath) {
+  return normalizeIncludePath(baseDir ? `${baseDir}/${includePath}` : includePath);
+}
+
 test('compile smoke: all include dependencies resolve to model or vendor path', () => {
   for (const entry of catalog.entries) {
     for (const dep of entry.includeDeps) {
-      const normalizedDep = dep.replace(/^\.\//, '');
-      const ok = modelFiles.has(normalizedDep) || modelBasenames.has(path.basename(normalizedDep)) || vendorFiles.has(normalizedDep);
-      assert.ok(ok, `Unresolved dependency in ${entry.fileName}: ${dep}`);
+      const normalizedDep = normalizeIncludePath(dep);
+      const scopedDep = joinRelativePath(dirName(entry.id), normalizedDep);
+      const basenameMatches = modelBasenames.get(path.basename(normalizedDep)) ?? [];
+      const ok =
+        modelFiles.has(scopedDep) ||
+        modelFiles.has(normalizedDep) ||
+        vendorFiles.has(scopedDep) ||
+        vendorFiles.has(normalizedDep) ||
+        basenameMatches.length === 1;
+      assert.ok(ok, `Unresolved dependency in ${entry.id}: ${dep}`);
     }
   }
 });

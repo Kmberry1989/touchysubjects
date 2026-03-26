@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-10T13:10:21.118Z",
-  "count": 60,
+  "generatedAt": "2026-03-26T09:22:23.818Z",
+  "count": 103,
   "entries": [
     {
       "id": "award_factory_scad_bundle/award_factory_pro.scad",
@@ -33343,6 +33343,5492 @@
           "sourceSpan": {
             "lineStart": 29,
             "lineEnd": 29
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/anchor_cuff.scad",
+      "fileName": "anchor_cuff.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/anchor_cuff.scad",
+      "displayName": "anchor cuff",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "len",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 170,
+          "rawValue": "170",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "radius",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 32,
+          "rawValue": "32",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "band_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "th",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3,
+          "rawValue": "3",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "opening_deg",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 70,
+          "rawValue": "70",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "thumb_ridge",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/calm_capsule.scad",
+      "fileName": "calm_capsule.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/calm_capsule.scad",
+      "displayName": "calm capsule",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12,
+          "rawValue": "12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 30,
+          "rawValue": "30",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "cap_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 7,
+          "rawValue": "7",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/cap_commander.scad",
+      "fileName": "cap_commander.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/cap_commander.scad",
+      "displayName": "cap commander",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "outer_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 58,
+          "rawValue": "58",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 22,
+          "rawValue": "22",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/common.scad",
+      "fileName": "common.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/common.scad",
+      "displayName": "common",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 96,
+          "rawValue": "96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/dose_halo_pendant.scad",
+      "fileName": "dose_halo_pendant.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/dose_halo_pendant.scad",
+      "displayName": "dose halo pendant",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 16,
+          "rawValue": "16",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10.5,
+          "rawValue": "10.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "cap_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "loop_outer",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "loop_inner",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "tactile",
+          "type": "enum",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "pebble",
+          "rawValue": "\"pebble\"",
+          "rawHint": "\"pebble\",\"ripple\",\"smooth\"",
+          "options": [
+            {
+              "value": "pebble",
+              "label": "pebble"
+            },
+            {
+              "value": "ripple",
+              "label": "ripple"
+            },
+            {
+              "value": "smooth",
+              "label": "smooth"
+            }
+          ],
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/focus_dock_system.scad",
+      "fileName": "focus_dock_system.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/focus_dock_system.scad",
+      "displayName": "focus dock system",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "base_size",
+          "type": "array",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": [
+            160,
+            90,
+            16
+          ],
+          "rawValue": "[160,90,16]",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "phone_slot_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 14,
+          "rawValue": "14",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "pen_well_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "pebble_tray",
+          "type": "array",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": [
+            54,
+            42,
+            4
+          ],
+          "rawValue": "[54,42,4]",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "insert_slot",
+          "type": "array",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": [
+            36,
+            24,
+            6
+          ],
+          "rawValue": "[36,24,6]",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/memory_orbit.scad",
+      "fileName": "memory_orbit.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/memory_orbit.scad",
+      "displayName": "memory orbit",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "outer_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 26,
+          "rawValue": "26",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "half_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "hinge_pin_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/micro_terrain_tiles.scad",
+      "fileName": "micro_terrain_tiles.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/micro_terrain_tiles.scad",
+      "displayName": "micro terrain tiles",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "tile",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "th",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/orbit_pebble.scad",
+      "fileName": "orbit_pebble.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/orbit_pebble.scad",
+      "displayName": "orbit pebble",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "preview_mode",
+          "type": "enum",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "solid",
+          "rawValue": "\"solid\"",
+          "rawHint": "\"solid\",\"cutaway\"",
+          "options": [
+            {
+              "value": "solid",
+              "label": "solid"
+            },
+            {
+              "value": "cutaway",
+              "label": "cutaway"
+            }
+          ],
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 52,
+          "rawValue": "52",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 38,
+          "rawValue": "38",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "shell",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.2,
+          "rawValue": "2.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "core_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "core_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "texture",
+          "type": "enum",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "pebble",
+          "rawValue": "\"pebble\"",
+          "rawHint": "\"pebble\",\"ripple\",\"smooth\"",
+          "options": [
+            {
+              "value": "pebble",
+              "label": "pebble"
+            },
+            {
+              "value": "ripple",
+              "label": "ripple"
+            },
+            {
+              "value": "smooth",
+              "label": "smooth"
+            }
+          ],
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/pill_pendant_clip_carrier.scad",
+      "fileName": "pill_pendant_clip_carrier.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/pill_pendant_clip_carrier.scad",
+      "displayName": "pill pendant clip carrier",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 36,
+          "rawValue": "36",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12,
+          "rawValue": "12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/pocket_tactile_loom.scad",
+      "fileName": "pocket_tactile_loom.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/pocket_tactile_loom.scad",
+      "displayName": "pocket tactile loom",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "outer",
+          "type": "array",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": [
+            72,
+            48,
+            8
+          ],
+          "rawValue": "[72,48,8]",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "inner",
+          "type": "array",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": [
+            54,
+            30,
+            8
+          ],
+          "rawValue": "[54,30,8]",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "slot_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.8,
+          "rawValue": "2.8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "slot_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "corner_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/tactile_coin_duo.scad",
+      "fileName": "tactile_coin_duo.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/tactile_coin_duo.scad",
+      "displayName": "tactile coin duo",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "disc_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "disc_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "magnet_pocket_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8.2,
+          "rawValue": "8.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "magnet_pocket_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.2,
+          "rawValue": "2.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 7,
+          "rawValue": "7",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/texture_rosary_keychain.scad",
+      "fileName": "texture_rosary_keychain.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/texture_rosary_keychain.scad",
+      "displayName": "texture rosary keychain",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "bead_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 7,
+          "rawValue": "7",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "spacing",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/time_pebbles.scad",
+      "fileName": "time_pebbles.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/time_pebbles.scad",
+      "displayName": "time pebbles",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/touch_halo_ring_stack.scad",
+      "fileName": "touch_halo_ring_stack.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/touch_halo_ring_stack.scad",
+      "displayName": "touch halo ring stack",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18.5,
+          "rawValue": "18.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "band_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4.2,
+          "rawValue": "4.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/universal_grip_sleeve_system.scad",
+      "fileName": "universal_grip_sleeve_system.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/universal_grip_sleeve_system.scad",
+      "displayName": "universal grip sleeve system",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": []
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/water_bottle_sleeve_snapwrap_hybrid.scad",
+      "fileName": "water_bottle_sleeve_snapwrap_hybrid.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/water_bottle_sleeve_snapwrap_hybrid.scad",
+      "displayName": "water bottle sleeve snapwrap hybrid",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "sleeve_od",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 78,
+          "rawValue": "78",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "sleeve_id",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 72,
+          "rawValue": "72",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "sleeve_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 88,
+          "rawValue": "88",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "band_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 28,
+          "rawValue": "28",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "split_gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 16,
+          "rawValue": "16",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/zipper_bloom.scad",
+      "fileName": "zipper_bloom.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)/zipper_bloom.scad",
+      "displayName": "zipper bloom",
+      "category": "Touchy Subjects",
+      "subcategory": "Full Concept Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "petals",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "petal_len",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12,
+          "rawValue": "12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "center_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 16,
+          "rawValue": "16",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "th",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/common_v2.scad",
+      "fileName": "common_v2.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/common_v2.scad",
+      "displayName": "common v2",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 96,
+          "rawValue": "96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/focus_dock_clip.scad",
+      "fileName": "focus_dock_clip.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/focus_dock_clip.scad",
+      "displayName": "focus dock clip",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "dock_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 84,
+          "rawValue": "84",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "dock_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 56,
+          "rawValue": "56",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "dock_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "slot_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 38,
+          "rawValue": "38",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "slot_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4.6,
+          "rawValue": "4.6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "post_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 28,
+          "rawValue": "28",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/pill_pendant_clip_carrier.scad",
+      "fileName": "pill_pendant_clip_carrier.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/pill_pendant_clip_carrier.scad",
+      "displayName": "pill pendant clip carrier",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "body_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8.5,
+          "rawValue": "8.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 30,
+          "rawValue": "30",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.6,
+          "rawValue": "1.6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "show_cap_off",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/pill_pendant_orbit_divider.scad",
+      "fileName": "pill_pendant_orbit_divider.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/pill_pendant_orbit_divider.scad",
+      "displayName": "pill pendant orbit divider",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 32,
+          "rawValue": "32",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "body_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 9.5,
+          "rawValue": "9.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.6,
+          "rawValue": "1.6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "bail_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "show_cap_exploded",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/pill_pendant_teardrop_safety.scad",
+      "fileName": "pill_pendant_teardrop_safety.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/pill_pendant_teardrop_safety.scad",
+      "displayName": "pill pendant teardrop safety",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 20,
+          "rawValue": "20",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 14,
+          "rawValue": "14",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.6,
+          "rawValue": "1.6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "show_open",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/slap_grip_bracelet_modular.scad",
+      "fileName": "slap_grip_bracelet_modular.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/slap_grip_bracelet_modular.scad",
+      "displayName": "slap grip bracelet modular",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "show_flat",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 242,
+          "rawValue": "242",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 44,
+          "rawValue": "44",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "body_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4.2,
+          "rawValue": "4.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "corner_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "insert_slot",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "thumb_pocket",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "cartridge_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3,
+          "rawValue": "3",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "cartridge_gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "texture_a",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "pebble",
+          "rawValue": "\"pebble\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "texture_b",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "hex",
+          "rawValue": "\"hex\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "texture_c",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "ridge",
+          "rawValue": "\"ridge\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/slap_grip_bracelet_sensory_variants.scad",
+      "fileName": "slap_grip_bracelet_sensory_variants.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/slap_grip_bracelet_sensory_variants.scad",
+      "displayName": "slap grip bracelet sensory variants",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "variant",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "focus",
+          "rawValue": "\"focus\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 232,
+          "rawValue": "232",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 40,
+          "rawValue": "40",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "body_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3.8,
+          "rawValue": "3.8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/water_bottle_sleeve_ergonomic.scad",
+      "fileName": "water_bottle_sleeve_ergonomic.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/water_bottle_sleeve_ergonomic.scad",
+      "displayName": "water bottle sleeve ergonomic",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "bottle_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 74,
+          "rawValue": "74",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "clearance",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.2,
+          "rawValue": "1.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 112,
+          "rawValue": "112",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4.4,
+          "rawValue": "4.4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "base_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 9,
+          "rawValue": "9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "palm_swell",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3,
+          "rawValue": "3.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "thumb_saddle",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "orbit",
+          "rawValue": "\"orbit\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "outer_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "bottle_d + 2*clearance + 2*wall",
+          "rawValue": "bottle_d + 2*clearance + 2*wall",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Next_Products_Pack/water_bottle_sleeve_snapwrap_hybrid.scad",
+      "fileName": "water_bottle_sleeve_snapwrap_hybrid.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Next_Products_Pack/water_bottle_sleeve_snapwrap_hybrid.scad",
+      "displayName": "water bottle sleeve snapwrap hybrid",
+      "category": "Touchy Subjects",
+      "subcategory": "Next Products",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_v2.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "bottle_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 74,
+          "rawValue": "74",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 104,
+          "rawValue": "104",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "clearance",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.4,
+          "rawValue": "1.4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "band_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "band_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3.4,
+          "rawValue": "3.4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "base_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "outer_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "bottle_d + 2*clearance + 2*wall",
+          "rawValue": "bottle_d + 2*clearance + 2*wall",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/anchor_cuff_refined.scad",
+      "fileName": "anchor_cuff_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/anchor_cuff_refined.scad",
+      "displayName": "anchor cuff refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "strap_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "strap_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "strap_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.2,
+          "rawValue": "1.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "grip_len",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 70,
+          "rawValue": "70",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "grip_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "grip_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 11,
+          "rawValue": "11",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/cap_commander_refined.scad",
+      "fileName": "cap_commander_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/cap_commander_refined.scad",
+      "displayName": "cap commander refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 58,
+          "rawValue": "58",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3.2,
+          "rawValue": "3.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "outer_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "inner_d + 2*wall",
+          "rawValue": "inner_d + 2*wall",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 24,
+          "rawValue": "24",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/common_refined.scad",
+      "fileName": "common_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/common_refined.scad",
+      "displayName": "common refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "$fn",
+          "type": "text",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": false,
+          "defaultValue": "$preview ? 48 : 96",
+          "rawValue": "$preview ? 48 : 96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "clearance_loose",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.35,
+          "rawValue": "0.35",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "clearance_medium",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.25,
+          "rawValue": "0.25",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "clearance_tight",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.15,
+          "rawValue": "0.15",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "thread_clearance",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.25,
+          "rawValue": "0.25",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "wall_default",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "floor_default",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "split_gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.2,
+          "rawValue": "0.20",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/dock_pebble_system_refined.scad",
+      "fileName": "dock_pebble_system_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/dock_pebble_system_refined.scad",
+      "displayName": "dock pebble system refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "base_l",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 180,
+          "rawValue": "180",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "base_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 68,
+          "rawValue": "68",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "base_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 16,
+          "rawValue": "16",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "slot_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 26,
+          "rawValue": "26",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "slot_l",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 32,
+          "rawValue": "32",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "slot_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6.2,
+          "rawValue": "6.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/dose_halo_pendant_refined.scad",
+      "fileName": "dose_halo_pendant_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/dose_halo_pendant_refined.scad",
+      "displayName": "dose halo pendant refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 17,
+          "rawValue": "17",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 42,
+          "rawValue": "42",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "cavity_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 11,
+          "rawValue": "11",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "cavity_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 28,
+          "rawValue": "28",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "thread_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 7,
+          "rawValue": "7",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "pitch",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.2,
+          "rawValue": "2.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "bail_inner",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 6,
+          "rawValue": "6",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/orbit_pebble_refined.scad",
+      "fileName": "orbit_pebble_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/orbit_pebble_refined.scad",
+      "displayName": "orbit pebble refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "mode",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 68,
+          "rawValue": "68",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 48,
+          "rawValue": "48",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 22,
+          "rawValue": "22",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "shell",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "split_z",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "height/2",
+          "rawValue": "height/2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "washer_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 24.2,
+          "rawValue": "24.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "washer_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.2,
+          "rawValue": "2.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "pin_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "pin_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "texture",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "orbit",
+          "rawValue": "\"orbit\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/reset_dial_refined.scad",
+      "fileName": "reset_dial_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/reset_dial_refined.scad",
+      "displayName": "reset dial refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 44,
+          "rawValue": "44",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 15,
+          "rawValue": "15",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "dial_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "dial_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 9,
+          "rawValue": "9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "axle_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "axle_clear",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "clearance_medium",
+          "rawValue": "clearance_medium",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "detent_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12,
+          "rawValue": "12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "detent_ball_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 3.2,
+          "rawValue": "3.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "texture",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "hex",
+          "rawValue": "\"hex\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/silent_flex_bar_refined.scad",
+      "fileName": "silent_flex_bar_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/silent_flex_bar_refined.scad",
+      "displayName": "silent flex bar refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 105,
+          "rawValue": "105",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 22,
+          "rawValue": "22",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12,
+          "rawValue": "12",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "shell",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "spine_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.2,
+          "rawValue": "2.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "spine_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10.5,
+          "rawValue": "10.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/common.scad",
+      "fileName": "common.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/common.scad",
+      "displayName": "common",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "$fn",
+          "type": "number",
+          "section": "General",
+          "visibility": "advanced",
+          "editable": true,
+          "defaultValue": 96,
+          "rawValue": "96",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 2,
+            "lineEnd": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_bayonet.scad",
+      "fileName": "pill_pendant_bayonet.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_bayonet.scad",
+      "displayName": "pill pendant bayonet",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "topo",
+          "rawValue": "\"topo\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "show_open",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 19,
+          "rawValue": "19",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 40,
+          "rawValue": "40",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "cap_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 9,
+          "rawValue": "9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "cavity_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12.5,
+          "rawValue": "12.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "lock_pin_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "lock_pin_z",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "body_h - cap_h + 2.8",
+          "rawValue": "body_h - cap_h + 2.8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "lock_travel_deg",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 28,
+          "rawValue": "28",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_hinged.scad",
+      "fileName": "pill_pendant_hinged.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_hinged.scad",
+      "displayName": "pill pendant hinged",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "smooth",
+          "rawValue": "\"smooth\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "show_open",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 20,
+          "rawValue": "20",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 36,
+          "rawValue": "36",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "lid_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "cavity_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 13.2,
+          "rawValue": "13.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "hinge_barrel_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2.4,
+          "rawValue": "2.4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "hinge_gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.45,
+          "rawValue": "0.45",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "latch_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5.5,
+          "rawValue": "5.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "latch_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_threaded.scad",
+      "fileName": "pill_pendant_threaded.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/pill_pendant_threaded.scad",
+      "displayName": "pill pendant threaded",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "pebble",
+          "rawValue": "\"pebble\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "show_open",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "show_cutaway",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "body_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 18,
+          "rawValue": "18",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "body_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 42,
+          "rawValue": "42",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "cap_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "thread_pitch",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 2,
+          "rawValue": "2.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "thread_depth",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.8,
+          "rawValue": "0.8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "cavity_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 12.2,
+          "rawValue": "12.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "cavity_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 31,
+          "rawValue": "31",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        },
+        {
+          "key": "bail_gap",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5.2,
+          "rawValue": "5.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 19,
+            "lineEnd": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/slap_grip_bracelet.scad",
+      "fileName": "slap_grip_bracelet.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/slap_grip_bracelet.scad",
+      "displayName": "slap grip bracelet",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "show_flat",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "show_wrapped_preview",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "insert_slot",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "pebble",
+          "rawValue": "\"pebble\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 240,
+          "rawValue": "240",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "width",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 42,
+          "rawValue": "42",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "body_thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        },
+        {
+          "key": "edge_taper",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1,
+          "rawValue": "1.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 19,
+            "lineEnd": 19
+          }
+        },
+        {
+          "key": "corner_r",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 10,
+          "rawValue": "10",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 20,
+            "lineEnd": 20
+          }
+        },
+        {
+          "key": "insert_channel_w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 14,
+          "rawValue": "14",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 22,
+            "lineEnd": 22
+          }
+        },
+        {
+          "key": "insert_channel_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.9,
+          "rawValue": "0.9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 23,
+            "lineEnd": 23
+          }
+        },
+        {
+          "key": "insert_cover_t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 0.9,
+          "rawValue": "0.9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 24,
+            "lineEnd": 24
+          }
+        },
+        {
+          "key": "thumb_pocket",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 26,
+            "lineEnd": 26
+          }
+        },
+        {
+          "key": "thumb_pocket_depth",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.2,
+          "rawValue": "1.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 27,
+            "lineEnd": 27
+          }
+        },
+        {
+          "key": "thumb_pocket_len",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 34,
+          "rawValue": "34",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 28,
+            "lineEnd": 28
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/water_bottle_sleeve.scad",
+      "fileName": "water_bottle_sleeve.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack/water_bottle_sleeve.scad",
+      "displayName": "water bottle sleeve",
+      "category": "Touchy Subjects",
+      "subcategory": "Product Line Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "texture_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "hex",
+          "rawValue": "\"hex\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "show_cutaway",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": false,
+          "rawValue": "false",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "show_bottle_placeholder",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "bottle_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 74,
+          "rawValue": "74",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "clearance",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.5,
+          "rawValue": "1.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 108,
+          "rawValue": "108",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 17,
+            "lineEnd": 17
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4.2,
+          "rawValue": "4.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 18,
+            "lineEnd": 18
+          }
+        },
+        {
+          "key": "base_thickness",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 9,
+          "rawValue": "9",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 19,
+            "lineEnd": 19
+          }
+        },
+        {
+          "key": "lip_height",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 20,
+            "lineEnd": 20
+          }
+        },
+        {
+          "key": "inner_rib_h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1,
+          "rawValue": "1.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 21,
+            "lineEnd": 21
+          }
+        },
+        {
+          "key": "inner_rib_count",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 5,
+          "rawValue": "5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 22,
+            "lineEnd": 22
+          }
+        },
+        {
+          "key": "taper",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.2,
+          "rawValue": "1.2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 23,
+            "lineEnd": 23
+          }
+        },
+        {
+          "key": "thumb_pocket",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 24,
+            "lineEnd": 24
+          }
+        },
+        {
+          "key": "finger_ridge",
+          "type": "boolean",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": true,
+          "rawValue": "true",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 25,
+            "lineEnd": 25
+          }
+        },
+        {
+          "key": "outer_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "bottle_d + clearance*2 + wall*2",
+          "rawValue": "bottle_d + clearance*2 + wall*2",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 27,
+            "lineEnd": 27
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/universal_grip_sleeve_refined.scad",
+      "fileName": "universal_grip_sleeve_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/universal_grip_sleeve_refined.scad",
+      "displayName": "universal grip sleeve refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "inner_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 33,
+          "rawValue": "33",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "length",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 85,
+          "rawValue": "85",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
+          }
+        },
+        {
+          "key": "wall",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 4,
+          "rawValue": "4.0",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 12,
+            "lineEnd": 12
+          }
+        },
+        {
+          "key": "outer_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "inner_d + 2*wall",
+          "rawValue": "inner_d + 2*wall",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 13,
+            "lineEnd": 13
+          }
+        },
+        {
+          "key": "base_d",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": false,
+          "defaultValue": "outer_d + 5",
+          "rawValue": "outer_d + 5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 14,
+            "lineEnd": 14
+          }
+        },
+        {
+          "key": "taper",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 1.5,
+          "rawValue": "1.5",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 15,
+            "lineEnd": 15
+          }
+        },
+        {
+          "key": "hinge_style",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "living",
+          "rawValue": "\"living\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 16,
+            "lineEnd": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "Touchy_Subjects_Refined_OpenSCAD_Pack/zipper_bloom_refined.scad",
+      "fileName": "zipper_bloom_refined.scad",
+      "filePath": "assets/SCAD files/Touchy_Subjects_Refined_OpenSCAD_Pack/zipper_bloom_refined.scad",
+      "displayName": "zipper bloom refined",
+      "category": "Touchy Subjects",
+      "subcategory": "Refined Pack",
+      "duplicateOf": null,
+      "includeDeps": [
+        "common_refined.scad"
+      ],
+      "needsExternalAsset": false,
+      "sections": [],
+      "params": [
+        {
+          "key": "part",
+          "type": "text",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": "assembled",
+          "rawValue": "\"assembled\"",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 7,
+            "lineEnd": 7
+          }
+        },
+        {
+          "key": "w",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 28,
+          "rawValue": "28",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 8,
+            "lineEnd": 8
+          }
+        },
+        {
+          "key": "h",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 24,
+          "rawValue": "24",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 9,
+            "lineEnd": 9
+          }
+        },
+        {
+          "key": "t",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 10,
+            "lineEnd": 10
+          }
+        },
+        {
+          "key": "eye_d",
+          "type": "number",
+          "section": "General",
+          "visibility": "basic",
+          "editable": true,
+          "defaultValue": 8,
+          "rawValue": "8",
+          "rawHint": null,
+          "options": null,
+          "min": null,
+          "max": null,
+          "step": null,
+          "sourceSpan": {
+            "lineStart": 11,
+            "lineEnd": 11
           }
         }
       ]
