@@ -14,8 +14,8 @@ test('compileEntry continues when callMain throws numeric exit and output exists
     FS: {
       readFile() {
         return new Uint8Array([1, 2, 3, 4]);
-      },
-    },
+      }
+    }
   };
 
   const out = compileEntry(instance, '/input.scad');
@@ -30,8 +30,8 @@ test('compileEntry rethrows non-exit errors', () => {
     FS: {
       readFile() {
         return new Uint8Array([1]);
-      },
-    },
+      }
+    }
   };
 
   assert.throws(() => compileEntry(instance, '/input.scad'), /boom/);

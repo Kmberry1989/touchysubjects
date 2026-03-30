@@ -61,14 +61,14 @@ export function parseScadSource(source) {
       step: hint?.step ?? null,
       sourceSpan: {
         lineStart: idx + 1,
-        lineEnd: idx + 1,
-      },
+        lineEnd: idx + 1
+      }
     });
   }
 
   return {
     sections: Array.from(new Set(sections)),
-    params,
+    params
   };
 }
 
@@ -110,9 +110,7 @@ function parseLiteralValue(raw) {
 
   if (/^\[(.|\s)*\]$/.test(trimmed)) {
     try {
-      const jsonLike = trimmed
-        .replace(/([A-Za-z_][A-Za-z0-9_]*)\s*:/g, '"$1":')
-        .replace(/'/g, '"');
+      const jsonLike = trimmed.replace(/([A-Za-z_][A-Za-z0-9_]*)\s*:/g, '"$1":').replace(/'/g, '"');
       const parsed = JSON.parse(jsonLike);
       return { isLiteral: true, value: parsed };
     } catch {
@@ -134,7 +132,10 @@ function parseHint(comment) {
   const raw = bracketMatch[1].trim();
   if (!raw) return null;
 
-  const isRange = /^\s*[+-]?(?:\d+\.?\d*|\.\d+)\s*:\s*[+-]?(?:\d+\.?\d*|\.\d+)(?:\s*:\s*[+-]?(?:\d+\.?\d*|\.\d+))?\s*$/.test(raw);
+  const isRange =
+    /^\s*[+-]?(?:\d+\.?\d*|\.\d+)\s*:\s*[+-]?(?:\d+\.?\d*|\.\d+)(?:\s*:\s*[+-]?(?:\d+\.?\d*|\.\d+))?\s*$/.test(
+      raw
+    );
   if (isRange) {
     const parts = raw.split(':').map((p) => Number(p.trim()));
     if (parts.length === 2) {
@@ -153,7 +154,7 @@ function parseHint(comment) {
       const [valuePart, ...labelParts] = labelSplit;
       return {
         value: parseOptionValue(valuePart.trim()),
-        label: labelParts.join(':').trim(),
+        label: labelParts.join(':').trim()
       };
     }
     const value = parseOptionValue(trimmed);

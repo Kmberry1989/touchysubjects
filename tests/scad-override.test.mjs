@@ -12,8 +12,8 @@ size = 20;
       key: '$fn',
       editable: true,
       rawValue: '48',
-      sourceSpan: { lineStart: 2, lineEnd: 2 },
-    },
+      sourceSpan: { lineStart: 2, lineEnd: 2 }
+    }
   ];
 
   const updated = applyParamOverrides(source, params, { $fn: 96 });

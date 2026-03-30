@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeExternalAssetPath, resolveExternalAssetPaths } from '../src/scad/externalAssets.js';
+import {
+  normalizeExternalAssetPath,
+  resolveExternalAssetPaths
+} from '../src/scad/externalAssets.js';
 
 test('normalizeExternalAssetPath normalizes separators and prefixes', () => {
   assert.equal(normalizeExternalAssetPath('./design.svg'), 'design.svg');
@@ -22,5 +25,7 @@ svg_file = "design.svg";
 import(svg_file, center=true);
 `;
   assert.deepEqual(resolveExternalAssetPaths(source), ['design.svg']);
-  assert.deepEqual(resolveExternalAssetPaths(source, { svg_file: 'replacement.svg' }), ['replacement.svg']);
+  assert.deepEqual(resolveExternalAssetPaths(source, { svg_file: 'replacement.svg' }), [
+    'replacement.svg'
+  ]);
 });

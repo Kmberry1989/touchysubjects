@@ -27,6 +27,7 @@ This pack includes parametric OpenSCAD concept models for the product directions
 ## Build / Preview
 
 Open any `.scad` file in OpenSCAD and press:
+
 - `F5` for preview
 - `F6` for full render
 
@@ -43,6 +44,7 @@ openscad -o pill_pendant_hinged.stl pill_pendant_hinged.scad
 ## Suggested Print Strategy
 
 ### Slap grip bracelet
+
 - Print the outer shell in TPU if printing a flexible concept sleeve
 - For a functional slap mechanism, use the printed sleeve as an overmold and add a separate spring-steel insert after printing
 - Suggested concept tolerances:
@@ -50,6 +52,7 @@ openscad -o pill_pendant_hinged.stl pill_pendant_hinged.scad
   - snap core thickness target: `0.20 to 0.35 mm` metal strip
 
 ### Water bottle sleeve
+
 - TPU is ideal for the final sleeve
 - For rigid concept mockups, PLA/PETG is fine
 - Start with:
@@ -58,6 +61,7 @@ openscad -o pill_pendant_hinged.stl pill_pendant_hinged.scad
   - 15 to 25 percent gyroid if using a rigid shell concept
 
 ### Pill pendants
+
 - PETG, ASA, nylon, resin, or machined metal are better than PLA for final-use development
 - Printed threads should be test-fit and tuned per printer
 - Start with:
@@ -68,6 +72,7 @@ openscad -o pill_pendant_hinged.stl pill_pendant_hinged.scad
 ## Notes
 
 These are concept-forward files aimed at rapid iteration. Before real medical or daily-carry use, validate:
+
 - closure retention
 - moisture sealing
 - pill compatibility

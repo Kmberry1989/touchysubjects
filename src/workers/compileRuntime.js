@@ -19,7 +19,9 @@ export function compileEntry(instance, entryPath) {
     const raw = instance.FS.readFile('/output.stl');
     return new Uint8Array(raw);
   } catch {
-    throw new Error('Compilation failed: Output file not created. Check SCAD syntax errors in console.');
+    throw new Error(
+      'Compilation failed: Output file not created. Check SCAD syntax errors in console.'
+    );
   }
 }
 

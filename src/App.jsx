@@ -1,69 +1,330 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, Copy, Printer, Box, Type, Settings, Info, Check, RefreshCw, FileCode, Shapes, Layers, Eye, ExternalLink, ArrowRight, Dices } from 'lucide-react';
+import {
+  Download,
+  Copy,
+  Printer,
+  Box,
+  Type,
+  Settings,
+  Info,
+  Check,
+  RefreshCw,
+  FileCode,
+  Shapes,
+  Layers,
+  Eye,
+  ExternalLink,
+  ArrowRight,
+  Dices
+} from 'lucide-react';
 import SCADViewer from './components/SCADViewer';
 const ScadLibraryMode = React.lazy(() => import('./scad/ScadLibraryMode'));
 
 // --- DESIGN DEFINITIONS ---
 const DESIGNS = [
   // TACTILE CARDS
-  { id: 1, name: "Pulse Dots", category: "Tactile Card", description: "A non-repeating field of raised dots that feels like organic terrain.", complexity: "Low" },
-  { id: 2, name: "Breathe Lines", category: "Tactile Card", description: "Gentle wave-like ridges that encourage a calming breathing rhythm.", complexity: "Low" },
-  { id: 3, name: "Micro Labyrinth", category: "Tactile Card", description: "A finger-traceable maze with no dead ends. Pure motion.", complexity: "Medium" },
-  { id: 4, name: "Stone Quiet Tile", category: "Tactile Card", description: "A removable worry-stone tile that snaps into the card.", complexity: "Medium" },
-  { id: 5, name: "Orbit Slider", category: "Tactile Card", description: "A print-in-place planetary gear fidget spinner.", complexity: "High" },
+  {
+    id: 1,
+    name: 'Pulse Dots',
+    category: 'Tactile Card',
+    description: 'A non-repeating field of raised dots that feels like organic terrain.',
+    complexity: 'Low'
+  },
+  {
+    id: 2,
+    name: 'Breathe Lines',
+    category: 'Tactile Card',
+    description: 'Gentle wave-like ridges that encourage a calming breathing rhythm.',
+    complexity: 'Low'
+  },
+  {
+    id: 3,
+    name: 'Micro Labyrinth',
+    category: 'Tactile Card',
+    description: 'A finger-traceable maze with no dead ends. Pure motion.',
+    complexity: 'Medium'
+  },
+  {
+    id: 4,
+    name: 'Stone Quiet Tile',
+    category: 'Tactile Card',
+    description: 'A removable worry-stone tile that snaps into the card.',
+    complexity: 'Medium'
+  },
+  {
+    id: 5,
+    name: 'Orbit Slider',
+    category: 'Tactile Card',
+    description: 'A print-in-place planetary gear fidget spinner.',
+    complexity: 'High'
+  },
 
   // FUNCTIONAL TOOLS
-  { id: 6, name: "Composition Viewfinder", category: "Functional Tool", description: "Golden-ratio window for framing shots and artwork.", complexity: "Low" },
-  { id: 7, name: "Curator's Edge", category: "Functional Tool", description: "Canvas depth gauge and millimeter ruler.", complexity: "Medium" },
-  { id: 8, name: "Pocket French Curve", category: "Functional Tool", description: "Drafting tool with stencil cutouts.", complexity: "Medium" },
+  {
+    id: 6,
+    name: 'Composition Viewfinder',
+    category: 'Functional Tool',
+    description: 'Golden-ratio window for framing shots and artwork.',
+    complexity: 'Low'
+  },
+  {
+    id: 7,
+    name: "Curator's Edge",
+    category: 'Functional Tool',
+    description: 'Canvas depth gauge and millimeter ruler.',
+    complexity: 'Medium'
+  },
+  {
+    id: 8,
+    name: 'Pocket French Curve',
+    category: 'Functional Tool',
+    description: 'Drafting tool with stencil cutouts.',
+    complexity: 'Medium'
+  },
 
   // KINETIC CARDS
-  { id: 9, name: "Portfolio Clip", category: "Kinetic Card", description: "Compliant mechanism paperclip for attaching to catalogs.", complexity: "Medium" },
-  { id: 10, name: "Micro Easel", category: "Kinetic Card", description: "Folds out to become a miniature display stand.", complexity: "Medium" },
-  { id: 11, name: "Captive Slider", category: "Kinetic Card", description: "Simple linear slider track.", complexity: "High" },
+  {
+    id: 9,
+    name: 'Portfolio Clip',
+    category: 'Kinetic Card',
+    description: 'Compliant mechanism paperclip for attaching to catalogs.',
+    complexity: 'Medium'
+  },
+  {
+    id: 10,
+    name: 'Micro Easel',
+    category: 'Kinetic Card',
+    description: 'Folds out to become a miniature display stand.',
+    complexity: 'Medium'
+  },
+  {
+    id: 11,
+    name: 'Captive Slider',
+    category: 'Kinetic Card',
+    description: 'Simple linear slider track.',
+    complexity: 'High'
+  },
 
   // ADVANCED SLIDERS
-  { id: 12, name: "Aspect Cropper", category: "Advanced Slider", description: "Adjustable window to change aspect ratios.", complexity: "Very High" },
-  { id: 13, name: "Curator's Selector", category: "Advanced Slider", description: "Sliding window that reveals different text options.", complexity: "Very High" },
-  { id: 14, name: "The Vault", category: "Advanced Slider", description: "Dual barn-doors that open to reveal a hidden logo.", complexity: "Very High" },
+  {
+    id: 12,
+    name: 'Aspect Cropper',
+    category: 'Advanced Slider',
+    description: 'Adjustable window to change aspect ratios.',
+    complexity: 'Very High'
+  },
+  {
+    id: 13,
+    name: "Curator's Selector",
+    category: 'Advanced Slider',
+    description: 'Sliding window that reveals different text options.',
+    complexity: 'Very High'
+  },
+  {
+    id: 14,
+    name: 'The Vault',
+    category: 'Advanced Slider',
+    description: 'Dual barn-doors that open to reveal a hidden logo.',
+    complexity: 'Very High'
+  },
 
   // POCKET ORBITS
-  { id: 15, name: "Orbit Ring Stack", category: "Pocket Orbit", description: "Concentrically nesting rings with satisfying spin tolerance.", complexity: "Medium" },
-  { id: 16, name: "Silent Hinge Charm", category: "Pocket Orbit", description: "A seamless print-in-place hinge mechanism.", complexity: "High" },
-  { id: 17, name: "Detent Pebble Slider", category: "Pocket Orbit", description: "Satisfying click-slide mechanism shaped like a river stone.", complexity: "High" },
-  { id: 18, name: "Maze Coin Duo", category: "Pocket Orbit", description: "Two interlocking coins with hidden maze grooves.", complexity: "Medium" },
-  { id: 19, name: "Texture Rosary", category: "Pocket Orbit", description: "Articulated keychain with varying textures.", complexity: "Medium" },
-  { id: 20, name: "Flip-Token Capsule", category: "Pocket Orbit", description: "A spinning token trapped inside a frame.", complexity: "Medium" },
-  { id: 21, name: "Spiral Shell Twister", category: "Pocket Orbit", description: "Interlocking spiral screw mechanism.", complexity: "High" },
-  { id: 22, name: "Tactile Loom", category: "Pocket Orbit", description: "A mini weaving frame for textured fidgeting.", complexity: "Low" },
-  { id: 23, name: "Gear Worry Coin", category: "Pocket Orbit", description: "A compact, toothed worry coin with tactile grip pockets.", complexity: "Medium" },
-  { id: 24, name: "Infinite Slinky", category: "Pocket Orbit", description: "A flexible, toroidal spring structure akin to a bracelet slinky.", complexity: "High" },
+  {
+    id: 15,
+    name: 'Orbit Ring Stack',
+    category: 'Pocket Orbit',
+    description: 'Concentrically nesting rings with satisfying spin tolerance.',
+    complexity: 'Medium'
+  },
+  {
+    id: 16,
+    name: 'Silent Hinge Charm',
+    category: 'Pocket Orbit',
+    description: 'A seamless print-in-place hinge mechanism.',
+    complexity: 'High'
+  },
+  {
+    id: 17,
+    name: 'Detent Pebble Slider',
+    category: 'Pocket Orbit',
+    description: 'Satisfying click-slide mechanism shaped like a river stone.',
+    complexity: 'High'
+  },
+  {
+    id: 18,
+    name: 'Maze Coin Duo',
+    category: 'Pocket Orbit',
+    description: 'Two interlocking coins with hidden maze grooves.',
+    complexity: 'Medium'
+  },
+  {
+    id: 19,
+    name: 'Texture Rosary',
+    category: 'Pocket Orbit',
+    description: 'Articulated keychain with varying textures.',
+    complexity: 'Medium'
+  },
+  {
+    id: 20,
+    name: 'Flip-Token Capsule',
+    category: 'Pocket Orbit',
+    description: 'A spinning token trapped inside a frame.',
+    complexity: 'Medium'
+  },
+  {
+    id: 21,
+    name: 'Spiral Shell Twister',
+    category: 'Pocket Orbit',
+    description: 'Interlocking spiral screw mechanism.',
+    complexity: 'High'
+  },
+  {
+    id: 22,
+    name: 'Tactile Loom',
+    category: 'Pocket Orbit',
+    description: 'A mini weaving frame for textured fidgeting.',
+    complexity: 'Low'
+  },
+  {
+    id: 23,
+    name: 'Gear Worry Coin',
+    category: 'Pocket Orbit',
+    description: 'A compact, toothed worry coin with tactile grip pockets.',
+    complexity: 'Medium'
+  },
+  {
+    id: 24,
+    name: 'Infinite Slinky',
+    category: 'Pocket Orbit',
+    description: 'A flexible, toroidal spring structure akin to a bracelet slinky.',
+    complexity: 'High'
+  },
 
   // USEFUL ESSENTIALS
-  { id: 25, name: "Cable Label Clip", category: "Functional Tool", description: "Snap-on cable marker with a write-in label face.", complexity: "Low" },
-  { id: 26, name: "Flat Pack Bag Hook", category: "Functional Tool", description: "Simple desk or cart hook that prints flat and sturdy.", complexity: "Medium" },
-  { id: 27, name: "Classic Dog Tag", category: "Functional Tool", description: "Rounded military-style tag with slot and engraved text.", complexity: "Low" },
-  { id: 28, name: "Hex Dog Tag", category: "Functional Tool", description: "Geometric six-sided tag with center cutout and custom text.", complexity: "Low" },
-  { id: 29, name: "Capsule Dog Tag", category: "Functional Tool", description: "Soft capsule-shaped tag with two-line text layout.", complexity: "Low" },
-  { id: 30, name: "Ring Size Ladder", category: "Pocket Orbit", description: "A set of rings from small to large for fit testing and play.", complexity: "Low" },
-  { id: 31, name: "Comfort Ring Trio", category: "Pocket Orbit", description: "Three rounded-edge rings with different thickness profiles.", complexity: "Medium" },
-  { id: 32, name: "Bead Sampler Strip", category: "Pocket Orbit", description: "Linked strip of varied bead shapes to test feel and finish.", complexity: "Low" },
-  { id: 33, name: "Loose Bead Set", category: "Pocket Orbit", description: "Independent beads in different diameters and textures.", complexity: "Low" },
+  {
+    id: 25,
+    name: 'Cable Label Clip',
+    category: 'Functional Tool',
+    description: 'Snap-on cable marker with a write-in label face.',
+    complexity: 'Low'
+  },
+  {
+    id: 26,
+    name: 'Flat Pack Bag Hook',
+    category: 'Functional Tool',
+    description: 'Simple desk or cart hook that prints flat and sturdy.',
+    complexity: 'Medium'
+  },
+  {
+    id: 27,
+    name: 'Classic Dog Tag',
+    category: 'Functional Tool',
+    description: 'Rounded military-style tag with slot and engraved text.',
+    complexity: 'Low'
+  },
+  {
+    id: 28,
+    name: 'Hex Dog Tag',
+    category: 'Functional Tool',
+    description: 'Geometric six-sided tag with center cutout and custom text.',
+    complexity: 'Low'
+  },
+  {
+    id: 29,
+    name: 'Capsule Dog Tag',
+    category: 'Functional Tool',
+    description: 'Soft capsule-shaped tag with two-line text layout.',
+    complexity: 'Low'
+  },
+  {
+    id: 30,
+    name: 'Ring Size Ladder',
+    category: 'Pocket Orbit',
+    description: 'A set of rings from small to large for fit testing and play.',
+    complexity: 'Low'
+  },
+  {
+    id: 31,
+    name: 'Comfort Ring Trio',
+    category: 'Pocket Orbit',
+    description: 'Three rounded-edge rings with different thickness profiles.',
+    complexity: 'Medium'
+  },
+  {
+    id: 32,
+    name: 'Bead Sampler Strip',
+    category: 'Pocket Orbit',
+    description: 'Linked strip of varied bead shapes to test feel and finish.',
+    complexity: 'Low'
+  },
+  {
+    id: 33,
+    name: 'Loose Bead Set',
+    category: 'Pocket Orbit',
+    description: 'Independent beads in different diameters and textures.',
+    complexity: 'Low'
+  },
 
   // TABLETOP GAMING
-  { id: 40, name: "Polyhedral Die", category: "Tabletop Gaming", description: "Customizable D4, D6, D8, D10, D12, and D20 generator.", complexity: "High" },
-  { id: 41, name: "Dice Tube", category: "Tabletop Gaming", description: "Threaded cylindrical container for dice sets.", complexity: "Medium" },
-  { id: 42, name: "Hex Vault", category: "Tabletop Gaming", description: "Friction-fit hexagonal case with lid.", complexity: "Medium" },
+  {
+    id: 40,
+    name: 'Polyhedral Die',
+    category: 'Tabletop Gaming',
+    description: 'Customizable D4, D6, D8, D10, D12, and D20 generator.',
+    complexity: 'High'
+  },
+  {
+    id: 41,
+    name: 'Dice Tube',
+    category: 'Tabletop Gaming',
+    description: 'Threaded cylindrical container for dice sets.',
+    complexity: 'Medium'
+  },
+  {
+    id: 42,
+    name: 'Hex Vault',
+    category: 'Tabletop Gaming',
+    description: 'Friction-fit hexagonal case with lid.',
+    complexity: 'Medium'
+  },
 
   // IMPORTED CLASSICS
-  { id: 50, name: "Bobble Spring", category: "Imported Classics", description: "A print-in-place bouncy spring toy.", complexity: "High" },
-  { id: 51, name: "Gyro Fidget", category: "Imported Classics", description: "Concentric rings that spin freely.", complexity: "Medium" },
-  { id: 52, name: "Cable Holder", category: "Imported Classics", description: "Clip to keep cables on your desk.", complexity: "Low" },
-  { id: 53, name: "Stretchlet", category: "Imported Classics", description: "Stretchy bracelet printed flat.", complexity: "Medium" },
+  {
+    id: 50,
+    name: 'Bobble Spring',
+    category: 'Imported Classics',
+    description: 'A print-in-place bouncy spring toy.',
+    complexity: 'High'
+  },
+  {
+    id: 51,
+    name: 'Gyro Fidget',
+    category: 'Imported Classics',
+    description: 'Concentric rings that spin freely.',
+    complexity: 'Medium'
+  },
+  {
+    id: 52,
+    name: 'Cable Holder',
+    category: 'Imported Classics',
+    description: 'Clip to keep cables on your desk.',
+    complexity: 'Low'
+  },
+  {
+    id: 53,
+    name: 'Stretchlet',
+    category: 'Imported Classics',
+    description: 'Stretchy bracelet printed flat.',
+    complexity: 'Medium'
+  }
 ];
 
-const TOP_TEXT_DESIGNS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 25, 27, 28, 29, 40, 41, 42]);
-const BOTTOM_TEXT_DESIGNS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 26, 27, 28, 29, 41]);
+const TOP_TEXT_DESIGNS = new Set([
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 25, 27, 28, 29, 40, 41, 42
+]);
+const BOTTOM_TEXT_DESIGNS = new Set([
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 26, 27, 28, 29, 41
+]);
 const LOGO_DESIGNS = new Set([1, 14]);
 const DICE_TYPE_DESIGNS = new Set([40]);
 
@@ -82,7 +343,8 @@ const generateSCAD = (
   diceType
 ) => {
   const timestamp = new Date().toISOString().split('T')[0];
-  const escapeSCAD = (value) => String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, ' ');
+  const escapeSCAD = (value) =>
+    String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, ' ');
   const safeTopText = escapeSCAD(topText);
   const safeBottomText = escapeSCAD(bottomText);
   const safeLogoFilename = escapeSCAD(logoFilename);
@@ -162,7 +424,8 @@ module text_tag() {
   // 2. APPEND ONLY THE SELECTED MODULE
   // (We use a switch to only append the necessary code, keeping the file small for the previewer)
   switch (designId) {
-    case 1: code += `
+    case 1:
+      code += `
 module pulse_dots() {
     th = 0.8;
     difference() {
@@ -178,9 +441,11 @@ module pulse_dots() {
         }
     }
 }
-pulse_dots();`; break;
+pulse_dots();`;
+      break;
 
-    case 2: code += `
+    case 2:
+      code += `
 module breathe_lines() {
     th = 0.8; card_base(th); branding_text(th);
     intersection() {
@@ -188,9 +453,11 @@ module breathe_lines() {
         union() { for (x = [6 : 4 : card_width-4]) translate([x, 0, th]) rotate([-90, 0, 0]) scale([1, 0.6, 1]) cylinder(r=2, h=card_length); }
     }
 }
-breathe_lines();`; break;
+breathe_lines();`;
+      break;
 
-    case 3: code += `
+    case 3:
+      code += `
 module micro_labyrinth() {
     th = 0.8; card_base(th); branding_text(th); path_width = 1.5; wall_thick = 1.5;
     intersection() {
@@ -212,9 +479,11 @@ module micro_labyrinth() {
         }
     }
 }
-micro_labyrinth();`; break;
+micro_labyrinth();`;
+      break;
 
-    case 4: code += `
+    case 4:
+      code += `
 module quiet_tile() {
     th = 1.2;
     difference() { card_base(th); translate([card_width*0.75 - 13, card_length/2 - 13, -1]) linear_extrude(4) rounded_square(26, 26, 3); }
@@ -223,18 +492,22 @@ module quiet_tile() {
         difference() { translate([-12.5, -12.5, 0]) linear_extrude(2.5) rounded_square(25, 25, 2.5); translate([0, 0, 11]) sphere(r=9.5, $fn=100); }
     }
 }
-quiet_tile();`; break;
+quiet_tile();`;
+      break;
 
-    case 5: code += `
+    case 5:
+      code += `
 module orbit_slider() {
     th = 1.6; cx = card_width * 0.75; cy = card_length / 2; r = 16; tw = 4.5;
     difference() { card_base(th); translate([cx, cy, th/2]) rotate_extrude() polygon(points=[[r-tw, -th/2-0.1], [r, -th/2-0.1], [r+1.2, 0], [r, th/2+0.1], [r-tw, th/2+0.1]]); }
     branding_text(th);
     translate([cx, cy, th/2]) rotate_extrude() polygon(points=[[r-tw+tol, -th/2+tol], [r-tol, -th/2+tol], [r+1.2-tol*1.5, 0], [r-tol, th/2-tol], [r-tw+tol, th/2-tol]]);
 }
-orbit_slider();`; break;
+orbit_slider();`;
+      break;
 
-    case 6: code += `
+    case 6:
+      code += `
 module viewfinder() {
     th = 1.2;
     difference() {
@@ -244,9 +517,11 @@ module viewfinder() {
     }
     branding_text(th);
 }
-viewfinder();`; break;
+viewfinder();`;
+      break;
 
-    case 7: code += `
+    case 7:
+      code += `
 module curator_gauge() {
     th = 1.2;
     difference() {
@@ -257,9 +532,11 @@ module curator_gauge() {
     }
     branding_text(th);
 }
-curator_gauge();`; break;
+curator_gauge();`;
+      break;
 
-    case 8: code += `
+    case 8:
+      code += `
 module french_curve() {
     th = 1.2;
     difference() {
@@ -276,9 +553,11 @@ module french_curve() {
     }
     branding_text(th);
 }
-french_curve();`; break;
+french_curve();`;
+      break;
 
-    case 9: code += `
+    case 9:
+      code += `
 module portfolio_clip() {
     th = 1.2;
     difference() {
@@ -287,9 +566,11 @@ module portfolio_clip() {
     }
     branding_text(th);
 }
-portfolio_clip();`; break;
+portfolio_clip();`;
+      break;
 
-    case 10: code += `
+    case 10:
+      code += `
 module micro_easel() {
     th = 1.2; hinge = 0.4;
     difference() {
@@ -299,27 +580,33 @@ module micro_easel() {
     }
     branding_text(th);
 }
-micro_easel();`; break;
+micro_easel();`;
+      break;
 
-    case 11: code += `
+    case 11:
+      code += `
 module captive_slider() {
     th = 1.2;
     difference() { card_base(th); translate([15, 25, -1]) cube([55, 5, th + 2]); translate([12, 22.5, th/2 - 0.3]) cube([61, 10, 0.6]); }
     branding_text(th);
     translate([25, 25 + tol, 0]) cube([10, 5 - (tol*2), th]); translate([23, 23.5 + tol, th/2 - 0.15]) cube([14, 8 - (tol*2), 0.3]);
 }
-captive_slider();`; break;
+captive_slider();`;
+      break;
 
-    case 12: code += `
+    case 12:
+      code += `
 module aspect_cropper() {
     th = 2.0;
     difference() { card_base(th); translate([15, 18, -1]) cube([50, 30, th + 2]); v_track_cutout(12, 11, 56, 10, th); }
     branding_text(th);
     v_track_slider(14, 11, 12, 10, th); translate([20, 16, 0]) cube([6, 32, th]); translate([20, 42, 0]) cube([15, 6, th]);
 }
-aspect_cropper();`; break;
+aspect_cropper();`;
+      break;
 
-    case 13: code += `
+    case 13:
+      code += `
 module curator_selector() {
     th = 2.0;
     difference() {
@@ -330,9 +617,11 @@ module curator_selector() {
     branding_text(th);
     difference() { v_track_slider(12, 27.5, 22, 18, th); translate([20, 27.5, -1]) cylinder(r=5, h=th+2); }
 }
-curator_selector();`; break;
+curator_selector();`;
+      break;
 
-    case 14: code += `
+    case 14:
+      code += `
 module vault_doors() {
     th = 2.0;
     difference() { card_base(th); v_track_cutout(8, 27.5, 69, 25, th); translate([27.5, 15, 0.6]) cube([30, 25, th]); }
@@ -342,9 +631,11 @@ module vault_doors() {
     union() { v_track_slider(49, 27.5, 28, 25, th); translate([47, 22.5, 0]) cube([3, 10, th - 0.2]); }
     translate([73, 27.5, th/2]) scale([0.5, 1, 1]) sphere(r=5);
 }
-vault_doors();`; break;
+vault_doors();`;
+      break;
 
-    case 15: code += `
+    case 15:
+      code += `
 module OrbitRingStack() {
     cr = 8; rt = 4; h = 12; tol = 0.4;
     module ring(rad, w, h, st) {
@@ -371,9 +662,11 @@ module OrbitRingStack() {
     translate([(render_mode=="knolled"? cr*7 : 0), 0, 0]) ring(cr+rt+(tol*2), rt, h*0.6, design_style);
     translate([(render_mode=="knolled"? cr*10.5 : 0), 0, 0]) ring(cr+(rt*2)+(tol*3), rt, h*0.4, design_style);
 }
-OrbitRingStack();`; break;
+OrbitRingStack();`;
+      break;
 
-    case 16: code += `
+    case 16:
+      code += `
 module SilentHinge() {
     w = 30; l = 40; h = 12;
     module shell(st, top) {
@@ -392,9 +685,11 @@ module SilentHinge() {
     if (render_mode == "assembled") { translate([0,0,h/4]) shell(design_style, true); translate([0,0,-h/4]) rotate([180,0,0]) shell(design_style, false); } 
     else { translate([-w, 0, 0]) rotate([0,180,0]) shell(design_style, true); translate([w, 0, 0]) shell(design_style, false); translate([0, -l, 0]) color("black") cube([8, 10, 0.8], center=true); }
 }
-SilentHinge();`; break;
+SilentHinge();`;
+      break;
 
-    case 17: code += `
+    case 17:
+      code += `
 module DetentSlider() {
     w = 25; sl = 50; h = 12;
     module base(st) {
@@ -412,9 +707,11 @@ module DetentSlider() {
     difference() { base(design_style); hull() { translate([-10, 0, 2]) cylinder(r=3, h=10, center=true); translate([10, 0, 2]) cylinder(r=3, h=10, center=true); } }
     translate([0, y_off, z_sl]) btn(design_style);
 }
-DetentSlider();`; break;
+DetentSlider();`;
+      break;
 
-    case 18: code += `
+    case 18:
+      code += `
 module MazeCoin() {
     d = 40; th = 6;
     
@@ -493,9 +790,11 @@ module MazeCoin() {
         translate([d/1.3, 0, 0]) rotate([180,0,0]) half(design_style, false); 
     }
 }
-MazeCoin();`; break;
+MazeCoin();`;
+      break;
 
-    case 19: code += `
+    case 19:
+      code += `
 module RosaryKeychain() {
     module bead(st, s) {
         difference() {
@@ -509,9 +808,11 @@ module RosaryKeychain() {
     if (render_mode == "knolled") { for(i=[0:6]) translate([i*15, 0, 0]) bead(design_style, i); translate([-15, 0, 0]) clasp(design_style); } 
     else { for(i=[0:45:315]) rotate([0,0,i]) translate([18, 0, 0]) rotate([0,0,90]) bead(design_style, i/45); translate([18, 0, 0]) clasp(design_style); }
 }
-RosaryKeychain();`; break;
+RosaryKeychain();`;
+      break;
 
-    case 20: code += `
+    case 20:
+      code += `
 module FlipToken() {
     module frame(st) {
         difference() {
@@ -530,9 +831,11 @@ module FlipToken() {
     y_off = (render_mode == "knolled") ? 20 : 0;
     frame(design_style); translate([0, y_off, 0]) rotate([(render_mode=="knolled"?90:0), 0, 0]) tile(design_style); translate([0, y_off*2, 0]) rotate([90,0,0]) cylinder(r=1.4, h=16, center=true);
 }
-FlipToken();`; break;
+FlipToken();`;
+      break;
 
-    case 21: code += `
+    case 21:
+      code += `
 module SpiralTwister() {
     module shell(st, inn) {
         sc = inn ? 0.8 : 1.0; fn_val = (st == 1) ? 4 : 60;
@@ -544,9 +847,11 @@ module SpiralTwister() {
     if (render_mode == "assembled") { shell(design_style, false); } 
     else { translate([-15, 0, 0]) shell(design_style, false); translate([15, 0, 0]) shell(design_style, true); translate([0, -20, 0]) lock(); }
 }
-SpiralTwister();`; break;
+SpiralTwister();`;
+      break;
 
-    case 22: code += `
+    case 22:
+      code += `
 module TactileLoom() {
     fw = 40; fh = 60; th = 4;
     module frame(st) {
@@ -560,9 +865,11 @@ module TactileLoom() {
     if (render_mode == "assembled") { frame(design_style); color("gray") rotate([0,0,90]) strip(design_style); } 
     else { translate([-30, 0, 0]) frame(design_style); translate([30, 0, 0]) rotate([0,0,90]) strip(design_style); translate([45, 0, 0]) rotate([0,0,90]) strip(design_style); }
 }
-TactileLoom();`; break;
+TactileLoom();`;
+      break;
 
-    case 23: code += `
+    case 23:
+      code += `
 module GearWorryCoin() {
     r = 20; th = 6;
     difference() {
@@ -574,9 +881,11 @@ module GearWorryCoin() {
         for(i=[0:60:300]) rotate([0,0,i]) translate([12,0,0]) cylinder(r=2.4, h=th + 2, center=true, $fn=26);
     }
 }
-GearWorryCoin();`; break;
+GearWorryCoin();`;
+      break;
 
-    case 24: code += `
+    case 24:
+      code += `
 module InfiniteSlinky() {
     // Toroidal Helix / Slinky
     // Uses a simple approximation via sequential hulls for a continuous spring look
@@ -625,9 +934,11 @@ module InfiniteSlinky() {
     // Base for printing
     cylinder(r=18, h=1);
 }
-InfiniteSlinky();`; break;
+InfiniteSlinky();`;
+      break;
 
-    case 25: code += `
+    case 25:
+      code += `
 module CableLabelClip() {
     outer_r = 8; inner_r = 5.2; width = 12;
     difference() {
@@ -640,9 +951,11 @@ module CableLabelClip() {
     }
     if (top_text != "") translate([12, 0, 1.2]) linear_extrude(0.8) text(top_text, size=3.8, halign="center", valign="center", font="Arial:style=Bold");
 }
-CableLabelClip();`; break;
+CableLabelClip();`;
+      break;
 
-    case 26: code += `
+    case 26:
+      code += `
 module FlatPackBagHook() {
     linear_extrude(4) difference() {
         union() {
@@ -656,9 +969,11 @@ module FlatPackBagHook() {
     }
     if (bottom_text != "") translate([35, 14, 3.8]) linear_extrude(0.8) text(bottom_text, size=4, halign="center", valign="center", font="Arial:style=Bold");
 }
-FlatPackBagHook();`; break;
+FlatPackBagHook();`;
+      break;
 
-    case 27: code += `
+    case 27:
+      code += `
 module ClassicDogTag() {
     w = 30; h = 52; r = 8; th = 3;
     difference() {
@@ -668,9 +983,11 @@ module ClassicDogTag() {
     if (top_text != "") translate([w/2, h*0.62, th - 0.01]) linear_extrude(0.8) text(top_text, size=3.6, halign="center", valign="center", font="Arial:style=Bold");
     if (bottom_text != "") translate([w/2, h*0.40, th - 0.01]) linear_extrude(0.8) text(bottom_text, size=3.0, halign="center", valign="center", font="Arial");
 }
-ClassicDogTag();`; break;
+ClassicDogTag();`;
+      break;
 
-    case 28: code += `
+    case 28:
+      code += `
 module HexDogTag() {
     th = 3;
     module hex2d(r) { polygon(points=[for(i=[0:5]) [cos(i*60)*r, sin(i*60)*r]]); }
@@ -682,9 +999,11 @@ module HexDogTag() {
     if (top_text != "") translate([28, 34, th - 0.01]) linear_extrude(0.8) text(top_text, size=3.4, halign="center", valign="center", font="Arial:style=Bold");
     if (bottom_text != "") translate([28, 25, th - 0.01]) linear_extrude(0.8) text(bottom_text, size=2.8, halign="center", valign="center", font="Arial");
 }
-HexDogTag();`; break;
+HexDogTag();`;
+      break;
 
-    case 29: code += `
+    case 29:
+      code += `
 module CapsuleDogTag() {
     w = 54; h = 28; th = 3;
     difference() {
@@ -697,9 +1016,11 @@ module CapsuleDogTag() {
     if (top_text != "") translate([w*0.58, h*0.62, th - 0.01]) linear_extrude(0.8) text(top_text, size=3.2, halign="center", valign="center", font="Arial:style=Bold");
     if (bottom_text != "") translate([w*0.58, h*0.40, th - 0.01]) linear_extrude(0.8) text(bottom_text, size=2.6, halign="center", valign="center", font="Arial");
 }
-CapsuleDogTag();`; break;
+CapsuleDogTag();`;
+      break;
 
-    case 30: code += `
+    case 30:
+      code += `
 module RingSizeLadder() {
     module ring(orad, irad, h) {
         difference() {
@@ -712,9 +1033,11 @@ module RingSizeLadder() {
         translate([i*24, 0, 0]) ring(sizes[i], sizes[i]-2.2, 5);
     }
 }
-RingSizeLadder();`; break;
+RingSizeLadder();`;
+      break;
 
-    case 31: code += `
+    case 31:
+      code += `
 module ComfortRingTrio() {
     module comfort_ring(orad, wall, h) {
         difference() {
@@ -730,9 +1053,11 @@ module ComfortRingTrio() {
     translate([24, 0, 0]) comfort_ring(12, 2.4, 5);
     translate([50, 0, 0]) comfort_ring(14, 2.8, 4.5);
 }
-ComfortRingTrio();`; break;
+ComfortRingTrio();`;
+      break;
 
-    case 32: code += `
+    case 32:
+      code += `
 module BeadSamplerStrip() {
     module bead(style, d) {
         if (style == 0) sphere(d=d, $fn=60);
@@ -750,9 +1075,11 @@ module BeadSamplerStrip() {
     }
     for (i=[0:3]) translate([i*16 + 8, 0, 0]) cylinder(r=1.4, h=2.2, center=true, $fn=20);
 }
-BeadSamplerStrip();`; break;
+BeadSamplerStrip();`;
+      break;
 
-    case 33: code += `
+    case 33:
+      code += `
 module LooseBeadSet() {
     module bead(x, y, d, fn_val) {
         translate([x, y, 0]) difference() {
@@ -766,9 +1093,11 @@ module LooseBeadSet() {
     bead(48, 0, 16, 80);
     bead(68, 0, 18, 90);
 }
-LooseBeadSet();`; break;
+LooseBeadSet();`;
+      break;
 
-    case 50: code += `
+    case 50:
+      code += `
 module BobbleSpring() {
     Coil_Count = 8; Weight = 0.8; Thickness = 5; Width = 13;
     Top_Width = 1.6; Top_Height = 1.6; Bottom_Width = 0; Bottom_Height = 1.6;
@@ -810,9 +1139,11 @@ module BobbleSpring() {
         }
     }
 }
-BobbleSpring();`; break;
+BobbleSpring();`;
+      break;
 
-    case 51: code += `
+    case 51:
+      code += `
 module GyroFidget() {
     Rings=5; RingWidth=2.4; MINRadius=10; Separation=0.8; Facets=60;
     Height=(MINRadius*2)-RingWidth;
@@ -834,9 +1165,11 @@ module GyroFidget() {
         cylinder(r=MaxRadius*2,h=Height,$fn=Facets,center=true);
     }
 }
-GyroFidget();`; break;
+GyroFidget();`;
+      break;
 
-    case 52: code += `
+    case 52:
+      code += `
 module CableHolder() {
     TABLE_HEIGHT = 24.7; DEPTH = 30; CABLE = 6; CYLINDER_HEIGHT = 12; WALL = 3; 
     CABLEWSPACE = CABLE+1.5;
@@ -858,9 +1191,11 @@ module CableHolder() {
         translate([0,0,DEPTH/2+WALL+ADDSPACE]) cube([(TABLE_HEIGHT+2*WALL+CYLINDER_HEIGHT)*2, CABLEWSPACE, CABLEWSPACE*2], center=true);
     }
 }
-CableHolder();`; break;
+CableHolder();`;
+      break;
 
-    case 53: code += `
+    case 53:
+      code += `
 module Stretchlet() {
     r2=30; h=8; w=15; t=0.4; n=20; m=27;
     pi=3.14159;
@@ -884,9 +1219,11 @@ module Stretchlet() {
         polygon(points=[[ri+t,a/2-t],[ri+t,t-a/2],[ro+t*h/a,0]],paths=[[0,1,2]]);
     }
 }
-Stretchlet();`; break;
+Stretchlet();`;
+      break;
 
-    case 40: code += `
+    case 40:
+      code += `
 module PolyDie() {
     s = 25; 
     difference() {
@@ -936,9 +1273,11 @@ module PolyDie() {
         if (top_text != "") translate([0, 0, s/2 - 0.5]) linear_extrude(1) text(top_text, size=s*0.15, halign="center", valign="center");
     }
 }
-PolyDie();`; break;
+PolyDie();`;
+      break;
 
-    case 41: code += `
+    case 41:
+      code += `
 module DiceTube() {
     h = 80; r = 20; wall = 3;
     if (render_mode == "assembled") {
@@ -963,9 +1302,11 @@ module DiceTube() {
     }
     branding_text(wall);
 }
-DiceTube();`; break;
+DiceTube();`;
+      break;
 
-    case 42: code += `
+    case 42:
+      code += `
 module HexVault() {
     h = 35; r = 40;
     module hex(rad, ht) { linear_extrude(ht) circle(r=rad, $fn=6); }
@@ -980,7 +1321,8 @@ module HexVault() {
         if (top_text != "") translate([0, 0, 5]) linear_extrude(1.2) text(top_text, size=5, halign="center", valign="center", font="Arial:style=Bold");
     }
 }
-HexVault();`; break;
+HexVault();`;
+      break;
   }
   code += `
 text_tag();`;
@@ -990,17 +1332,17 @@ text_tag();`;
 // --- MAIN COMPONENT ---
 export default function TactileGenerator() {
   const [selectedDesign, setSelectedDesign] = useState(15);
-  const [topText, setTopText] = useState("Rochelle Berry");
-  const [bottomText, setBottomText] = useState("rochelleberry731@gmail.com");
+  const [topText, setTopText] = useState('Rochelle Berry');
+  const [bottomText, setBottomText] = useState('rochelleberry731@gmail.com');
   const [useLogo, setUseLogo] = useState(false);
-  const [logoFilename, setLogoFilename] = useState("logo.svg");
-  const [tagText, setTagText] = useState("574.601.5652");
+  const [logoFilename, setLogoFilename] = useState('logo.svg');
+  const [tagText, setTagText] = useState('574.601.5652');
   const [addTextTag, setAddTextTag] = useState(true);
   const [tagTextSize, setTagTextSize] = useState(5);
   const [tagThickness, setTagThickness] = useState(1.4);
   const [tagPadding, setTagPadding] = useState(4);
   const [diceType, setDiceType] = useState(6); // 6 Sided default
-  const [generatedCode, setGeneratedCode] = useState("");
+  const [generatedCode, setGeneratedCode] = useState('');
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.get('mode') === 'library' ? 'library' : 'design';
@@ -1011,10 +1353,15 @@ export default function TactileGenerator() {
   const lastHoverToneRef = useRef(0);
 
   // Separate designs
-  const businessCards = DESIGNS.filter(d => d.category !== "Pocket Orbit" && d.category !== "Tabletop Gaming" && d.category !== "Imported Classics");
-  const pocketOrbits = DESIGNS.filter(d => d.category === "Pocket Orbit");
-  const tabletopItems = DESIGNS.filter(d => d.category === "Tabletop Gaming");
-  const importedClassics = DESIGNS.filter(d => d.category === "Imported Classics");
+  const businessCards = DESIGNS.filter(
+    (d) =>
+      d.category !== 'Pocket Orbit' &&
+      d.category !== 'Tabletop Gaming' &&
+      d.category !== 'Imported Classics'
+  );
+  const pocketOrbits = DESIGNS.filter((d) => d.category === 'Pocket Orbit');
+  const tabletopItems = DESIGNS.filter((d) => d.category === 'Tabletop Gaming');
+  const importedClassics = DESIGNS.filter((d) => d.category === 'Imported Classics');
 
   useEffect(() => {
     setGeneratedCode(
@@ -1032,13 +1379,25 @@ export default function TactileGenerator() {
         diceType
       )
     );
-  }, [selectedDesign, topText, bottomText, logoFilename, useLogo, tagText, addTextTag, tagTextSize, tagThickness, tagPadding, diceType]);
+  }, [
+    selectedDesign,
+    topText,
+    bottomText,
+    logoFilename,
+    useLogo,
+    tagText,
+    addTextTag,
+    tagTextSize,
+    tagThickness,
+    tagPadding,
+    diceType
+  ]);
 
   const downloadSCAD = () => {
-    const element = document.createElement("a");
+    const element = document.createElement('a');
     const file = new Blob([generatedCode], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
-    element.download = "kokomo_tactile_object.scad";
+    element.download = 'kokomo_tactile_object.scad';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
@@ -1046,10 +1405,10 @@ export default function TactileGenerator() {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedCode);
-    alert("Code copied to clipboard!");
+    alert('Code copied to clipboard!');
   };
 
-  const currentDesignInfo = DESIGNS.find(d => d.id === selectedDesign);
+  const currentDesignInfo = DESIGNS.find((d) => d.id === selectedDesign);
   const supportsTopText = TOP_TEXT_DESIGNS.has(selectedDesign);
   const supportsBottomText = BOTTOM_TEXT_DESIGNS.has(selectedDesign);
   const supportsLogo = LOGO_DESIGNS.has(selectedDesign);
@@ -1246,7 +1605,10 @@ export default function TactileGenerator() {
     };
 
     const onPointerOver = (event) => {
-      const el = event.target instanceof Element ? event.target.closest('button, a, input[type="range"]') : null;
+      const el =
+        event.target instanceof Element
+          ? event.target.closest('button, a, input[type="range"]')
+          : null;
       if (!el) return;
       const now = performance.now();
       if (now - lastHoverToneRef.current < 70) return;
@@ -1289,32 +1651,70 @@ export default function TactileGenerator() {
           transform: translateY(0px) scale(0.995);
         }
       `}</style>
-      <canvas ref={shaderCanvasRef} className="fixed inset-0 w-full h-full -z-10 pointer-events-none" />
+      <canvas
+        ref={shaderCanvasRef}
+        className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
+      />
       <div className="fixed inset-0 -z-10 pointer-events-none bg-gradient-to-b from-white/15 via-transparent to-black/10" />
 
       {/* Header */}
       <div className="bg-white/60 border-b border-white/50 sticky top-0 z-10 shadow-sm backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center gap-3 mb-4 md:mb-0">
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-lg">K</div>
+            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+              K
+            </div>
             <div>
-              <h1 className="text-2xl font-bold text-black tracking-tight drop-shadow-sm">Tactile Object Generator</h1>
+              <h1 className="text-2xl font-bold text-black tracking-tight drop-shadow-sm">
+                Tactile Object Generator
+              </h1>
               <p className="text-sm text-gray-700 font-medium">Kokomo Art Association • Toolset</p>
             </div>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setActiveTab('library')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'library' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>SCAD Library</button>
-            <button onClick={() => setActiveTab('design')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'design' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>1. Design</button>
-            <button onClick={() => setActiveTab('customize')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'customize' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>2. Customize</button>
-            <button onClick={() => setActiveTab('preview')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'preview' ? 'bg-purple-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>3. Live Preview</button>
-            <button onClick={() => setActiveTab('export')} className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'export' ? 'bg-green-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>4. Export</button>
+            <button
+              onClick={() => setActiveTab('library')}
+              className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'library' ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+            >
+              SCAD Library
+            </button>
+            <button
+              onClick={() => setActiveTab('design')}
+              className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'design' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+            >
+              1. Design
+            </button>
+            <button
+              onClick={() => setActiveTab('customize')}
+              className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'customize' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+            >
+              2. Customize
+            </button>
+            <button
+              onClick={() => setActiveTab('preview')}
+              className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'preview' ? 'bg-purple-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+            >
+              3. Live Preview
+            </button>
+            <button
+              onClick={() => setActiveTab('export')}
+              className={`px-4 py-2 rounded-full text-base font-bold transition-all ${activeTab === 'export' ? 'bg-green-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+            >
+              4. Export
+            </button>
           </div>
         </div>
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
         {activeTab === 'library' && (
-          <React.Suspense fallback={<div className="text-gray-700 bg-white border border-gray-200 rounded-xl p-6">Loading SCAD library...</div>}>
+          <React.Suspense
+            fallback={
+              <div className="text-gray-700 bg-white border border-gray-200 rounded-xl p-6">
+                Loading SCAD library...
+              </div>
+            }
+          >
             <ScadLibraryMode />
           </React.Suspense>
         )}
@@ -1323,7 +1723,9 @@ export default function TactileGenerator() {
         {activeTab === 'design' && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-6">
-              <h2 className="text-3xl font-bold text-black drop-shadow-sm mb-2">Select a Concept</h2>
+              <h2 className="text-3xl font-bold text-black drop-shadow-sm mb-2">
+                Select a Concept
+              </h2>
               <p className="text-gray-800 text-lg">Choose a functional tool or kinetic object.</p>
             </div>
 
@@ -1331,21 +1733,44 @@ export default function TactileGenerator() {
             <div className="mb-10">
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                 <Layers className="text-blue-600" size={24} />
-                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Business Cards & Tools</h3>
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">
+                  Business Cards & Tools
+                </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {businessCards.map((design) => (
-                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-blue-600 bg-white ring-4 ring-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'}`}>
+                  <div
+                    key={design.id}
+                    onClick={() => setSelectedDesign(design.id)}
+                    className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-blue-600 bg-white ring-4 ring-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'}`}
+                  >
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
-                        {design.category.includes("Tactile") && <Box size={24} />} {design.category.includes("Functional") && <Settings size={24} />}
-                        {design.category.includes("Kinetic") && <RefreshCw size={24} />} {design.category.includes("Slider") && <Settings size={24} />}
+                      <div
+                        className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-blue-100 group-hover:text-blue-600'}`}
+                      >
+                        {design.category.includes('Tactile') && <Box size={24} />}{' '}
+                        {design.category.includes('Functional') && <Settings size={24} />}
+                        {design.category.includes('Kinetic') && <RefreshCw size={24} />}{' '}
+                        {design.category.includes('Slider') && <Settings size={24} />}
                       </div>
-                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-blue-600"><Check size={24} /></div>}
+                      {selectedDesign === design.id && (
+                        <div className="absolute top-4 right-4 text-blue-600">
+                          <Check size={24} />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
-                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    <div className="flex gap-2 mb-3">
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.category}
+                      </span>
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.complexity}
+                      </span>
+                    </div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">
+                      {design.description}
+                    </p>
                     {selectedDesign === design.id && (
                       <button
                         onClick={(e) => {
@@ -1366,18 +1791,41 @@ export default function TactileGenerator() {
             <div>
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                 <Shapes className="text-purple-600" size={24} />
-                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Pocket Orbits & Fidgets</h3>
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">
+                  Pocket Orbits & Fidgets
+                </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {pocketOrbits.map((design) => (
-                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-purple-600 bg-white ring-4 ring-purple-50' : 'border-gray-200 bg-white hover:border-purple-300'}`}>
+                  <div
+                    key={design.id}
+                    onClick={() => setSelectedDesign(design.id)}
+                    className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-purple-600 bg-white ring-4 ring-purple-50' : 'border-gray-200 bg-white hover:border-purple-300'}`}
+                  >
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-purple-100 group-hover:text-purple-600'}`}><Shapes size={24} /></div>
-                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-purple-600"><Check size={24} /></div>}
+                      <div
+                        className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-purple-100 group-hover:text-purple-600'}`}
+                      >
+                        <Shapes size={24} />
+                      </div>
+                      {selectedDesign === design.id && (
+                        <div className="absolute top-4 right-4 text-purple-600">
+                          <Check size={24} />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
-                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    <div className="flex gap-2 mb-3">
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.category}
+                      </span>
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.complexity}
+                      </span>
+                    </div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">
+                      {design.description}
+                    </p>
                     {selectedDesign === design.id && (
                       <button
                         onClick={(e) => {
@@ -1402,14 +1850,35 @@ export default function TactileGenerator() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tabletopItems.map((design) => (
-                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-red-600 bg-white ring-4 ring-red-50' : 'border-gray-200 bg-white hover:border-red-300'}`}>
+                  <div
+                    key={design.id}
+                    onClick={() => setSelectedDesign(design.id)}
+                    className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-red-600 bg-white ring-4 ring-red-50' : 'border-gray-200 bg-white hover:border-red-300'}`}
+                  >
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-red-100 group-hover:text-red-600'}`}><Dices size={24} /></div>
-                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-red-600"><Check size={24} /></div>}
+                      <div
+                        className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-red-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-red-100 group-hover:text-red-600'}`}
+                      >
+                        <Dices size={24} />
+                      </div>
+                      {selectedDesign === design.id && (
+                        <div className="absolute top-4 right-4 text-red-600">
+                          <Check size={24} />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
-                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    <div className="flex gap-2 mb-3">
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.category}
+                      </span>
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.complexity}
+                      </span>
+                    </div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">
+                      {design.description}
+                    </p>
                     {selectedDesign === design.id && (
                       <button
                         onClick={(e) => {
@@ -1430,18 +1899,41 @@ export default function TactileGenerator() {
             <div className="mt-10 mb-20">
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
                 <ExternalLink className="text-orange-600" size={24} />
-                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">Imported Classics</h3>
+                <h3 className="text-2xl font-bold text-gray-900 drop-shadow-sm">
+                  Imported Classics
+                </h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {importedClassics.map((design) => (
-                  <div key={design.id} onClick={() => setSelectedDesign(design.id)} className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-orange-600 bg-white ring-4 ring-orange-50' : 'border-gray-200 bg-white hover:border-orange-300'}`}>
+                  <div
+                    key={design.id}
+                    onClick={() => setSelectedDesign(design.id)}
+                    className={`cursor-pointer relative group text-left p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-xl ${selectedDesign === design.id ? 'border-orange-600 bg-white ring-4 ring-orange-50' : 'border-gray-200 bg-white hover:border-orange-300'}`}
+                  >
                     <div className="flex justify-between items-start mb-4">
-                      <div className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-orange-100 group-hover:text-orange-600'}`}><ExternalLink size={24} /></div>
-                      {selectedDesign === design.id && <div className="absolute top-4 right-4 text-orange-600"><Check size={24} /></div>}
+                      <div
+                        className={`p-3 rounded-lg ${selectedDesign === design.id ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-800 group-hover:bg-orange-100 group-hover:text-orange-600'}`}
+                      >
+                        <ExternalLink size={24} />
+                      </div>
+                      {selectedDesign === design.id && (
+                        <div className="absolute top-4 right-4 text-orange-600">
+                          <Check size={24} />
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-xl font-bold text-black mb-1">{design.name}</h3>
-                    <div className="flex gap-2 mb-3"><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.category}</span><span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">{design.complexity}</span></div>
-                    <p className="text-base text-gray-700 leading-relaxed font-medium">{design.description}</p>
+                    <div className="flex gap-2 mb-3">
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.category}
+                      </span>
+                      <span className="text-sm px-2 py-1 bg-gray-100 rounded text-gray-800 font-bold">
+                        {design.complexity}
+                      </span>
+                    </div>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">
+                      {design.description}
+                    </p>
                     {selectedDesign === design.id && (
                       <button
                         onClick={(e) => {
@@ -1465,16 +1957,22 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="bg-gray-50 px-8 py-6 border-b border-gray-200">
-                <h2 className="text-2xl font-bold text-black flex items-center gap-2"><Type className="text-blue-600" /> Customize Your Item</h2>
+                <h2 className="text-2xl font-bold text-black flex items-center gap-2">
+                  <Type className="text-blue-600" /> Customize Your Item
+                </h2>
               </div>
               <div className="p-8 space-y-8">
                 {/* Dice Specific Controls */}
                 {supportsDiceType && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-                    <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2"><Dices size={20} /> Die Configuration</h3>
+                    <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
+                      <Dices size={20} /> Die Configuration
+                    </h3>
                     <div className="space-y-4">
                       <label className="block">
-                        <span className="text-base font-bold text-red-900 block mb-2">Die Type (D{diceType})</span>
+                        <span className="text-base font-bold text-red-900 block mb-2">
+                          Die Type (D{diceType})
+                        </span>
                         <div className="flex gap-2 flex-wrap">
                           {[4, 6, 8, 10, 12, 20].map((val) => (
                             <button
@@ -1496,8 +1994,13 @@ export default function TactileGenerator() {
                     <div className="flex items-start gap-3">
                       <Info className="text-gray-600 shrink-0 mt-0.5" size={18} />
                       <div className="text-base text-gray-800">
-                        <p className="font-bold mb-1">No direct engraving controls for this object</p>
-                        <p>This design does not support built-in top/bottom text or SVG logos. You can still add a printable text tag below.</p>
+                        <p className="font-bold mb-1">
+                          No direct engraving controls for this object
+                        </p>
+                        <p>
+                          This design does not support built-in top/bottom text or SVG logos. You
+                          can still add a printable text tag below.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1510,16 +2013,42 @@ export default function TactileGenerator() {
                         <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
                         <div className="text-base text-blue-900">
                           <p className="font-bold mb-1">Text Controls for This Object</p>
-                          <p>Only text inputs used by this specific design are shown. The text tag add-on works with every design and prints as a separate piece in the same SCAD file.</p>
+                          <p>
+                            Only text inputs used by this specific design are shown. The text tag
+                            add-on works with every design and prints as a separate piece in the
+                            same SCAD file.
+                          </p>
                         </div>
                       </div>
                     </div>
                     <div className="space-y-4">
                       {supportsTopText && (
-                        <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Top Edge Text</span><input type="text" value={topText} onChange={(e) => setTopText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., Rochelle Berry" /></label>
+                        <label className="block">
+                          <span className="text-lg font-bold text-gray-900 block mb-2">
+                            Top Edge Text
+                          </span>
+                          <input
+                            type="text"
+                            value={topText}
+                            onChange={(e) => setTopText(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                            placeholder="E.g., Rochelle Berry"
+                          />
+                        </label>
                       )}
                       {supportsBottomText && (
-                        <label className="block"><span className="text-lg font-bold text-gray-900 block mb-2">Bottom Edge Text</span><input type="text" value={bottomText} onChange={(e) => setBottomText(e.target.value)} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none" placeholder="E.g., rochelleberry731@gmail.com" /></label>
+                        <label className="block">
+                          <span className="text-lg font-bold text-gray-900 block mb-2">
+                            Bottom Edge Text
+                          </span>
+                          <input
+                            type="text"
+                            value={bottomText}
+                            onChange={(e) => setBottomText(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
+                            placeholder="E.g., rochelleberry731@gmail.com"
+                          />
+                        </label>
                       )}
                     </div>
                   </>
@@ -1529,31 +2058,130 @@ export default function TactileGenerator() {
                   <>
                     {supportsAnyObjectText && <hr className="border-gray-100" />}
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Use SVG Logo?</span><button onClick={() => setUseLogo(!useLogo)} className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold text-gray-900">Use SVG Logo?</span>
+                        <button
+                          onClick={() => setUseLogo(!useLogo)}
+                          className={`w-12 h-6 rounded-full transition-colors relative ${useLogo ? 'bg-blue-600' : 'bg-gray-300'}`}
+                        >
+                          <div
+                            className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${useLogo ? 'translate-x-6' : 'translate-x-0'}`}
+                          />
+                        </button>
+                      </div>
                       {useLogo && (
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-in fade-in slide-in-from-top-2">
-                          <div className="flex items-start gap-3"><Info className="text-blue-600 shrink-0 mt-0.5" size={18} /><div className="text-base text-blue-900"><p className="font-bold mb-1">How Logo Import Works:</p><p className="mb-3">OpenSCAD cannot read images directly from the web. You must have the SVG file saved on your computer.</p><label className="block mb-2 font-bold text-blue-900">Enter your SVG Filename:</label><input type="text" value={logoFilename} onChange={(e) => setLogoFilename(e.target.value)} className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2" placeholder="logo.svg" /><p className="text-sm text-blue-800">Ensure this file is in the same folder as the downloaded .scad file.</p></div></div>
+                          <div className="flex items-start gap-3">
+                            <Info className="text-blue-600 shrink-0 mt-0.5" size={18} />
+                            <div className="text-base text-blue-900">
+                              <p className="font-bold mb-1">How Logo Import Works:</p>
+                              <p className="mb-3">
+                                OpenSCAD cannot read images directly from the web. You must have the
+                                SVG file saved on your computer.
+                              </p>
+                              <label className="block mb-2 font-bold text-blue-900">
+                                Enter your SVG Filename:
+                              </label>
+                              <input
+                                type="text"
+                                value={logoFilename}
+                                onChange={(e) => setLogoFilename(e.target.value)}
+                                className="w-full px-3 py-2 rounded border border-blue-300 bg-white text-gray-800 text-sm mb-2"
+                                placeholder="logo.svg"
+                              />
+                              <p className="text-sm text-blue-800">
+                                Ensure this file is in the same folder as the downloaded .scad file.
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </div>
                   </>
                 )}
 
-                {(supportsDiceType || supportsAnyObjectText || supportsLogo) && <hr className="border-gray-100" />}
+                {(supportsDiceType || supportsAnyObjectText || supportsLogo) && (
+                  <hr className="border-gray-100" />
+                )}
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between"><span className="text-lg font-bold text-gray-900">Add Printable Text Tag</span><button onClick={() => setAddTextTag(!addTextTag)} className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}><div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`} /></button></div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">Add Printable Text Tag</span>
+                    <button
+                      onClick={() => setAddTextTag(!addTextTag)}
+                      className={`w-12 h-6 rounded-full transition-colors relative ${addTextTag ? 'bg-green-600' : 'bg-gray-300'}`}
+                    >
+                      <div
+                        className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform ${addTextTag ? 'translate-x-6' : 'translate-x-0'}`}
+                      />
+                    </button>
+                  </div>
                   {addTextTag && (
                     <div className="grid grid-cols-1 gap-4 bg-green-50 border border-green-200 rounded-lg p-4">
-                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Text</span><input type="text" value={tagText} onChange={(e) => setTagText(e.target.value.toUpperCase())} className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white" placeholder="574.601.5652" /></label>
-                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Text Size ({tagTextSize} mm)</span><input type="range" min="3" max="10" step="0.5" value={tagTextSize} onChange={(e) => setTagTextSize(Number(e.target.value))} className="w-full" /></label>
-                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Thickness ({tagThickness} mm)</span><input type="range" min="1" max="3" step="0.2" value={tagThickness} onChange={(e) => setTagThickness(Number(e.target.value))} className="w-full" /></label>
-                      <label className="block"><span className="text-lg font-bold text-green-950 block mb-2">Tag Padding ({tagPadding} mm)</span><input type="range" min="2" max="8" step="1" value={tagPadding} onChange={(e) => setTagPadding(Number(e.target.value))} className="w-full" /></label>
+                      <label className="block">
+                        <span className="text-lg font-bold text-green-950 block mb-2">
+                          Tag Text
+                        </span>
+                        <input
+                          type="text"
+                          value={tagText}
+                          onChange={(e) => setTagText(e.target.value.toUpperCase())}
+                          className="w-full px-4 py-3 rounded-lg border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none bg-white"
+                          placeholder="574.601.5652"
+                        />
+                      </label>
+                      <label className="block">
+                        <span className="text-lg font-bold text-green-950 block mb-2">
+                          Text Size ({tagTextSize} mm)
+                        </span>
+                        <input
+                          type="range"
+                          min="3"
+                          max="10"
+                          step="0.5"
+                          value={tagTextSize}
+                          onChange={(e) => setTagTextSize(Number(e.target.value))}
+                          className="w-full"
+                        />
+                      </label>
+                      <label className="block">
+                        <span className="text-lg font-bold text-green-950 block mb-2">
+                          Tag Thickness ({tagThickness} mm)
+                        </span>
+                        <input
+                          type="range"
+                          min="1"
+                          max="3"
+                          step="0.2"
+                          value={tagThickness}
+                          onChange={(e) => setTagThickness(Number(e.target.value))}
+                          className="w-full"
+                        />
+                      </label>
+                      <label className="block">
+                        <span className="text-lg font-bold text-green-950 block mb-2">
+                          Tag Padding ({tagPadding} mm)
+                        </span>
+                        <input
+                          type="range"
+                          min="2"
+                          max="8"
+                          step="1"
+                          value={tagPadding}
+                          onChange={(e) => setTagPadding(Number(e.target.value))}
+                          className="w-full"
+                        />
+                      </label>
                     </div>
                   )}
                 </div>
               </div>
               <div className="bg-gray-50 px-8 py-4 border-t border-gray-200 flex justify-end">
-                <button onClick={() => setActiveTab('preview')} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-sm transition-all flex items-center gap-2">Next: Live Preview <Eye size={18} /></button>
+                <button
+                  onClick={() => setActiveTab('preview')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-sm transition-all flex items-center gap-2"
+                >
+                  Next: Live Preview <Eye size={18} />
+                </button>
               </div>
             </div>
           </div>
@@ -1564,15 +2192,24 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-200px)] min-h-[600px] flex flex-col gap-4">
             <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-black flex items-center gap-2"><Eye className="text-purple-600" size={20} /> Live 3D Preview</h3>
+                <h3 className="font-bold text-black flex items-center gap-2">
+                  <Eye className="text-purple-600" size={20} /> Live 3D Preview
+                </h3>
                 <p className="text-gray-600 text-sm">Real-time local rendering via WebAssembly.</p>
               </div>
               <div className="flex gap-3">
                 <div className="bg-purple-50 px-4 py-2 rounded-lg border border-purple-100 flex flex-col items-end">
-                  <span className="text-xs text-purple-600 font-bold uppercase tracking-wider">Current Design</span>
-                  <span className="text-sm font-bold text-purple-900">{currentDesignInfo.name}</span>
+                  <span className="text-xs text-purple-600 font-bold uppercase tracking-wider">
+                    Current Design
+                  </span>
+                  <span className="text-sm font-bold text-purple-900">
+                    {currentDesignInfo.name}
+                  </span>
                 </div>
-                <button onClick={() => setActiveTab('export')} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all flex items-center gap-2">
+                <button
+                  onClick={() => setActiveTab('export')}
+                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all flex items-center gap-2"
+                >
                   Looks Good! Export <Check size={18} />
                 </button>
               </div>
@@ -1589,14 +2226,33 @@ export default function TactileGenerator() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-6">
               <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                <h3 className="font-bold text-black mb-4 flex items-center gap-2"><Printer className="text-green-600" size={20} /> Printing Instructions</h3>
+                <h3 className="font-bold text-black mb-4 flex items-center gap-2">
+                  <Printer className="text-green-600" size={20} /> Printing Instructions
+                </h3>
                 <ol className="space-y-4 text-base text-gray-800 list-decimal list-outside pl-4">
-                  <li><strong>Download</strong> the .scad file using the button below.</li>
-                  <li><strong>Download OpenSCAD</strong> (free) from openscad.org if you do not have it.</li>
-                  <li><strong>Move</strong> your <code className="bg-gray-100 px-1 py-0.5 rounded text-red-500">{logoFilename}</code> into the same folder (if using a logo).</li>
-                  <li><strong>Open</strong> the .scad file.</li>
-                  <li>Press <strong>F6</strong> to Render.</li>
-                  <li>Go to <strong>File &gt; Export &gt; Export as STL</strong>.</li>
+                  <li>
+                    <strong>Download</strong> the .scad file using the button below.
+                  </li>
+                  <li>
+                    <strong>Download OpenSCAD</strong> (free) from openscad.org if you do not have
+                    it.
+                  </li>
+                  <li>
+                    <strong>Move</strong> your{' '}
+                    <code className="bg-gray-100 px-1 py-0.5 rounded text-red-500">
+                      {logoFilename}
+                    </code>{' '}
+                    into the same folder (if using a logo).
+                  </li>
+                  <li>
+                    <strong>Open</strong> the .scad file.
+                  </li>
+                  <li>
+                    Press <strong>F6</strong> to Render.
+                  </li>
+                  <li>
+                    Go to <strong>File &gt; Export &gt; Export as STL</strong>.
+                  </li>
                   <li>Slice & Print! (0.2mm layer height recommended).</li>
                 </ol>
               </div>
@@ -1604,21 +2260,36 @@ export default function TactileGenerator() {
                 <h4 className="font-bold text-blue-950 mb-2">Selected Design</h4>
                 <p className="text-blue-900 text-xl font-bold mb-1">{currentDesignInfo.name}</p>
                 <p className="text-base text-blue-800 mb-4">{currentDesignInfo.description}</p>
-                <button onClick={downloadSCAD} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2"><Download size={18} /> Download .SCAD</button>
+                <button
+                  onClick={downloadSCAD}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center gap-2"
+                >
+                  <Download size={18} /> Download .SCAD
+                </button>
               </div>
             </div>
             <div className="lg:col-span-2">
               <div className="bg-gray-900 rounded-xl shadow-lg overflow-hidden flex flex-col h-[600px]">
                 <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-gray-700">
-                  <span className="text-gray-400 text-sm font-mono flex items-center gap-2"><FileCode size={14} /> kaa_object.scad</span>
-                  <button onClick={copyToClipboard} className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition-colors"><Copy size={14} /> Copy Code</button>
+                  <span className="text-gray-400 text-sm font-mono flex items-center gap-2">
+                    <FileCode size={14} /> kaa_object.scad
+                  </span>
+                  <button
+                    onClick={copyToClipboard}
+                    className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition-colors"
+                  >
+                    <Copy size={14} /> Copy Code
+                  </button>
                 </div>
-                <div className="p-4 overflow-auto flex-1"><pre className="font-mono text-sm text-green-400 leading-relaxed whitespace-pre-wrap">{generatedCode}</pre></div>
+                <div className="p-4 overflow-auto flex-1">
+                  <pre className="font-mono text-sm text-green-400 leading-relaxed whitespace-pre-wrap">
+                    {generatedCode}
+                  </pre>
+                </div>
               </div>
             </div>
           </div>
         )}
-
       </main>
     </div>
   );

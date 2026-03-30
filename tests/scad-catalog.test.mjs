@@ -50,16 +50,23 @@ test('award factory bundle files are cataloged with external-asset flags', () =>
     'award_factory_pro.scad',
     'coin_edge_text_generator.scad',
     'medal_ribbon_generator.scad',
-    'svg_to_coin_layout.scad',
+    'svg_to_coin_layout.scad'
   ];
 
   for (const fileName of expectedFiles) {
-    assert.ok(catalog.entries.some((entry) => entry.fileName === fileName), `Missing award file ${fileName}`);
+    assert.ok(
+      catalog.entries.some((entry) => entry.fileName === fileName),
+      `Missing award file ${fileName}`
+    );
   }
 
   const needsImportFiles = ['award_factory_pro.scad', 'svg_to_coin_layout.scad'];
   for (const fileName of needsImportFiles) {
     const entry = catalog.entries.find((item) => item.fileName === fileName);
-    assert.equal(entry?.needsExternalAsset, true, `${fileName} should be flagged as needing external assets`);
+    assert.equal(
+      entry?.needsExternalAsset,
+      true,
+      `${fileName} should be flagged as needing external assets`
+    );
   }
 });

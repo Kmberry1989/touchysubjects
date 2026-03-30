@@ -134,7 +134,10 @@ export function getCompileBundleForModel(modelId, overriddenSource, externalAsse
   return {
     entryFile: `/lib/${entry.id}`,
     cleanupRoot: '/lib',
-    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({ path, content })),
+    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({
+      path,
+      content
+    }))
   };
 }
 
@@ -191,7 +194,7 @@ function collectRecursiveDeps(entryFileName, entrySource, additionalLookup) {
   const seen = new Set();
   const queue = parseIncludeDependencies(entrySource).map((dep) => ({
     dep,
-    fromDir: getDirName(entryFileName),
+    fromDir: getDirName(entryFileName)
   }));
 
   while (queue.length > 0) {
@@ -222,7 +225,12 @@ function collectRecursiveDeps(entryFileName, entrySource, additionalLookup) {
   return deps;
 }
 
-export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additionalFiles = [], externalAssetFiles = []) {
+export function getCompileBundleForAdHoc(
+  entryFileName,
+  overriddenSource,
+  additionalFiles = [],
+  externalAssetFiles = []
+) {
   if (typeof entryFileName !== 'string' || !entryFileName.trim()) {
     throw new Error('entryFileName is required for ad-hoc compile bundles');
   }
@@ -262,7 +270,10 @@ export function getCompileBundleForAdHoc(entryFileName, overriddenSource, additi
   return {
     entryFile: `/lib/${entryPath}`,
     cleanupRoot: '/lib',
-    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({ path, content })),
+    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({
+      path,
+      content
+    }))
   };
 }
 

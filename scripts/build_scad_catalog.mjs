@@ -86,14 +86,17 @@ const categoryMap = new Map([
   ['award_factory_pro.scad', ['Awards & Recognition', 'Award Factory']],
   ['coin_edge_text_generator.scad', ['Awards & Recognition', 'Award Factory']],
   ['medal_ribbon_generator.scad', ['Awards & Recognition', 'Award Factory']],
-  ['svg_to_coin_layout.scad', ['Awards & Recognition', 'Award Factory']],
+  ['svg_to_coin_layout.scad', ['Awards & Recognition', 'Award Factory']]
 ]);
 
 const folderCategoryMap = new Map([
   ['Touchy_Subjects_Full_OpenSCAD_Concept_Pack (1)', ['Touchy Subjects', 'Full Concept Pack']],
-  ['Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack', ['Touchy Subjects', 'Product Line Pack']],
+  [
+    'Touchy_Subjects_Refined_OpenSCAD_Pack/Touchy_Subjects_OpenSCAD_Pack',
+    ['Touchy Subjects', 'Product Line Pack']
+  ],
   ['Touchy_Subjects_Refined_OpenSCAD_Pack', ['Touchy Subjects', 'Refined Pack']],
-  ['Touchy_Subjects_Next_Products_Pack', ['Touchy Subjects', 'Next Products']],
+  ['Touchy_Subjects_Next_Products_Pack', ['Touchy Subjects', 'Next Products']]
 ]);
 
 function displayNameFromFile(fileName) {
@@ -176,14 +179,14 @@ for (let i = 0; i < relativePaths.length; i += 1) {
     includeDeps,
     needsExternalAsset: hasExternalAssetImports(source),
     sections: parsed.sections,
-    params: parsed.params,
+    params: parsed.params
   });
 }
 
 const payload = {
   generatedAt: new Date().toISOString(),
   count: entries.length,
-  entries,
+  entries
 };
 
 fs.writeFileSync(outFile, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');

@@ -1459,9 +1459,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Hidden"
-      ],
+      "sections": ["Hidden"],
       "params": [
         {
           "key": "radius",
@@ -2229,9 +2227,7 @@
       "category": "Utilities",
       "subcategory": "Build Plate Composition",
       "duplicateOf": null,
-      "includeDeps": [
-        "ContourHandshake_28878.scad"
-      ],
+      "includeDeps": ["ContourHandshake_28878.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -3047,9 +3043,7 @@
       "category": "Utilities",
       "subcategory": "Hardware & Fasteners",
       "duplicateOf": null,
-      "includeDeps": [
-        "utils/build_plate.scad"
-      ],
+      "includeDeps": ["utils/build_plate.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -3280,10 +3274,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Parameters",
-        "Hidden"
-      ],
+      "sections": ["Parameters", "Hidden"],
       "params": [
         {
           "key": "TABLE_HEIGHT",
@@ -3493,18 +3484,9 @@
       "category": "Utilities",
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
-      "includeDeps": [
-        "write/Write.scad",
-        "MCAD/triangles.scad",
-        "utils/build_plate.scad"
-      ],
+      "includeDeps": ["write/Write.scad", "MCAD/triangles.scad", "utils/build_plate.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "The Basics",
-        "Add Image",
-        "Add Text",
-        "Hidden"
-      ],
+      "sections": ["The Basics", "Add Image", "Add Text", "Hidden"],
       "params": [
         {
           "key": "card_count",
@@ -4684,11 +4666,7 @@
       "category": "Toys & Fidgets",
       "subcategory": "Kinetic Objects",
       "duplicateOf": null,
-      "includeDeps": [
-        "MCAD/involute_gears.scad",
-        "write/Write.scad",
-        "utils/build_plate.scad"
-      ],
+      "includeDeps": ["MCAD/involute_gears.scad", "write/Write.scad", "utils/build_plate.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -6329,16 +6307,9 @@
       "category": "Architecture & Scale Models",
       "subcategory": "General",
       "duplicateOf": null,
-      "includeDeps": [
-        "write/Write.scad",
-        "utils/build_plate.scad"
-      ],
+      "includeDeps": ["write/Write.scad", "utils/build_plate.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "Prebuilt",
-        "Custom",
-        "Hidden"
-      ],
+      "sections": ["Prebuilt", "Custom", "Hidden"],
       "params": [
         {
           "key": "bird_type",
@@ -6847,15 +6818,7 @@
           "section": "Hidden",
           "visibility": "advanced",
           "editable": true,
-          "defaultValue": [
-            101.6,
-            101.6,
-            127,
-            101.6,
-            101.6,
-            127,
-            101.6
-          ],
+          "defaultValue": [101.6, 101.6, 127, 101.6, 101.6, 127, 101.6],
           "rawValue": "[101.6,101.6,127,101.6,101.6,127,101.6]",
           "rawHint": null,
           "options": null,
@@ -6873,15 +6836,7 @@
           "section": "Hidden",
           "visibility": "advanced",
           "editable": true,
-          "defaultValue": [
-            101.6,
-            101.6,
-            127,
-            101.6,
-            101.6,
-            127,
-            101.6
-          ],
+          "defaultValue": [101.6, 101.6, 127, 101.6, 101.6, 127, 101.6],
           "rawValue": "[101.6,101.6,127,101.6,101.6,127,101.6]",
           "rawHint": null,
           "options": null,
@@ -6899,15 +6854,7 @@
           "section": "Hidden",
           "visibility": "advanced",
           "editable": true,
-          "defaultValue": [
-            203.2,
-            254,
-            203.2,
-            203.2,
-            254,
-            152.4,
-            203.2
-          ],
+          "defaultValue": [203.2, 254, 203.2, 203.2, 254, 152.4, 203.2],
           "rawValue": "[203.2,254,203.2,203.2,254,152.4,203.2]",
           "rawHint": null,
           "options": null,
@@ -6925,15 +6872,7 @@
           "section": "Hidden",
           "visibility": "advanced",
           "editable": true,
-          "defaultValue": [
-            31.75,
-            31.75,
-            38.1,
-            28.575,
-            31.75,
-            38.1,
-            31.75
-          ],
+          "defaultValue": [31.75, 31.75, 38.1, 28.575, 31.75, 38.1, 31.75],
           "rawValue": "[31.75,31.75,38.1,28.575,31.75,38.1,31.75]",
           "rawHint": null,
           "options": null,
@@ -6951,15 +6890,7 @@
           "section": "Hidden",
           "visibility": "advanced",
           "editable": true,
-          "defaultValue": [
-            152.4,
-            184.15,
-            152.4,
-            152.4,
-            190.5,
-            101.6,
-            150
-          ],
+          "defaultValue": [152.4, 184.15, 152.4, 152.4, 190.5, 101.6, 150],
           "rawValue": "[152.4,184.15,152.4,152.4,190.5,101.6,150]",
           "rawHint": null,
           "options": null,
@@ -6999,17 +6930,9 @@
       "category": "Utilities",
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
-      "includeDeps": [
-        "utils/build_plate.scad",
-        "write/Write.scad"
-      ],
+      "includeDeps": ["utils/build_plate.scad", "write/Write.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "Shape",
-        "Settings",
-        "Build Plate",
-        "Hidden"
-      ],
+      "sections": ["Shape", "Settings", "Build Plate", "Hidden"],
       "params": [
         {
           "key": "box_shape",
@@ -7062,61 +6985,18 @@
           "editable": true,
           "defaultValue": [
             [
-              [
-                -15.108665,
-                13.315063
-              ],
-              [
-                -49.984974,
-                8.760868
-              ],
-              [
-                -24.446339,
-                -15.423332
-              ],
-              [
-                -30.892416,
-                -50
-              ],
-              [
-                0,
-                -33.184643
-              ],
-              [
-                30.892416,
-                -50.000004
-              ],
-              [
-                24.446342,
-                -15.42334
-              ],
-              [
-                49.984974,
-                8.760864
-              ],
-              [
-                15.108676,
-                13.315056
-              ],
-              [
-                0.000006,
-                45.077072
-              ]
+              [-15.108665, 13.315063],
+              [-49.984974, 8.760868],
+              [-24.446339, -15.423332],
+              [-30.892416, -50],
+              [0, -33.184643],
+              [30.892416, -50.000004],
+              [24.446342, -15.42334],
+              [49.984974, 8.760864],
+              [15.108676, 13.315056],
+              [0.000006, 45.077072]
             ],
-            [
-              [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9
-              ]
-            ]
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]
           ],
           "rawValue": "[[[-15.108665,13.315063],[-49.984974,8.760868],[-24.446339,-15.423332],[-30.892416,-50.000000],[0.000000,-33.184643],[30.892416,-50.000004],[24.446342,-15.423340],[49.984974,8.760864],[15.108676,13.315056],[0.000006,45.077072]],[[0,1,2,3,4,5,6,7,8,9]]]",
           "rawHint": "draw_polygon:100x100",
@@ -7325,10 +7205,7 @@
       "category": "Decor",
       "subcategory": "Seasonal & Artistic",
       "duplicateOf": null,
-      "includeDeps": [
-        "write/Write.scad",
-        "utils/hsvtorgb.scad"
-      ],
+      "includeDeps": ["write/Write.scad", "utils/hsvtorgb.scad"],
       "needsExternalAsset": false,
       "sections": [
         "Tree",
@@ -7577,61 +7454,18 @@
           "editable": true,
           "defaultValue": [
             [
-              [
-                0,
-                46.278908
-              ],
-              [
-                -15.319993,
-                17.365068
-              ],
-              [
-                -47.552826,
-                11.729756
-              ],
-              [
-                -24.788267,
-                -11.775289
-              ],
-              [
-                -29.389259,
-                -44.171944
-              ],
-              [
-                0.000001,
-                -29.785017
-              ],
-              [
-                29.389269,
-                -44.17194
-              ],
-              [
-                24.788267,
-                -11.77529
-              ],
-              [
-                47.552826,
-                11.729764
-              ],
-              [
-                15.319985,
-                17.365074
-              ]
+              [0, 46.278908],
+              [-15.319993, 17.365068],
+              [-47.552826, 11.729756],
+              [-24.788267, -11.775289],
+              [-29.389259, -44.171944],
+              [0.000001, -29.785017],
+              [29.389269, -44.17194],
+              [24.788267, -11.77529],
+              [47.552826, 11.729764],
+              [15.319985, 17.365074]
             ],
-            [
-              [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9
-              ]
-            ]
+            [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]
           ],
           "rawValue": "[[[0.000000,46.278908],[-15.319993,17.365068],[-47.552826,11.729756],[-24.788267,-11.775289],[-29.389259,-44.171944],[0.000001,-29.785017],[29.389269,-44.171940],[24.788267,-11.775290],[47.552826,11.729764],[15.319985,17.365074]],[[0,1,2,3,4,5,6,7,8,9]]]",
           "rawHint": "draw_polygon:100x100",
@@ -8507,17 +8341,9 @@
       "category": "Utilities",
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
-      "includeDeps": [
-        "write.scad"
-      ],
+      "includeDeps": ["write.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "Global",
-        "Basic",
-        "Pattern",
-        "Advanced",
-        "Hidden"
-      ],
+      "sections": ["Global", "Basic", "Pattern", "Advanced", "Hidden"],
       "params": [
         {
           "key": "part",
@@ -9074,10 +8900,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Global",
-        "Hidden"
-      ],
+      "sections": ["Global", "Hidden"],
       "params": [
         {
           "key": "image_file",
@@ -9342,10 +9165,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Size and shape",
-        "Optional features"
-      ],
+      "sections": ["Size and shape", "Optional features"],
       "params": [
         {
           "key": "top_diameter",
@@ -9692,9 +9512,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Hidden"
-      ],
+      "sections": ["Hidden"],
       "params": [
         {
           "key": "Rings",
@@ -10240,9 +10058,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": true,
-      "sections": [
-        "POCKET ORBIT CONFIG"
-      ],
+      "sections": ["POCKET ORBIT CONFIG"],
       "params": [
         {
           "key": "design_id",
@@ -10472,9 +10288,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": true,
-      "sections": [
-        "POCKET ORBIT CONFIG"
-      ],
+      "sections": ["POCKET ORBIT CONFIG"],
       "params": [
         {
           "key": "design_id",
@@ -10702,17 +10516,9 @@
       "category": "Imaging",
       "subcategory": "Lithophanes",
       "duplicateOf": null,
-      "includeDeps": [
-        "utils/build_plate.scad",
-        "write/Write.scad"
-      ],
+      "includeDeps": ["utils/build_plate.scad", "write/Write.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "Image",
-        "Adjustments",
-        "Text",
-        "Hidden"
-      ],
+      "sections": ["Image", "Adjustments", "Text", "Hidden"],
       "params": [
         {
           "key": "picture_shape",
@@ -11204,17 +11010,9 @@
       "category": "Utilities",
       "subcategory": "Holders & Clips",
       "duplicateOf": null,
-      "includeDeps": [
-        "write/Write.scad"
-      ],
+      "includeDeps": ["write/Write.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "Text",
-        "Text options",
-        "Plate options",
-        "mm",
-        "Hidden"
-      ],
+      "sections": ["Text", "Text options", "Plate options", "mm", "Hidden"],
       "params": [
         {
           "key": "line_1",
@@ -11832,11 +11630,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Text",
-        "Dimensions",
-        "Wave"
-      ],
+      "sections": ["Text", "Dimensions", "Wave"],
       "params": [
         {
           "key": "myword",
@@ -12467,16 +12261,9 @@
       "category": "Utilities",
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
-      "includeDeps": [
-        "utils/build_plate.scad"
-      ],
+      "includeDeps": ["utils/build_plate.scad"],
       "needsExternalAsset": false,
-      "sections": [
-        "All",
-        "Phone",
-        "Pattern",
-        "Hidden"
-      ],
+      "sections": ["All", "Phone", "Pattern", "Hidden"],
       "params": [
         {
           "key": "build_plate_selector",
@@ -13367,11 +13154,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Units and Scaling",
-        "Furniture Type",
-        "Dimensions"
-      ],
+      "sections": ["Units and Scaling", "Furniture Type", "Dimensions"],
       "params": [
         {
           "key": "units",
@@ -15726,9 +15509,7 @@
       "category": "Utilities",
       "subcategory": "Pouring & Writing Tools",
       "duplicateOf": null,
-      "includeDeps": [
-        "MCAD/fonts.scad"
-      ],
+      "includeDeps": ["MCAD/fonts.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -15868,10 +15649,7 @@
       "category": "Utilities",
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
-      "includeDeps": [
-        "utils/build_plate.scad",
-        "write/Write.scad"
-      ],
+      "includeDeps": ["utils/build_plate.scad", "write/Write.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -16306,9 +16084,7 @@
       "category": "Utilities",
       "subcategory": "Boxes & Cases",
       "duplicateOf": null,
-      "includeDeps": [
-        "write/Write.scad"
-      ],
+      "includeDeps": ["write/Write.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -16697,9 +16473,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Hidden"
-      ],
+      "sections": ["Hidden"],
       "params": [
         {
           "key": "printer_nozzle_size",
@@ -16747,406 +16521,20 @@
           "visibility": "basic",
           "editable": true,
           "defaultValue": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+            0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1,
+            1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1,
+            1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
+            1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+            0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
+            1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
+            1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
           ],
           "rawValue": "[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]",
           "rawHint": "image_array:20x20",
@@ -17166,406 +16554,20 @@
           "visibility": "basic",
           "editable": true,
           "defaultValue": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+            0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0,
+            0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1,
+            1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1,
+            1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+            0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
           ],
           "rawValue": "[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]",
           "rawHint": "image_array:20x20",
@@ -18510,10 +17512,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Global",
-        "Hidden"
-      ],
+      "sections": ["Global", "Hidden"],
       "params": [
         {
           "key": "ribbons",
@@ -19799,10 +18798,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "AdditionalSettings",
-        "Hidden"
-      ],
+      "sections": ["AdditionalSettings", "Hidden"],
       "params": [
         {
           "key": "faces_segment",
@@ -32182,10 +31178,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            -9,
-            9
-          ],
+          "defaultValue": [-9, 9],
           "rawValue": "[-9,9]",
           "rawHint": null,
           "options": null,
@@ -32704,13 +31697,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "CLIP",
-        "TEXT",
-        "FONT",
-        "OPTIONS",
-        "HIDDEN"
-      ],
+      "sections": ["CLIP", "TEXT", "FONT", "OPTIONS", "HIDDEN"],
       "params": [
         {
           "key": "TOTAL_LENGTH",
@@ -33135,10 +32122,7 @@
       "category": "Utilities",
       "subcategory": "Hardware & Fasteners",
       "duplicateOf": null,
-      "includeDeps": [
-        "text_on.scad",
-        "threads.scad"
-      ],
+      "includeDeps": ["text_on.scad", "threads.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33328,12 +32312,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            "RL",
-            "FL",
-            "RR",
-            "FR"
-          ],
+          "defaultValue": ["RL", "FL", "RR", "FR"],
           "rawValue": "[\"RL\", \"FL\", \"RR\", \"FR\"]",
           "rawHint": null,
           "options": null,
@@ -33355,9 +32334,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33479,9 +32456,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33567,9 +32542,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33669,9 +32642,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33824,9 +32795,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -33836,11 +32805,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            160,
-            90,
-            16
-          ],
+          "defaultValue": [160, 90, 16],
           "rawValue": "[160,90,16]",
           "rawHint": null,
           "options": null,
@@ -33894,11 +32859,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            54,
-            42,
-            4
-          ],
+          "defaultValue": [54, 42, 4],
           "rawValue": "[54,42,4]",
           "rawHint": null,
           "options": null,
@@ -33916,11 +32877,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            36,
-            24,
-            6
-          ],
+          "defaultValue": [36, 24, 6],
           "rawValue": "[36,24,6]",
           "rawHint": null,
           "options": null,
@@ -33942,9 +32899,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34030,9 +32985,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34100,9 +33053,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34282,9 +33233,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34352,9 +33301,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34364,11 +33311,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            72,
-            48,
-            8
-          ],
+          "defaultValue": [72, 48, 8],
           "rawValue": "[72,48,8]",
           "rawHint": null,
           "options": null,
@@ -34386,11 +33329,7 @@
           "section": "General",
           "visibility": "basic",
           "editable": true,
-          "defaultValue": [
-            54,
-            30,
-            8
-          ],
+          "defaultValue": [54, 30, 8],
           "rawValue": "[54,30,8]",
           "rawHint": null,
           "options": null,
@@ -34466,9 +33405,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34572,9 +33509,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34624,9 +33559,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34658,9 +33591,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34728,9 +33659,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": []
@@ -34743,9 +33672,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34849,9 +33776,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Full Concept Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -34969,9 +33894,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35093,9 +34016,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35181,9 +34102,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35287,9 +34206,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35393,9 +34310,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35625,9 +34540,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35713,9 +34626,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -35891,9 +34802,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Next Products",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_v2.scad"
-      ],
+      "includeDeps": ["common_v2.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36051,9 +34960,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36193,9 +35100,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36457,9 +35362,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36599,9 +35502,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36777,9 +35678,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -36991,9 +35890,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -37187,9 +36084,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -37361,9 +36256,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Product Line Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -37557,9 +36450,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Product Line Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -37771,9 +36662,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Product Line Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -38003,9 +36892,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Product Line Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -38289,9 +37176,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Product Line Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common.scad"
-      ],
+      "includeDeps": ["common.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -38575,9 +37460,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -38735,9 +37618,7 @@
       "category": "Touchy Subjects",
       "subcategory": "Refined Pack",
       "duplicateOf": null,
-      "includeDeps": [
-        "common_refined.scad"
-      ],
+      "includeDeps": ["common_refined.scad"],
       "needsExternalAsset": false,
       "sections": [],
       "params": [
@@ -39484,13 +38365,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Box dimensions",
-        "Box options",
-        "PCB_Feet",
-        "STL element to export",
-        "Hidden"
-      ],
+      "sections": ["Box dimensions", "Box options", "PCB_Feet", "STL element to export", "Hidden"],
       "params": [
         {
           "key": "Length",
@@ -40008,12 +38883,7 @@
       "duplicateOf": null,
       "includeDeps": [],
       "needsExternalAsset": false,
-      "sections": [
-        "Wall",
-        "Mortar",
-        "Base",
-        "Hidden"
-      ],
+      "sections": ["Wall", "Mortar", "Base", "Hidden"],
       "params": [
         {
           "key": "U",

@@ -3,6 +3,7 @@
 This pack contains parametric concept models for the full brainstormed product family.
 
 ## Files
+
 - common.scad
 - orbit_pebble.scad
 - tactile_coin_duo.scad
@@ -23,14 +24,18 @@ This pack contains parametric concept models for the full brainstormed product f
 - pill_pendant_clip_carrier.scad
 
 ## Install
+
 1. Install OpenSCAD from https://openscad.org/
 
 ## Open / Preview
+
 Open any `.scad` file in OpenSCAD and press:
+
 - F5 for preview
 - F6 for full render
 
 ## Export STL
+
 Example commands:
 
 ```bash
@@ -40,6 +45,7 @@ openscad -o dose_halo_pendant.stl dose_halo_pendant.scad
 ```
 
 ## Notes
+
 - These are concept-first parametric models intended for refinement in your workflow.
 - Threads and bayonet details are simplified visual concepts, not production-fit mechanical standards.
 - For wearable or medical-adjacent products, finalize tolerances, materials, sealing, and safety before use or sale.

@@ -1,4 +1,3 @@
-
 # Touchy Subjects - Next Products OpenSCAD Pack
 
 This pack extends the first concept set with the next products suggested during concept development.
@@ -23,6 +22,7 @@ Download and install OpenSCAD from the official site for Windows, macOS, or Linu
 ## Build / Preview
 
 Open a `.scad` file and use:
+
 - `F5` for preview
 - `F6` for full render
 
@@ -42,19 +42,23 @@ openscad -o pill_pendant_clip_carrier.stl pill_pendant_clip_carrier.scad
 ## Suggested print / prototype notes
 
 ### Bracelets and grip bands
+
 - Use TPU for tactile prototype shells.
 - Use a spring steel insert for true slap behavior.
 - Start with 0.20 mm layer height and 3-4 walls.
 
 ### Bottle sleeves
+
 - TPU or a softer TPE works best for final grip testing.
 - Consider split-seam test prints to tune bottle fit.
 
 ### Pendants and carriers
+
 - PETG, nylon, resin, machined aluminum, or stainless are better than PLA for fit and wear.
 - Test closure retention, accidental opening resistance, and moisture ingress before real-world use.
 
 ## Product strategy notes
+
 - Texture variants can become a SKU family.
 - The snap-wrap band and Focus Dock can be merchandised together as a desk + carry ecosystem.
 - The pendant family can be sold as necklace, clip, or bracelet attachment formats.

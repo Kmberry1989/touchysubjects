@@ -7,7 +7,9 @@ function EnumOptionsList({ options }) {
 
   return (
     <details open className="rounded border border-gray-200 bg-gray-50 px-2 py-1.5">
-      <summary className="cursor-pointer text-[11px] font-semibold text-gray-600">Options ({options.length})</summary>
+      <summary className="cursor-pointer text-[11px] font-semibold text-gray-600">
+        Options ({options.length})
+      </summary>
       <div className="mt-1 flex flex-wrap gap-1">
         {options.map((opt) => (
           <span
@@ -175,14 +177,20 @@ export default function ScadControls({ params, values, onChange, title }) {
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-4">
       <h3 className="font-bold text-gray-900">{title}</h3>
-      {params.length === 0 && <p className="text-sm text-gray-500">No editable parameters in this section.</p>}
+      {params.length === 0 && (
+        <p className="text-sm text-gray-500">No editable parameters in this section.</p>
+      )}
       {params.map((param) => (
         <div key={param.key} className="space-y-1 border-b border-gray-100 pb-3 last:border-b-0">
           <div className="flex items-center justify-between gap-3">
             <label className="text-sm font-semibold text-gray-900">{param.key}</label>
             <span className="text-xs text-gray-500">{param.section}</span>
           </div>
-          <ParamControl param={param} value={values[param.key]} onChange={(v) => onChange(param.key, v)} />
+          <ParamControl
+            param={param}
+            value={values[param.key]}
+            onChange={(v) => onChange(param.key, v)}
+          />
           {param.rawHint && <p className="text-xs text-gray-500">Hint: [{param.rawHint}]</p>}
         </div>
       ))}

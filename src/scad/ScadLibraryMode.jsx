@@ -5,7 +5,12 @@ import ScadControls from './controls';
 import { parseIncludeDependencies, parseScadSource } from './parser';
 import { applyParamOverrides } from './override';
 import { normalizeExternalAssetPath, resolveExternalAssetPaths } from './externalAssets';
-import { getCatalog, getCompileBundleForAdHoc, getCompileBundleForModel, getModelSource } from './sourceRegistry';
+import {
+  getCatalog,
+  getCompileBundleForAdHoc,
+  getCompileBundleForModel,
+  getModelSource
+} from './sourceRegistry';
 
 const PRESET_KEY = 'scad-library-presets-v1';
 
@@ -80,7 +85,7 @@ function createCustomEntry(fileName, source) {
     needsExternalAsset: hasExternalAssetImports(source),
     sections: parsed.sections,
     params: parsed.params,
-    sourceType: 'custom',
+    sourceType: 'custom'
   };
 }
 
@@ -113,7 +118,9 @@ function statusForModel(entry, availableFileNames) {
     return !availableFileNames.has(normalized) && !availableFileNames.has(base);
   });
 
-  const imageParam = (entry.params ?? []).some((p) => p.type === 'image_surface' || p.type === 'image_array');
+  const imageParam = (entry.params ?? []).some(
+    (p) => p.type === 'image_surface' || p.type === 'image_array'
+  );
   if (entry.needsExternalAsset) return 'Needs file input';
   if (hasMissingDeps) return 'Missing lib';
   if (imageParam) return 'Needs image input';
@@ -126,15 +133,23 @@ export default function ScadLibraryMode() {
 
   const [selectedModelId, setSelectedModelId] = React.useState(initialModel);
   const [showAdvanced, setShowAdvanced] = React.useState(false);
-  const [presets, setPresets] = React.useState(() => safeJsonParse(localStorage.getItem(PRESET_KEY), {}));
+  const [presets, setPresets] = React.useState(() =>
+    safeJsonParse(localStorage.getItem(PRESET_KEY), {})
+  );
   const [customEntries, setCustomEntries] = React.useState([]);
   const [customSources, setCustomSources] = React.useState({});
   const [externalAssets, setExternalAssets] = React.useState({});
   const [values, setValues] = React.useState({});
 
-  const allEntries = React.useMemo(() => [...customEntries, ...catalog.entries], [catalog.entries, customEntries]);
+  const allEntries = React.useMemo(
+    () => [...customEntries, ...catalog.entries],
+    [catalog.entries, customEntries]
+  );
   const categoryTree = React.useMemo(() => buildCategoryTree(allEntries), [allEntries]);
-  const availableFileNames = React.useMemo(() => new Set(allEntries.map((entry) => entry.fileName)), [allEntries]);
+  const availableFileNames = React.useMemo(
+    () => new Set(allEntries.map((entry) => entry.fileName)),
+    [allEntries]
+  );
 
   const selectedEntry = React.useMemo(
     () => allEntries.find((entry) => entry.id === selectedModelId) ?? allEntries[0],
@@ -191,7 +206,7 @@ export default function ScadLibraryMode() {
         assetPath,
         content,
         provided: Boolean(content),
-        providedBy,
+        providedBy
       };
     });
   }, [externalAssets, requiredExternalAssetPaths]);
@@ -234,15 +249,27 @@ export default function ScadLibraryMode() {
 
       return {
         type: 'compile-v2',
-        ...getCompileBundleForAdHoc(selectedEntry.fileName, overriddenSource, additionalFiles, mountedExternalAssetFiles),
+        ...getCompileBundleForAdHoc(
+          selectedEntry.fileName,
+          overriddenSource,
+          additionalFiles,
+          mountedExternalAssetFiles
+        )
       };
     }
 
     return {
       type: 'compile-v2',
-      ...getCompileBundleForModel(selectedEntry.id, overriddenSource, mountedExternalAssetFiles),
+      ...getCompileBundleForModel(selectedEntry.id, overriddenSource, mountedExternalAssetFiles)
     };
-  }, [compileBlockReason, customEntries, customSources, mountedExternalAssetFiles, overriddenSource, selectedEntry]);
+  }, [
+    compileBlockReason,
+    customEntries,
+    customSources,
+    mountedExternalAssetFiles,
+    overriddenSource,
+    selectedEntry
+  ]);
 
   const onChangeParam = React.useCallback((key, value) => {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -260,7 +287,7 @@ export default function ScadLibraryMode() {
       const loaded = await Promise.all(
         files.map(async (file) => ({
           fileName: file.name,
-          content: new Uint8Array(await file.arrayBuffer()),
+          content: new Uint8Array(await file.arrayBuffer())
         }))
       );
 
@@ -281,7 +308,9 @@ export default function ScadLibraryMode() {
   const addCustomSources = React.useCallback((loadedFiles) => {
     if (loadedFiles.length === 0) return;
 
-    const nextEntries = loadedFiles.map(({ fileName, source }) => createCustomEntry(fileName, source));
+    const nextEntries = loadedFiles.map(({ fileName, source }) =>
+      createCustomEntry(fileName, source)
+    );
     setCustomEntries((prev) => {
       const byId = new Map(prev.map((entry) => [entry.id, entry]));
       for (const entry of nextEntries) {
@@ -304,7 +333,9 @@ export default function ScadLibraryMode() {
   const importScadFiles = React.useCallback(
     async (event) => {
       const input = event.target;
-      const files = Array.from(input.files ?? []).filter((file) => file.name.toLowerCase().endsWith('.scad'));
+      const files = Array.from(input.files ?? []).filter((file) =>
+        file.name.toLowerCase().endsWith('.scad')
+      );
       if (files.length === 0) {
         input.value = '';
         return;
@@ -314,7 +345,7 @@ export default function ScadLibraryMode() {
         const loaded = await Promise.all(
           files.map(async (file) => ({
             fileName: file.name,
-            source: await file.text(),
+            source: await file.text()
           }))
         );
         addCustomSources(loaded);
@@ -366,8 +397,8 @@ export default function ScadLibraryMode() {
       ...presets,
       [selectedEntry.id]: {
         ...(presets[selectedEntry.id] ?? {}),
-        [name]: values,
-      },
+        [name]: values
+      }
     };
     setPresets(next);
     localStorage.setItem(PRESET_KEY, JSON.stringify(next));
@@ -391,7 +422,7 @@ export default function ScadLibraryMode() {
       model: selectedEntry.id,
       fileName: selectedEntry.fileName,
       values,
-      exportedAt: new Date().toISOString(),
+      exportedAt: new Date().toISOString()
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
@@ -428,7 +459,13 @@ export default function ScadLibraryMode() {
         <div className="space-y-2 mb-4 pb-3 border-b border-gray-100">
           <label className="w-full px-3 py-2 rounded bg-indigo-100 text-indigo-900 text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer">
             <Upload size={14} /> Open .scad file(s)
-            <input type="file" accept=".scad,text/plain" multiple className="hidden" onChange={importScadFiles} />
+            <input
+              type="file"
+              accept=".scad,text/plain"
+              multiple
+              className="hidden"
+              onChange={importScadFiles}
+            />
           </label>
           <button
             onClick={createBlankFile}
@@ -436,7 +473,9 @@ export default function ScadLibraryMode() {
           >
             Create Blank File
           </button>
-          <p className="text-[11px] text-gray-500">Local files are available in this browser session.</p>
+          <p className="text-[11px] text-gray-500">
+            Local files are available in this browser session.
+          </p>
         </div>
 
         {[...categoryTree.entries()].map(([category, subMap]) => (
@@ -444,7 +483,9 @@ export default function ScadLibraryMode() {
             <h3 className="font-semibold text-gray-900 mb-1">{category}</h3>
             {[...subMap.entries()].map(([sub, entries]) => (
               <details key={`${category}-${sub}`} open className="mb-2">
-                <summary className="cursor-pointer text-sm font-medium text-gray-700">{sub}</summary>
+                <summary className="cursor-pointer text-sm font-medium text-gray-700">
+                  {sub}
+                </summary>
                 <div className="mt-2 space-y-1 pl-2">
                   {entries.map((entry) => (
                     <button
@@ -453,9 +494,17 @@ export default function ScadLibraryMode() {
                       className={`w-full text-left text-xs px-2 py-1 rounded border ${selectedModelId === entry.id ? 'bg-blue-50 border-blue-300 text-blue-900' : 'border-transparent hover:bg-gray-50'}`}
                     >
                       <div className="font-semibold">{entry.displayName}</div>
-                      {entry.sourceType === 'custom' && <div className="text-[11px] text-indigo-700">Local file</div>}
-                      {entry.duplicateOf && <div className="text-[11px] text-orange-700">Exact duplicate of {entry.duplicateOf}</div>}
-                      <div className="text-[11px] text-gray-500">{statusForModel(entry, availableFileNames)}</div>
+                      {entry.sourceType === 'custom' && (
+                        <div className="text-[11px] text-indigo-700">Local file</div>
+                      )}
+                      {entry.duplicateOf && (
+                        <div className="text-[11px] text-orange-700">
+                          Exact duplicate of {entry.duplicateOf}
+                        </div>
+                      )}
+                      <div className="text-[11px] text-gray-500">
+                        {statusForModel(entry, availableFileNames)}
+                      </div>
                     </button>
                   ))}
                 </div>
@@ -469,13 +518,22 @@ export default function ScadLibraryMode() {
         <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-2">
           <h2 className="text-lg font-bold">{selectedEntry.displayName}</h2>
           <p className="text-xs text-gray-500 font-mono">{selectedEntry.filePath}</p>
-          {selectedEntry.sourceType === 'custom' && <p className="text-xs text-indigo-700">Editing a local uploaded SCAD file.</p>}
-          {selectedEntry.duplicateOf && (
-            <p className="text-sm text-orange-700">Exact duplicate of `{selectedEntry.duplicateOf}`.</p>
+          {selectedEntry.sourceType === 'custom' && (
+            <p className="text-xs text-indigo-700">Editing a local uploaded SCAD file.</p>
           )}
-          <div className="text-xs text-gray-600">Dependency status: {statusForModel(selectedEntry, availableFileNames)}</div>
+          {selectedEntry.duplicateOf && (
+            <p className="text-sm text-orange-700">
+              Exact duplicate of `{selectedEntry.duplicateOf}`.
+            </p>
+          )}
+          <div className="text-xs text-gray-600">
+            Dependency status: {statusForModel(selectedEntry, availableFileNames)}
+          </div>
           {selectedEntry.needsExternalAsset && (
-            <div data-testid="external-asset-panel" className="space-y-2 rounded border border-amber-200 bg-amber-50 px-2 py-2">
+            <div
+              data-testid="external-asset-panel"
+              className="space-y-2 rounded border border-amber-200 bg-amber-50 px-2 py-2"
+            >
               <div className="flex items-center justify-between gap-2 flex-wrap">
                 <p className="text-xs font-semibold text-amber-900">External Asset Files</p>
                 <label className="px-2 py-1 rounded bg-amber-200 text-amber-900 text-xs font-semibold cursor-pointer">
@@ -494,20 +552,38 @@ export default function ScadLibraryMode() {
               {requiredExternalAssetPaths.length > 0 ? (
                 <div className="space-y-1">
                   {externalAssetResolution.map((item) => (
-                    <div key={item.assetPath} className="flex items-center justify-between gap-2 text-[11px]">
+                    <div
+                      key={item.assetPath}
+                      className="flex items-center justify-between gap-2 text-[11px]"
+                    >
                       <span className="font-mono text-amber-900">{item.assetPath}</span>
-                      <span className={item.provided ? 'text-green-700 font-semibold' : 'text-red-700 font-semibold'}>
-                        {item.provided ? `Provided${item.providedBy && item.providedBy !== item.assetPath ? ` (${item.providedBy})` : ''}` : 'Missing'}
+                      <span
+                        className={
+                          item.provided
+                            ? 'text-green-700 font-semibold'
+                            : 'text-red-700 font-semibold'
+                        }
+                      >
+                        {item.provided
+                          ? `Provided${item.providedBy && item.providedBy !== item.assetPath ? ` (${item.providedBy})` : ''}`
+                          : 'Missing'}
                       </span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-[11px] text-amber-900">No concrete import filename detected yet. Set the filename parameter to a literal file path.</p>
+                <p className="text-[11px] text-amber-900">
+                  No concrete import filename detected yet. Set the filename parameter to a literal
+                  file path.
+                </p>
               )}
             </div>
           )}
-          {compileBlockReason && <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded px-2 py-1">{compileBlockReason}</p>}
+          {compileBlockReason && (
+            <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+              {compileBlockReason}
+            </p>
+          )}
           <div className="flex items-center gap-2 flex-wrap pt-2">
             <button
               onClick={savePreset}
@@ -523,7 +599,12 @@ export default function ScadLibraryMode() {
             </button>
             <label className="px-3 py-1.5 rounded bg-gray-200 text-gray-800 text-sm font-semibold inline-flex items-center gap-1 cursor-pointer">
               <Upload size={14} /> Import
-              <input type="file" accept="application/json" className="hidden" onChange={importPreset} />
+              <input
+                type="file"
+                accept="application/json"
+                className="hidden"
+                onChange={importPreset}
+              />
             </label>
             <select
               className="px-2 py-1.5 rounded border border-gray-300 text-sm"
@@ -548,7 +629,12 @@ export default function ScadLibraryMode() {
           </div>
         </div>
 
-        <ScadControls title="Basic Parameters" params={basicParams} values={values} onChange={onChangeParam} />
+        <ScadControls
+          title="Basic Parameters"
+          params={basicParams}
+          values={values}
+          onChange={onChangeParam}
+        />
 
         <div className="space-y-2">
           <button
@@ -558,7 +644,12 @@ export default function ScadLibraryMode() {
             <RefreshCw size={14} /> {showAdvanced ? 'Hide Advanced' : 'Show Advanced'}
           </button>
           {showAdvanced && (
-            <ScadControls title="Advanced Parameters" params={advancedParams} values={values} onChange={onChangeParam} />
+            <ScadControls
+              title="Advanced Parameters"
+              params={advancedParams}
+              values={values}
+              onChange={onChangeParam}
+            />
           )}
         </div>
       </section>
