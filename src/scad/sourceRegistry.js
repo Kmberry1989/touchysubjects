@@ -1,5 +1,6 @@
 import catalog from '../data/scadCatalog.json';
 import sources from '../data/scadSources.json';
+import { createCompileRequest } from './compilerAdapter.js';
 import { parseIncludeDependencies } from './parser.js';
 
 const modelSourceById = new Map(Object.entries(sources.modelSources));
@@ -80,7 +81,7 @@ function collectModelDependencies(entry) {
   return out;
 }
 
-function optimizeSourceForPreview(source) {
+export function optimizeSourceForPreview(source) {
   if (typeof source !== 'string' || source.length === 0) return source;
 
   return source
@@ -100,6 +101,58 @@ function optimizeSourceForPreview(source) {
       if (!Number.isFinite(value) || value >= 2) return full;
       return `${prefix}2${suffix}`;
     });
+}
+
+export function getVendorLibraryPaths() {
+  return Array.from(vendorSourceByRelPath.keys());
+}
+
+function appendExternalAssetFiles(sourceFilesByPath, externalAssetFiles = []) {
+  for (const file of externalAssetFiles) {
+    if (!file || typeof file.path !== 'string') continue;
+    const normalized = normalizeIncludePath(file.path);
+    if (!normalized) continue;
+    sourceFilesByPath.set(`/lib/${normalized}`, file.content);
+  }
+}
+
+export function createCompileBundleFromFiles({
+  entryFileName,
+  sourceFiles,
+  sourceOrigin = 'catalog',
+  lockedRef = null,
+  options = {},
+  externalAssetFiles = [],
+  includeVendor = false
+}) {
+  const sourceFilesByPath = new Map();
+
+  if (includeVendor) {
+    for (const [rel, source] of vendorSourceByRelPath.entries()) {
+      sourceFilesByPath.set(`/lib/${rel}`, optimizeSourceForPreview(source));
+    }
+  }
+
+  for (const file of sourceFiles || []) {
+    if (!file || typeof file.path !== 'string') continue;
+    const normalized = normalizeIncludePath(file.path);
+    if (!normalized) continue;
+    sourceFilesByPath.set(`/lib/${normalized}`, optimizeSourceForPreview(file.content));
+  }
+
+  appendExternalAssetFiles(sourceFilesByPath, externalAssetFiles);
+  const entryPath = `/lib/${normalizeIncludePath(entryFileName)}`;
+
+  return createCompileRequest({
+    entryFile: entryPath,
+    sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({
+      path,
+      content
+    })),
+    sourceOrigin,
+    lockedRef,
+    options
+  });
 }
 
 export function getCompileBundleForModel(modelId, overriddenSource, externalAssetFiles = []) {
@@ -122,23 +175,17 @@ export function getCompileBundleForModel(modelId, overriddenSource, externalAsse
     if (source) upsertFile(`/lib/${model.id}`, source);
   }
 
-  // Ensure edited source always overrides the baseline model source.
   upsertFile(`/lib/${entry.id}`, overriddenSource);
-  for (const file of externalAssetFiles) {
-    if (!file || typeof file.path !== 'string') continue;
-    const normalized = normalizeIncludePath(file.path);
-    if (!normalized) continue;
-    upsertFile(`/lib/${normalized}`, file.content);
-  }
+  appendExternalAssetFiles(sourceFilesByPath, externalAssetFiles);
 
-  return {
+  return createCompileRequest({
     entryFile: `/lib/${entry.id}`,
-    cleanupRoot: '/lib',
     sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({
       path,
       content
-    }))
-  };
+    })),
+    sourceOrigin: 'catalog'
+  });
 }
 
 function createAdditionalSourceLookup(additionalFiles) {
@@ -260,21 +307,16 @@ export function getCompileBundleForAdHoc(
 
   const entryPath = normalizeIncludePath(entryFileName);
   upsertFile(`/lib/${entryPath}`, overriddenSource);
-  for (const file of externalAssetFiles) {
-    if (!file || typeof file.path !== 'string') continue;
-    const normalized = normalizeIncludePath(file.path);
-    if (!normalized) continue;
-    upsertFile(`/lib/${normalized}`, file.content);
-  }
+  appendExternalAssetFiles(sourceFilesByPath, externalAssetFiles);
 
-  return {
+  return createCompileRequest({
     entryFile: `/lib/${entryPath}`,
-    cleanupRoot: '/lib',
     sourceFiles: Array.from(sourceFilesByPath.entries()).map(([path, content]) => ({
       path,
       content
-    }))
-  };
+    })),
+    sourceOrigin: 'custom'
+  });
 }
 
 export function getModelSource(modelId) {

@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "openscad-sign": {
+      "label": "OpenSCAD Parametric Sign",
+      "url": "https://github.com/openscad/openscad/blob/master/examples/Parametric/sign.scad"
+    },
+    "openscad-text-on-cube": {
+      "label": "OpenSCAD Text On Cube Example",
+      "url": "https://github.com/openscad/openscad/blob/master/examples/text_on_cube.scad"
+    }
+  }
+}

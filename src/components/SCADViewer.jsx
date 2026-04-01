@@ -4,7 +4,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stage } from '@react-three/drei';
 import { STLLoader } from 'three-stdlib';
-import { useOpenSCAD } from '../hooks/useOpenSCAD';
+import { useScadCompiler } from '../hooks/useScadCompiler';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 function Model({ stlData }) {
@@ -35,7 +35,7 @@ function Model({ stlData }) {
 }
 
 export default function SCADViewer({ code, compileRequest, blockedReason = null, className = '' }) {
-  const { compile, compiling, error, stlData } = useOpenSCAD();
+  const { compile, compiling, error, phase, progressMessage, stlData } = useScadCompiler();
   const supportsWebGL = useMemo(() => {
     try {
       const canvas = document.createElement('canvas');
@@ -64,7 +64,9 @@ export default function SCADViewer({ code, compileRequest, blockedReason = null,
       {compiling && (
         <div className="absolute top-4 right-4 flex items-center gap-2 bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm z-10 border border-gray-100">
           <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
-          <span className="text-xs font-semibold text-blue-700">Building 3D Model...</span>
+          <span className="text-xs font-semibold text-blue-700">
+            {progressMessage || `Building 3D Model (${phase})...`}
+          </span>
         </div>
       )}
 

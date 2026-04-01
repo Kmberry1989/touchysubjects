@@ -1,0 +1,16 @@
+{
+  "frameworks": {
+    "BOSL2": {
+      "repo": "BelfrySCAD/BOSL2",
+      "defaultRef": "master"
+    },
+    "NopSCADlib": {
+      "repo": "nophead/NopSCADlib",
+      "defaultRef": "master"
+    },
+    "dotSCAD": {
+      "repo": "JustinSDK/dotSCAD",
+      "defaultRef": "master"
+    }
+  }
+}

@@ -6,13 +6,16 @@ import { parseIncludeDependencies, parseScadSource } from './parser';
 import { applyParamOverrides } from './override';
 import { normalizeExternalAssetPath, resolveExternalAssetPaths } from './externalAssets';
 import {
+  createCompileBundleFromFiles,
   getCatalog,
   getCompileBundleForAdHoc,
   getCompileBundleForModel,
   getModelSource
 } from './sourceRegistry';
+import { resolveRemoteModel } from './remoteResolver';
 
 const PRESET_KEY = 'scad-library-presets-v1';
+const REMOTE_KEY = 'scad-library-remote-v1';
 
 function safeJsonParse(value, fallback) {
   try {
@@ -89,6 +92,45 @@ function createCustomEntry(fileName, source) {
   };
 }
 
+function createRemoteEntry(remoteModel) {
+  const parsed = parseScadSource(remoteModel.entrySource);
+  return {
+    id: remoteModel.id,
+    fileName: remoteModel.fileName,
+    filePath: remoteModel.packageId
+      ? `Package/${remoteModel.packageId}`
+      : remoteModel.sourceUrl,
+    displayName: remoteModel.displayName,
+    category: 'Remote Models',
+    subcategory: remoteModel.packageId ? 'Packages' : 'Imports',
+    duplicateOf: null,
+    includeDeps: parseIncludeDependencies(remoteModel.entrySource),
+    needsExternalAsset: hasExternalAssetImports(remoteModel.entrySource),
+    sections: parsed.sections,
+    params: parsed.params,
+    sourceType: 'remote',
+    origin: {
+      packageId: remoteModel.packageId,
+      sourceUrl: remoteModel.sourceUrl
+    },
+    lockedRef: remoteModel.lockedRef ?? null,
+    dependencySummary: remoteModel.dependencySummary ?? null,
+    diagnostics: remoteModel.diagnostics ?? [],
+    lastResolvedAt: remoteModel.lastResolvedAt ?? new Date().toISOString()
+  };
+}
+
+function safeRemoteState(value) {
+  const parsed = safeJsonParse(value, null);
+  if (!parsed || typeof parsed !== 'object') {
+    return { entries: [], models: {} };
+  }
+  return {
+    entries: Array.isArray(parsed.entries) ? parsed.entries : [],
+    models: parsed.models && typeof parsed.models === 'object' ? parsed.models : {}
+  };
+}
+
 function makeDefaultCustomSource() {
   return `/* [General] */
 size = 20; // [5:1:100]
@@ -99,6 +141,10 @@ cube([size, size, size], center=true);
 }
 
 function statusForModel(entry, availableFileNames) {
+  if (entry.sourceType === 'remote') {
+    return entry.dependencySummary?.totalFiles > 1 ? 'Remote deps resolved' : 'Remote ready';
+  }
+
   const hasMissingDeps = (entry.includeDeps ?? []).some((dep) => {
     const normalized = String(dep || '')
       .replace(/\\/g, '/')
@@ -130,20 +176,31 @@ function statusForModel(entry, availableFileNames) {
 export default function ScadLibraryMode() {
   const catalog = React.useMemo(() => getCatalog(), []);
   const initialModel = getInitialModeModel() ?? catalog.entries[0]?.id;
+  const initialRemoteState = React.useMemo(
+    () => safeRemoteState(localStorage.getItem(REMOTE_KEY)),
+    []
+  );
 
   const [selectedModelId, setSelectedModelId] = React.useState(initialModel);
   const [showAdvanced, setShowAdvanced] = React.useState(false);
   const [presets, setPresets] = React.useState(() =>
     safeJsonParse(localStorage.getItem(PRESET_KEY), {})
   );
+  const [remoteEntries, setRemoteEntries] = React.useState(initialRemoteState.entries);
+  const [remoteModels, setRemoteModels] = React.useState(initialRemoteState.models);
+  const [remoteImportState, setRemoteImportState] = React.useState({
+    loading: false,
+    error: null,
+    message: ''
+  });
   const [customEntries, setCustomEntries] = React.useState([]);
   const [customSources, setCustomSources] = React.useState({});
   const [externalAssets, setExternalAssets] = React.useState({});
   const [values, setValues] = React.useState({});
 
   const allEntries = React.useMemo(
-    () => [...customEntries, ...catalog.entries],
-    [catalog.entries, customEntries]
+    () => [...remoteEntries, ...customEntries, ...catalog.entries],
+    [catalog.entries, customEntries, remoteEntries]
   );
   const categoryTree = React.useMemo(() => buildCategoryTree(allEntries), [allEntries]);
   const availableFileNames = React.useMemo(
@@ -167,6 +224,16 @@ export default function ScadLibraryMode() {
     updateUrl(selectedEntry.id);
   }, [selectedEntry]);
 
+  React.useEffect(() => {
+    localStorage.setItem(
+      REMOTE_KEY,
+      JSON.stringify({
+        entries: remoteEntries,
+        models: remoteModels
+      })
+    );
+  }, [remoteEntries, remoteModels]);
+
   const basicParams = React.useMemo(
     () => selectedEntry?.params.filter((p) => p.editable && p.visibility === 'basic') ?? [],
     [selectedEntry]
@@ -182,8 +249,11 @@ export default function ScadLibraryMode() {
     if (selectedEntry.sourceType === 'custom') {
       return customSources[selectedEntry.id] ?? '';
     }
+    if (selectedEntry.sourceType === 'remote') {
+      return remoteModels[selectedEntry.id]?.entrySource ?? '';
+    }
     return getModelSource(selectedEntry.id) ?? '';
-  }, [customSources, selectedEntry]);
+  }, [customSources, remoteModels, selectedEntry]);
 
   const overriddenSource = React.useMemo(() => {
     if (!selectedEntry) return '';
@@ -242,32 +312,43 @@ export default function ScadLibraryMode() {
     if (!selectedEntry) return null;
     if (compileBlockReason) return null;
 
+    if (selectedEntry.sourceType === 'remote') {
+      const remoteModel = remoteModels[selectedEntry.id];
+      if (!remoteModel) return null;
+
+      return createCompileBundleFromFiles({
+        entryFileName: remoteModel.entryFileName,
+        sourceFiles: remoteModel.sourceFiles.map((file) =>
+          file.path === remoteModel.entryFileName ? { ...file, content: overriddenSource } : file
+        ),
+        sourceOrigin: 'remote',
+        lockedRef: remoteModel.lockedRef,
+        externalAssetFiles: mountedExternalAssetFiles,
+        includeVendor: true
+      });
+    }
+
     if (selectedEntry.sourceType === 'custom') {
       const additionalFiles = customEntries
         .map((entry) => ({ fileName: entry.fileName, source: customSources[entry.id] }))
         .filter((file) => typeof file.source === 'string');
 
-      return {
-        type: 'compile-v2',
-        ...getCompileBundleForAdHoc(
-          selectedEntry.fileName,
-          overriddenSource,
-          additionalFiles,
-          mountedExternalAssetFiles
-        )
-      };
+      return getCompileBundleForAdHoc(
+        selectedEntry.fileName,
+        overriddenSource,
+        additionalFiles,
+        mountedExternalAssetFiles
+      );
     }
 
-    return {
-      type: 'compile-v2',
-      ...getCompileBundleForModel(selectedEntry.id, overriddenSource, mountedExternalAssetFiles)
-    };
+    return getCompileBundleForModel(selectedEntry.id, overriddenSource, mountedExternalAssetFiles);
   }, [
     compileBlockReason,
     customEntries,
     customSources,
     mountedExternalAssetFiles,
     overriddenSource,
+    remoteModels,
     selectedEntry
   ]);
 
@@ -329,6 +410,78 @@ export default function ScadLibraryMode() {
 
     setSelectedModelId(nextEntries[0].id);
   }, []);
+
+  const upsertRemoteModel = React.useCallback((remoteModel) => {
+    const nextEntry = createRemoteEntry(remoteModel);
+
+    setRemoteEntries((prev) => {
+      const byId = new Map(prev.map((entry) => [entry.id, entry]));
+      byId.set(nextEntry.id, nextEntry);
+      return Array.from(byId.values());
+    });
+
+    setRemoteModels((prev) => ({
+      ...prev,
+      [remoteModel.id]: remoteModel
+    }));
+
+    setSelectedModelId(remoteModel.id);
+  }, []);
+
+  const runRemoteImport = React.useCallback(
+    async (specifier) => {
+      setRemoteImportState({
+        loading: true,
+        error: null,
+        message: 'Resolving remote source graph…'
+      });
+
+      try {
+        const remoteModel = await resolveRemoteModel(specifier);
+        upsertRemoteModel(remoteModel);
+        setRemoteImportState({
+          loading: false,
+          error: null,
+          message: `Imported ${remoteModel.displayName}`
+        });
+      } catch (err) {
+        setRemoteImportState({
+          loading: false,
+          error: err.message || 'Remote import failed',
+          message: ''
+        });
+      }
+    },
+    [upsertRemoteModel]
+  );
+
+  const promptRemoteImport = React.useCallback(() => {
+    const specifier = window.prompt('Enter a remote .scad URL or package id');
+    if (!specifier) return;
+    runRemoteImport(specifier);
+  }, [runRemoteImport]);
+
+  const refreshRemoteModel = React.useCallback(() => {
+    if (!selectedEntry || selectedEntry.sourceType !== 'remote') return;
+    const specifier = selectedEntry.origin?.packageId || selectedEntry.origin?.sourceUrl;
+    if (!specifier) return;
+    runRemoteImport(specifier);
+  }, [runRemoteImport, selectedEntry]);
+
+  const removeRemoteModel = React.useCallback(() => {
+    if (!selectedEntry || selectedEntry.sourceType !== 'remote') return;
+    const removeId = selectedEntry.id;
+    setRemoteEntries((prev) => prev.filter((entry) => entry.id !== removeId));
+    setRemoteModels((prev) => {
+      const next = { ...prev };
+      delete next[removeId];
+      return next;
+    });
+    setSelectedModelId((current) => {
+      if (current !== removeId) return current;
+      return customEntries[0]?.id ?? catalog.entries[0]?.id ?? null;
+    });
+  }, [catalog.entries, customEntries, selectedEntry]);
 
   const importScadFiles = React.useCallback(
     async (event) => {
@@ -453,10 +606,18 @@ export default function ScadLibraryMode() {
       <aside className="col-span-3 bg-white border border-gray-200 rounded-xl p-3 overflow-auto max-h-[80vh]">
         <h2 className="text-lg font-bold mb-3">
           SCAD Library ({catalog.count}
+          {remoteEntries.length > 0 ? ` + ${remoteEntries.length} remote` : ''}
           {customEntries.length > 0 ? ` + ${customEntries.length} local` : ''})
         </h2>
 
         <div className="space-y-2 mb-4 pb-3 border-b border-gray-100">
+          <button
+            onClick={promptRemoteImport}
+            disabled={remoteImportState.loading}
+            className="w-full px-3 py-2 rounded bg-sky-100 border border-sky-300 text-sky-900 text-sm font-semibold"
+          >
+            {remoteImportState.loading ? 'Importing Remote Model…' : 'Import URL / Package'}
+          </button>
           <label className="w-full px-3 py-2 rounded bg-indigo-100 text-indigo-900 text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer">
             <Upload size={14} /> Open .scad file(s)
             <input
@@ -474,8 +635,14 @@ export default function ScadLibraryMode() {
             Create Blank File
           </button>
           <p className="text-[11px] text-gray-500">
-            Local files are available in this browser session.
+            Remote imports and local files are stored in this browser session.
           </p>
+          {remoteImportState.message && (
+            <p className="text-[11px] text-sky-700">{remoteImportState.message}</p>
+          )}
+          {remoteImportState.error && (
+            <p className="text-[11px] text-red-700">{remoteImportState.error}</p>
+          )}
         </div>
 
         {[...categoryTree.entries()].map(([category, subMap]) => (
@@ -496,6 +663,13 @@ export default function ScadLibraryMode() {
                       <div className="font-semibold">{entry.displayName}</div>
                       {entry.sourceType === 'custom' && (
                         <div className="text-[11px] text-indigo-700">Local file</div>
+                      )}
+                      {entry.sourceType === 'remote' && (
+                        <div className="text-[11px] text-sky-700">
+                          {entry.origin?.packageId
+                            ? `Package: ${entry.origin.packageId}`
+                            : 'Remote URL import'}
+                        </div>
                       )}
                       {entry.duplicateOf && (
                         <div className="text-[11px] text-orange-700">
@@ -520,6 +694,24 @@ export default function ScadLibraryMode() {
           <p className="text-xs text-gray-500 font-mono">{selectedEntry.filePath}</p>
           {selectedEntry.sourceType === 'custom' && (
             <p className="text-xs text-indigo-700">Editing a local uploaded SCAD file.</p>
+          )}
+          {selectedEntry.sourceType === 'remote' && (
+            <div className="space-y-1 text-xs text-sky-800">
+              <p>Remote source imported into the browser and locked for repeatable renders.</p>
+              {selectedEntry.lockedRef?.repo && (
+                <p className="font-mono text-[11px] text-sky-900">
+                  {selectedEntry.lockedRef.repo}@{selectedEntry.lockedRef.commit}
+                </p>
+              )}
+              {selectedEntry.dependencySummary && (
+                <p className="text-[11px] text-sky-900">
+                  {selectedEntry.dependencySummary.totalFiles} file(s)
+                  {selectedEntry.dependencySummary.frameworks?.length > 0
+                    ? `, frameworks: ${selectedEntry.dependencySummary.frameworks.join(', ')}`
+                    : ''}
+                </p>
+              )}
+            </div>
           )}
           {selectedEntry.duplicateOf && (
             <p className="text-sm text-orange-700">
@@ -626,7 +818,30 @@ export default function ScadLibraryMode() {
                 Remove Local File
               </button>
             )}
+            {selectedEntry.sourceType === 'remote' && (
+              <>
+                <button
+                  onClick={refreshRemoteModel}
+                  className="px-3 py-1.5 rounded bg-sky-100 border border-sky-200 text-sky-900 text-sm font-semibold"
+                >
+                  Refresh Remote
+                </button>
+                <button
+                  onClick={removeRemoteModel}
+                  className="px-3 py-1.5 rounded bg-red-100 border border-red-200 text-red-800 text-sm font-semibold"
+                >
+                  Remove Remote
+                </button>
+              </>
+            )}
           </div>
+          {selectedEntry.sourceType === 'remote' && selectedEntry.diagnostics?.length > 0 && (
+            <div className="rounded border border-sky-200 bg-sky-50 px-2 py-2 text-[11px] text-sky-900 space-y-1">
+              {selectedEntry.diagnostics.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+          )}
         </div>
 
         <ScadControls
