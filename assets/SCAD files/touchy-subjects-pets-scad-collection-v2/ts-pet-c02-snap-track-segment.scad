@@ -1,0 +1,10 @@
+// TS-PET-C02 - Snap-Together Track Segment
+$fn = 96; seg_angle = 60; track_outer_r = 85; track_inner_r = 58; track_h = 14; floor_t = 2.0; roof_t = 2.2; join_w = 14; join_t = 3.0; join_h = 10;
+module arc2d(ro, ri, ang) {
+    difference() {
+        intersection() { circle(r = ro); rotate([0,0, ang/2]) translate([0,-ro]) square([ro*2, ro*2]); rotate([0,0,-ang/2]) translate([-ro,-ro]) square([ro*2, ro*2]); }
+        intersection() { circle(r = ri); rotate([0,0, ang/2]) translate([0,-ro]) square([ro*2, ro*2]); rotate([0,0,-ang/2]) translate([-ro,-ro]) square([ro*2, ro*2]); }
+    }
+}
+difference() { linear_extrude(height = track_h) arc2d(track_outer_r, track_inner_r, seg_angle); translate([0,0,floor_t]) linear_extrude(height = track_h - floor_t - roof_t) arc2d(track_outer_r - 3, track_inner_r + 3, seg_angle); rotate([0,0,-seg_angle/2]) translate([track_outer_r - 8,0,track_h/2]) cube([join_t + 0.5, join_w + 0.5, join_h + 0.5], center = true); }
+rotate([0,0,seg_angle/2]) translate([track_outer_r - 8,0,track_h/2]) cube([join_t, join_w, join_h], center = true);

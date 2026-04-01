@@ -50,11 +50,7 @@ export default function SCADViewer({ code, compileRequest, blockedReason = null,
     const payload = compileRequest ?? code;
     if (!payload) return;
 
-    const timer = setTimeout(() => {
-      compile(payload);
-    }, 800);
-
-    return () => clearTimeout(timer);
+    compile(payload);
   }, [blockedReason, code, compileRequest, compile]);
 
   return (
